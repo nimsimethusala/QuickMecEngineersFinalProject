@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="root" prefHeight="476.0" prefWidth="730.0" style="-fx-background-color: #a29bfe;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.itemFormController">
+   <children>
+      <Text layoutX="268.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM FORM">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtItemId" layoutX="40.0" layoutY="116.0" onAction="#txtItemIdOnAction" prefHeight="26.0" prefWidth="249.0" promptText="Item id" />
+      <TextField fx:id="txtName" layoutX="40.0" layoutY="171.0" prefHeight="26.0" prefWidth="249.0" promptText="Name" />
+      <TextField fx:id="txtItemCount" layoutX="40.0" layoutY="228.0" prefHeight="26.0" prefWidth="249.0" promptText="Item count" />
+      <TableView layoutX="350.0" layoutY="89.0" prefHeight="374.0" prefWidth="343.0">
+        <columns>
+          <TableColumn fx:id="tblItemId" prefWidth="108.0" text="Item_id" />
+          <TableColumn fx:id="tblName" prefWidth="130.4000244140625" text="Name" />
+            <TableColumn fx:id="tblItemCount" prefWidth="103.19999999999999" text="Item_count" />
+        </columns>
+      </TableView>
+      <Button layoutX="39.0" layoutY="293.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #fd79a8;" text="Save">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Button>
+      <Button layoutX="184.0" layoutY="293.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #fdcb6e;" text="Update">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Button>
+      <Button layoutX="39.0" layoutY="366.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #81ecec;" text="Delete">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Button>
+      <Button layoutX="184.0" layoutY="366.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #fab1a0;" text="Clear">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
