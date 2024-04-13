@@ -3,13 +3,17 @@ package lk.Ijse.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class defectFormController {
 
     @FXML
-    private AnchorPane root;
+    private AnchorPane DefectRoot;
+
+    @FXML
+    private TableView<?> tblDefect;
 
     @FXML
     private TableColumn<?, ?> tblDefectId;

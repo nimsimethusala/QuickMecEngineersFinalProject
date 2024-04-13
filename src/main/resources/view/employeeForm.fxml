@@ -4,50 +4,100 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="EmployeeRoot" prefHeight="476.0" prefWidth="730.0" style="-fx-background-color: #ffeaa7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.employeeFormController">
+<AnchorPane fx:id="EmployeeRoot" prefHeight="602.0" prefWidth="734.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.employeeFormController">
    <children>
-      <Text layoutX="234.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMPLOYEE FORM">
+      <ImageView fitHeight="602.0" fitWidth="734.0" layoutX="2.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Untitled design.png" />
+         </image>
+      </ImageView>
+      <Text fill="CORAL" layoutX="119.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMPLOYEE FORM">
          <font>
-            <Font name="System Bold" size="32.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Text>
-      <TextField fx:id="txtSupplierId" layoutX="36.0" layoutY="107.0" onAction="#txtSupplierIdOnAction" prefHeight="26.0" prefWidth="233.0" promptText="Supplier id" />
-      <TextField fx:id="txtName" layoutX="36.0" layoutY="145.0" prefHeight="26.0" prefWidth="233.0" promptText="Supplier Name" />
-      <TextField fx:id="txtAttendance" layoutX="36.0" layoutY="183.0" prefHeight="26.0" prefWidth="233.0" promptText="Attendance" />
-      <TextField fx:id="txtContact" layoutX="36.0" layoutY="221.0" prefHeight="26.0" prefWidth="233.0" promptText="Contact" />
-      <TextField fx:id="txtAddress" layoutX="36.0" layoutY="259.0" prefHeight="26.0" prefWidth="233.0" promptText="Address" />
-      <Button layoutX="36.0" layoutY="319.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #ff7675;" text="Save">
+      <TextField fx:id="txtEmployee" layoutX="66.0" layoutY="124.0" onAction="#txtEmployeeIdOnAction" prefHeight="30.0" prefWidth="234.0" promptText="Employee ID" />
+      <TextField fx:id="txtEmployeeName" layoutX="433.0" layoutY="124.0" prefHeight="30.0" prefWidth="234.0" promptText="Employee Name" />
+      <TextField fx:id="txtAttendance" layoutX="66.0" layoutY="191.0" prefHeight="30.0" prefWidth="234.0" promptText="Attendance" />
+      <TextField fx:id="txtContact" layoutX="433.0" layoutY="191.0" prefHeight="30.0" prefWidth="234.0" promptText="Contact" />
+      <TextField fx:id="txtAddress" layoutX="66.0" layoutY="261.0" prefHeight="30.0" prefWidth="234.0" promptText="Address" />
+      <Button layoutX="66.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="22.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Save">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="165.0" layoutY="319.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #fd79a8;" text="Update">
+      <Button layoutX="234.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: #a4b0be;" text="Update">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="36.0" layoutY="379.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #55efc4;" text="Delete">
+      <Button layoutX="394.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Delete">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="165.0" layoutY="379.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a29bfe;" text="Clear">
+      <Button layoutX="561.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Clear">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <TableView layoutX="285.0" layoutY="82.0" prefHeight="366.0" prefWidth="424.0">
+      <TableView fx:id="tblEmployee" layoutX="66.0" layoutY="396.0" prefHeight="172.0" prefWidth="606.0">
         <columns>
           <TableColumn fx:id="tblEmployeeId" prefWidth="83.20001220703125" text="Employee_id" />
-          <TableColumn fx:id="tblName" text="Name" />
-            <TableColumn fx:id="tblAttendance" prefWidth="71.199951171875" text="Attendance" />
-            <TableColumn fx:id="tblContact" prefWidth="80.800048828125" text="Contact" />
-            <TableColumn fx:id="tblAddress" prefWidth="108.79998779296875" text="Address" />
+          <TableColumn fx:id="tblName" prefWidth="112.00001525878906" text="Name" />
+            <TableColumn fx:id="tblAttendance" prefWidth="76.800048828125" text="Attendance" />
+            <TableColumn fx:id="tblContact" prefWidth="105.60003662109375" text="Contact" />
+            <TableColumn fx:id="tblAddress" prefWidth="128.79998779296875" text="Address" />
+            <TableColumn fx:id="tblSalary" prefWidth="100.0" text="Salary" />
         </columns>
       </TableView>
+      <TextField fx:id="txtSalary" layoutX="433.0" layoutY="261.0" prefHeight="30.0" prefWidth="234.0" promptText="Salary" />
+      <ImageView fitHeight="52.0" fitWidth="43.0" layoutX="66.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Screenshot 2024-04-11 141234.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="66.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="433.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Name">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="66.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attendence">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="434.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="67.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="434.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salary">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtSearch" layoutX="387.0" layoutY="43.0" onAction="#txtSearchOnAction" prefHeight="30.0" prefWidth="282.0" promptText="Search" />
+      <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="635.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

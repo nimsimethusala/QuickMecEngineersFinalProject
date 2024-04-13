@@ -4,47 +4,73 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane fx:id="root" prefHeight="476.0" prefWidth="730.0" style="-fx-background-color: #81ecec;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.defectFormController">
+<AnchorPane fx:id="DefectRoot" prefHeight="602.0" prefWidth="734.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.defectFormController">
    <children>
-      <Text layoutX="251.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEFECT FORM">
+      <ImageView fitHeight="602.0" fitWidth="734.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Untitled design.png" />
+         </image>
+      </ImageView>
+      <Text fill="CORAL" layoutX="160.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEFECT FORM">
          <font>
-            <Font name="System Bold" size="37.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="txtDefectId" layoutX="42.0" layoutY="121.0" onAction="#txtDefectIdOnAction" prefHeight="26.0" prefWidth="272.0" promptText="Defect id" />
-      <TextField fx:id="txtDescription" layoutX="42.0" layoutY="172.0" prefHeight="26.0" prefWidth="272.0" promptText="Description" />
-      <TextField fx:id="txtPrice" layoutX="42.0" layoutY="228.0" prefHeight="26.0" prefWidth="272.0" promptText="Price" />
-      <Button layoutX="42.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #fff200;" text="Save">
+      <TextField fx:id="txtDefectId" layoutX="71.0" layoutY="143.0" onAction="#txtDefectIdOnAction" prefHeight="26.0" prefWidth="272.0" promptText="Defect id" />
+      <TextField fx:id="txtDescription" layoutX="71.0" layoutY="208.0" prefHeight="26.0" prefWidth="272.0" promptText="Description" />
+      <TextField fx:id="txtPrice" layoutX="71.0" layoutY="272.0" prefHeight="26.0" prefWidth="272.0" promptText="Price" />
+      <Button layoutX="390.0" layoutY="158.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Save">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <Button layoutX="209.0" layoutY="300.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #B33771;" text="Update">
+      <Button layoutX="557.0" layoutY="158.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #a4b0be;" text="Update">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <Button layoutX="42.0" layoutY="365.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #EAB543;" text="Delete">
+      <Button layoutX="390.0" layoutY="237.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Delete">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <Button layoutX="209.0" layoutY="365.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #FC427B;" text="Clear">
+      <Button layoutX="557.0" layoutY="237.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Clear">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <TableView layoutX="350.0" layoutY="92.0" prefHeight="366.0" prefWidth="359.0">
+      <TableView fx:id="tblDefect" layoutX="74.0" layoutY="346.0" prefHeight="205.0" prefWidth="591.0">
         <columns>
-          <TableColumn fx:id="tblDefectId" prefWidth="82.4000244140625" text="Defect_id" />
-          <TableColumn fx:id="tblDescription" prefWidth="195.99993896484375" text="Description" />
-            <TableColumn fx:id="tblPrice" text="Price" />
+          <TableColumn fx:id="tblDefectId" prefWidth="91.19998168945312" text="Defect_id" />
+          <TableColumn fx:id="tblDescription" prefWidth="391.6000518798828" text="Description" />
+            <TableColumn fx:id="tblPrice" prefWidth="110.0" text="Price" />
         </columns>
       </TableView>
+      <Text fill="WHITE" layoutX="71.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defect ID">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="71.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="70.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="69.0" fitWidth="73.0" layoutX="71.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Screenshot 2024-04-11 151822.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

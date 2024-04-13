@@ -3,13 +3,14 @@ package lk.Ijse.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class employeeFormController {
 
     @FXML
-    private AnchorPane root;
+    private AnchorPane EmployeeRoot;
 
     @FXML
     private TableColumn<?, ?> tblAddress;
@@ -21,10 +22,16 @@ public class employeeFormController {
     private TableColumn<?, ?> tblContact;
 
     @FXML
+    private TableView<?> tblEmployee;
+
+    @FXML
     private TableColumn<?, ?> tblEmployeeId;
 
     @FXML
     private TableColumn<?, ?> tblName;
+
+    @FXML
+    private TableColumn<?, ?> tblSalary;
 
     @FXML
     private TextField txtAddress;
@@ -36,10 +43,16 @@ public class employeeFormController {
     private TextField txtContact;
 
     @FXML
-    private TextField txtName;
+    private TextField txtEmployee;
 
     @FXML
-    private TextField txtSupplierId;
+    private TextField txtEmployeeName;
+
+    @FXML
+    private TextField txtSalary;
+
+    @FXML
+    private TextField txtSearch;
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
@@ -62,7 +75,12 @@ public class employeeFormController {
     }
 
     @FXML
-    void txtSupplierIdOnAction(ActionEvent event) {
+    void txtEmployeeIdOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void txtSearchOnAction(ActionEvent event) {
 
     }
 

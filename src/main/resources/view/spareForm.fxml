@@ -17,59 +17,65 @@
             <Image url="@../images/Untitled design.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="159.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SPARE FORM">
+      <Text fill="CORAL" layoutX="159.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SPARE FORM">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="txtSapreId" layoutX="74.0" layoutY="131.0" onAction="#txtSpareIdOnAction" prefHeight="26.0" prefWidth="262.0" promptText="Spare id" />
-      <TextField fx:id="txtName" layoutX="74.0" layoutY="194.0" prefHeight="26.0" prefWidth="262.0" promptText="Name" />
-      <TextField fx:id="txtType" layoutX="74.0" layoutY="257.0" prefHeight="26.0" prefWidth="262.0" promptText="Type" />
-      <Text fill="WHITE" layoutX="75.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spare ID">
+      <TextField fx:id="txtSapreId" layoutX="74.0" layoutY="198.0" onAction="#txtSpareIdOnAction" prefHeight="26.0" prefWidth="262.0" promptText="Spare id" />
+      <TextField fx:id="txtName" layoutX="74.0" layoutY="261.0" prefHeight="26.0" prefWidth="262.0" promptText="Name" />
+      <TextField fx:id="txtType" layoutX="74.0" layoutY="324.0" prefHeight="26.0" prefWidth="262.0" promptText="Type" />
+      <Text fill="WHITE" layoutX="75.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spare ID">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="74.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spare Name">
+      <Text fill="WHITE" layoutX="74.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spare Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="73.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spare Type">
+      <Text fill="WHITE" layoutX="73.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spare Type">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <TableView fx:id="tblSpare" layoutX="74.0" layoutY="324.0" prefHeight="236.0" prefWidth="590.0">
+      <TableView fx:id="tblSpare" layoutX="74.0" layoutY="378.0" prefHeight="182.0" prefWidth="590.0">
         <columns>
           <TableColumn fx:id="tblSpareId" prefWidth="131.9999656677246" text="Spare_id" />
           <TableColumn fx:id="tblName" prefWidth="208.80006408691406" text="Name" />
             <TableColumn fx:id="tblType" prefWidth="264.79998779296875" text="Type" />
         </columns>
       </TableView>
-      <JFXButton layoutX="399.0" layoutY="147.0" onAction="#btnSaveOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Save" textFill="WHITE">
+      <JFXButton layoutX="399.0" layoutY="214.0" onAction="#btnSaveOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="556.0" layoutY="147.0" onAction="#btnUpdateOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Update" textFill="WHITE">
+      <JFXButton layoutX="556.0" layoutY="214.0" onAction="#btnUpdateOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="399.0" layoutY="222.0" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Delete" textFill="WHITE">
+      <JFXButton layoutX="399.0" layoutY="289.0" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="556.0" layoutY="222.0" onAction="#btnClearOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Clear" textFill="WHITE">
+      <JFXButton layoutX="556.0" layoutY="289.0" onAction="#btnClearOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Clear" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </JFXButton>
-      <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="77.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="77.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Screenshot 2024-04-11 141807.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtSearch" layoutX="228.0" layoutY="119.0" onAction="#txtSearchOnAction" prefHeight="34.0" prefWidth="342.0" promptText="Search" />
+      <ImageView fitHeight="34.0" fitWidth="33.0" layoutX="533.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
          </image>
       </ImageView>
    </children>

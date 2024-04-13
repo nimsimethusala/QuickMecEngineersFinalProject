@@ -31,6 +31,9 @@ public class spareFormController {
     private TextField txtSapreId;
 
     @FXML
+    private TextField txtSearch;
+
+    @FXML
     private TextField txtType;
 
     @FXML
@@ -50,6 +53,11 @@ public class spareFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void txtSearchOnAction(ActionEvent event) {
 
     }
 

@@ -3,6 +3,7 @@ package lk.Ijse.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -10,6 +11,9 @@ public class itemFormController {
 
     @FXML
     private AnchorPane root;
+
+    @FXML
+    private TableView<?> tblItem;
 
     @FXML
     private TableColumn<?, ?> tblItemCount;
@@ -28,6 +32,9 @@ public class itemFormController {
 
     @FXML
     private TextField txtName;
+
+    @FXML
+    private TextField txtSearch;
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
@@ -51,6 +58,11 @@ public class itemFormController {
 
     @FXML
     void txtItemIdOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void txtSearchOnAction(ActionEvent event) {
 
     }
 

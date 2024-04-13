@@ -3,19 +3,23 @@ package lk.Ijse.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class customerFormController {
 
     @FXML
-    private AnchorPane root;
+    private AnchorPane CustomerRoot;
 
     @FXML
     private TableColumn<?, ?> tblAddress;
 
     @FXML
     private TableColumn<?, ?> tblContact;
+
+    @FXML
+    private TableView<?> tblCustomer;
 
     @FXML
     private TableColumn<?, ?> tblCustomerId;
@@ -34,6 +38,9 @@ public class customerFormController {
 
     @FXML
     private TextField txtCustomerNumber;
+
+    @FXML
+    private TextField txtSearch;
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
@@ -57,6 +64,11 @@ public class customerFormController {
 
     @FXML
     void txtCustomerIdOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void txtSearchOnAction(ActionEvent event) {
 
     }
 
