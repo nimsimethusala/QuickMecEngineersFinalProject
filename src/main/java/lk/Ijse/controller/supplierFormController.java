@@ -3,13 +3,14 @@ package lk.Ijse.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class supplierFormController {
 
     @FXML
-    private AnchorPane root;
+    private AnchorPane supplierRoot;
 
     @FXML
     private TableColumn<?, ?> tblContact;
@@ -21,13 +22,19 @@ public class supplierFormController {
     private TableColumn<?, ?> tblName;
 
     @FXML
+    private TableView<?> tblSupplier;
+
+    @FXML
     private TableColumn<?, ?> tblSupplierId;
 
     @FXML
-    private TextField txtContact;
+    private TextField txtContactNo;
 
     @FXML
     private TextField txtLocation;
+
+    @FXML
+    private TextField txtSearch;
 
     @FXML
     private TextField txtSupplierId;

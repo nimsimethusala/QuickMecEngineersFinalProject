@@ -4,48 +4,66 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="476.0" prefWidth="730.0" style="-fx-background-color: #b8e994;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.supplierFormController">
+<AnchorPane fx:id="supplierRoot" prefHeight="602.0" prefWidth="734.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.supplierFormController">
    <children>
-      <Text layoutX="230.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUPPLIER FORM">
+      <ImageView fitHeight="602.0" fitWidth="734.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Untitled design.png" />
+         </image>
+      </ImageView>
+      <Text fill="CORAL" layoutX="129.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUPPLIER FORM">
          <font>
-            <Font name="System Bold" size="35.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="txtSupplierId" layoutX="41.0" layoutY="114.0" onAction="#txtSupplierIdOnAction" prefHeight="26.0" prefWidth="251.0" promptText="Supplier id" />
-      <TextField fx:id="txtSupplierName" layoutX="41.0" layoutY="158.0" prefHeight="26.0" prefWidth="251.0" promptText="Supplier Name" />
-      <TextField fx:id="txtContact" layoutX="41.0" layoutY="203.0" prefHeight="26.0" prefWidth="251.0" promptText="Contact No" />
-      <TextField fx:id="txtLocation" layoutX="41.0" layoutY="248.0" prefHeight="26.0" prefWidth="251.0" promptText="Location" />
-      <Button layoutX="41.0" layoutY="303.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #ff6b81;" text="Save">
+      <TextField fx:id="txtSupplierId" layoutX="62.0" layoutY="174.0" onAction="#txtSupplierIdOnAction" prefHeight="28.0" prefWidth="251.0" promptText="Supplier id" />
+      <TextField fx:id="txtSupplierName" layoutX="419.0" layoutY="174.0" prefHeight="28.0" prefWidth="251.0" promptText="Supplier Name" />
+      <TextField fx:id="txtContactNo" layoutX="62.0" layoutY="238.0" prefHeight="28.0" prefWidth="251.0" promptText="Contact No" />
+      <TextField fx:id="txtLocation" layoutX="419.0" layoutY="238.0" prefHeight="28.0" prefWidth="251.0" promptText="Location" />
+      <Button layoutX="62.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="38.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Save">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="187.0" layoutY="303.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #ffa502;" text="Update">
+      <Button layoutX="227.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #a4b0be;" text="Update">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="41.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #ff7f50;" text="Delete">
+      <Button layoutX="393.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Delete">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="187.0" layoutY="373.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #70a1ff;" text="Clear">
+      <Button layoutX="564.0" layoutY="310.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Clear">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <TableView layoutX="311.0" layoutY="93.0" prefHeight="362.0" prefWidth="390.0">
+      <TableView fx:id="tblSupplier" layoutX="61.0" layoutY="381.0" prefHeight="178.0" prefWidth="608.0">
         <columns>
-          <TableColumn fx:id="tblSupplierId" prefWidth="75.0" text="Supplier_id" />
-          <TableColumn fx:id="tblName" prefWidth="112.79998779296875" text="Name" />
-            <TableColumn fx:id="tblContact" prefWidth="112.0" text="Contact" />
-            <TableColumn fx:id="tblLocation" prefWidth="90.4000244140625" text="Location" />
+          <TableColumn fx:id="tblSupplierId" prefWidth="116.79995346069336" text="Supplier_id" />
+          <TableColumn fx:id="tblName" prefWidth="165.6000518798828" text="Name" />
+            <TableColumn fx:id="tblContact" prefWidth="162.40008544921875" text="Contact" />
+            <TableColumn fx:id="tblLocation" prefWidth="164.0" text="Location" />
         </columns>
       </TableView>
+      <ImageView fitHeight="56.0" fitWidth="55.0" layoutX="62.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Screenshot 2024-04-11 154259.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtSearch" layoutX="218.0" layoutY="103.0" onAction="#txtSupplierIdOnAction" prefHeight="28.0" prefWidth="349.0" promptText="Search" />
+      <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="540.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

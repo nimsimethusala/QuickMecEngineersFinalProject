@@ -4,47 +4,79 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane fx:id="root" prefHeight="476.0" prefWidth="730.0" style="-fx-background-color: #a29bfe;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.itemFormController">
+<AnchorPane fx:id="root" prefHeight="602.0" prefWidth="734.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.itemFormController">
    <children>
-      <Text layoutX="268.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM FORM">
+      <ImageView fitHeight="602.0" fitWidth="734.0" layoutX="1.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Untitled design.png" />
+         </image>
+      </ImageView>
+      <Text fill="CORAL" layoutX="118.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM FORM">
          <font>
-            <Font name="System Bold" size="35.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="txtItemId" layoutX="40.0" layoutY="116.0" onAction="#txtItemIdOnAction" prefHeight="26.0" prefWidth="249.0" promptText="Item id" />
-      <TextField fx:id="txtName" layoutX="40.0" layoutY="171.0" prefHeight="26.0" prefWidth="249.0" promptText="Name" />
-      <TextField fx:id="txtItemCount" layoutX="40.0" layoutY="228.0" prefHeight="26.0" prefWidth="249.0" promptText="Item count" />
-      <TableView layoutX="350.0" layoutY="89.0" prefHeight="374.0" prefWidth="343.0">
+      <TextField fx:id="txtItemId" layoutX="51.0" layoutY="235.0" onAction="#txtItemIdOnAction" prefHeight="34.0" prefWidth="250.0" promptText="Item id" />
+      <TextField fx:id="txtName" layoutX="51.0" layoutY="305.0" prefHeight="34.0" prefWidth="250.0" promptText="Name" />
+      <TextField fx:id="txtItemCount" layoutX="51.0" layoutY="375.0" prefHeight="34.0" prefWidth="250.0" promptText="Item count" />
+      <TableView fx:id="tblItem" layoutX="341.0" layoutY="211.0" prefHeight="214.0" prefWidth="343.0">
         <columns>
           <TableColumn fx:id="tblItemId" prefWidth="108.0" text="Item_id" />
           <TableColumn fx:id="tblName" prefWidth="130.4000244140625" text="Name" />
             <TableColumn fx:id="tblItemCount" prefWidth="103.19999999999999" text="Item_count" />
         </columns>
       </TableView>
-      <Button layoutX="39.0" layoutY="293.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #fd79a8;" text="Save">
+      <Button layoutX="51.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Save">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="184.0" layoutY="293.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #fdcb6e;" text="Update">
+      <Button layoutX="226.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #a4b0be;" text="Update">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="39.0" layoutY="366.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #81ecec;" text="Delete">
+      <Button layoutX="403.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Delete">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="184.0" layoutY="366.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #fab1a0;" text="Clear">
+      <Button layoutX="578.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="21.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Clear">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
+      <ImageView fitHeight="55.0" fitWidth="58.0" layoutX="51.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Screenshot 2024-04-11 111137.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtSearch" layoutX="190.0" layoutY="129.0" onAction="#txtSearchOnAction" prefHeight="33.0" prefWidth="354.0" promptText="Search" />
+      <ImageView fitHeight="34.0" fitWidth="31.0" layoutX="507.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="51.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item ID">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="52.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="52.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Count">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
