@@ -4,14 +4,20 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane fx:id="root" prefHeight="476.0" prefWidth="730.0" style="-fx-background-color: #FDA7DF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.jobFormController">
+<AnchorPane fx:id="root" prefHeight="611.0" prefWidth="784.0" style="-fx-background-color: #FDA7DF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.jobFormController">
    <children>
-      <Text layoutX="280.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JOB FORM">
+      <ImageView fitHeight="611.0" fitWidth="784.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Untitled design.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="324.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JOB FORM">
          <font>
             <Font name="System Bold" size="34.0" />
          </font>
@@ -19,32 +25,34 @@
       <TextField fx:id="txtJobId" layoutX="32.0" layoutY="122.0" prefHeight="26.0" prefWidth="248.0" promptText="Job id" />
       <TextField fx:id="txtDate" layoutX="32.0" layoutY="172.0" prefHeight="26.0" prefWidth="248.0" promptText="Date" />
       <TextField fx:id="txtVehicleModel" layoutX="32.0" layoutY="222.0" prefHeight="26.0" prefWidth="248.0" promptText="Vehicle model" />
-      <TableView layoutX="336.0" layoutY="97.0" prefHeight="365.0" prefWidth="352.0">
+      <TableView layoutX="306.0" layoutY="122.0" prefHeight="366.0" prefWidth="454.0">
         <columns>
           <TableColumn fx:id="tblJobId" prefWidth="75.0" text="Job_id" />
-          <TableColumn fx:id="tblDate" prefWidth="131.199951171875" text="Date" />
-            <TableColumn fx:id="tblVehicleModel" prefWidth="146.39990234375" text="Vehicle_model" />
+          <TableColumn fx:id="tblDate" prefWidth="123.20001220703125" text="Date" />
+            <TableColumn fx:id="tblVehicleModel" prefWidth="132.800048828125" text="Vehicle_model" />
+            <TableColumn fx:id="tblVehicleModel1" prefWidth="120.80002441406248" text="Customer Name" />
         </columns>
       </TableView>
-      <Button layoutX="32.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: #F79F1F;" text="Save">
+      <Button layoutX="32.0" layoutY="362.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: #F79F1F;" text="Save">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Button>
-      <Button layoutX="170.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #1289A7;" text="Update">
+      <Button layoutX="170.0" layoutY="362.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #1289A7;" text="Update">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Button>
-      <Button layoutX="32.0" layoutY="379.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: #fc5c65;" text="Delete">
+      <Button layoutX="32.0" layoutY="443.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: #fc5c65;" text="Delete">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Button>
-      <Button layoutX="169.0" layoutY="379.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: #778ca3;" text="Clear">
+      <Button layoutX="169.0" layoutY="443.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="50.0" prefWidth="110.0" style="-fx-background-color: #778ca3;" text="Clear">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Button>
+      <TextField fx:id="txtVehicleModel1" layoutX="32.0" layoutY="273.0" prefHeight="26.0" prefWidth="248.0" promptText="Customer Name" />
    </children>
 </AnchorPane>
