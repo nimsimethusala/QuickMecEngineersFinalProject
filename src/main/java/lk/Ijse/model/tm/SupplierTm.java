@@ -1,4 +1,4 @@
-package lk.Ijse.model;
+package lk.Ijse.model.tm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Customer {
-    private String id;
+public class SupplierTm {
+    private String supplierId;
     private String name;
-    private String address;
-    private int tel;
+    private int contact;
+    private String location;
 }
