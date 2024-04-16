@@ -17,37 +17,37 @@
             <Image url="@../images/Untitled design.png" />
          </image>
       </ImageView>
-      <Text fill="CORAL" layoutX="119.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMPLOYEE FORM">
+      <Text fill="CORAL" layoutX="136.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMPLOYEE FORM">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Text>
-      <TextField fx:id="txtEmployee" layoutX="66.0" layoutY="124.0" onAction="#txtEmployeeIdOnAction" prefHeight="30.0" prefWidth="234.0" promptText="Employee ID" />
-      <TextField fx:id="txtEmployeeName" layoutX="433.0" layoutY="124.0" prefHeight="30.0" prefWidth="234.0" promptText="Employee Name" />
-      <TextField fx:id="txtAttendance" layoutX="66.0" layoutY="191.0" prefHeight="30.0" prefWidth="234.0" promptText="Attendance" />
-      <TextField fx:id="txtContact" layoutX="433.0" layoutY="191.0" prefHeight="30.0" prefWidth="234.0" promptText="Contact" />
-      <TextField fx:id="txtAddress" layoutX="66.0" layoutY="261.0" prefHeight="30.0" prefWidth="234.0" promptText="Address" />
-      <Button layoutX="66.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="22.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Save">
+      <TextField fx:id="txtEmployee" layoutX="83.0" layoutY="124.0" onAction="#txtEmployeeIdOnAction" prefHeight="30.0" prefWidth="234.0" promptText="Employee ID" />
+      <TextField fx:id="txtEmployeeName" layoutX="450.0" layoutY="124.0" prefHeight="30.0" prefWidth="234.0" promptText="Employee Name" />
+      <TextField fx:id="txtAttendance" layoutX="83.0" layoutY="191.0" prefHeight="30.0" prefWidth="234.0" promptText="Attendance" />
+      <TextField fx:id="txtContact" layoutX="450.0" layoutY="191.0" prefHeight="30.0" prefWidth="234.0" promptText="Contact" />
+      <TextField fx:id="txtAddress" layoutX="83.0" layoutY="261.0" prefHeight="30.0" prefWidth="234.0" promptText="Address" />
+      <Button layoutX="83.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="22.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Save">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="234.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: #a4b0be;" text="Update">
+      <Button layoutX="251.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: #a4b0be;" text="Update">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="394.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Delete">
+      <Button layoutX="411.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Delete">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="561.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Clear">
+      <Button layoutX="578.0" layoutY="323.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Clear">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <TableView fx:id="tblEmployee" layoutX="66.0" layoutY="396.0" prefHeight="172.0" prefWidth="606.0">
+      <TableView fx:id="tblEmployee" layoutX="83.0" layoutY="396.0" prefHeight="172.0" prefWidth="606.0">
         <columns>
           <TableColumn fx:id="tblEmployeeId" prefWidth="83.20001220703125" text="Employee_id" />
           <TableColumn fx:id="tblName" prefWidth="112.00001525878906" text="Name" />
@@ -57,46 +57,51 @@
             <TableColumn fx:id="tblSalary" prefWidth="100.0" text="Salary" />
         </columns>
       </TableView>
-      <TextField fx:id="txtSalary" layoutX="433.0" layoutY="261.0" prefHeight="30.0" prefWidth="234.0" promptText="Salary" />
-      <ImageView fitHeight="52.0" fitWidth="43.0" layoutX="66.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="txtSalary" layoutX="450.0" layoutY="261.0" prefHeight="30.0" prefWidth="234.0" promptText="Salary" />
+      <ImageView fitHeight="52.0" fitWidth="43.0" layoutX="83.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Screenshot 2024-04-11 141234.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="66.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID">
+      <Text fill="WHITE" layoutX="83.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="433.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Name">
+      <Text fill="WHITE" layoutX="450.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="66.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attendence">
+      <Text fill="WHITE" layoutX="83.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attendence">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="434.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
+      <Text fill="WHITE" layoutX="451.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="67.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+      <Text fill="WHITE" layoutX="84.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="434.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salary">
+      <Text fill="WHITE" layoutX="451.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salary">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="txtSearch" layoutX="387.0" layoutY="43.0" onAction="#txtSearchOnAction" prefHeight="30.0" prefWidth="282.0" promptText="Search" />
-      <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="635.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="txtSearch" layoutX="404.0" layoutY="43.0" onAction="#txtSearchOnAction" prefHeight="30.0" prefWidth="282.0" promptText="Search" />
+      <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="652.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="34.0" layoutX="24.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/back%20button.png" />
          </image>
       </ImageView>
    </children>

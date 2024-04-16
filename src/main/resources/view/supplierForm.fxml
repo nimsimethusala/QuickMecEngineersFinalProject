@@ -17,7 +17,7 @@
             <Image url="@../images/Untitled design.png" />
          </image>
       </ImageView>
-      <Text fill="CORAL" layoutX="129.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUPPLIER FORM">
+      <Text fill="CORAL" layoutX="153.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUPPLIER FORM">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -54,7 +54,7 @@
             <TableColumn fx:id="tblLocation" prefWidth="164.0" text="Location" />
         </columns>
       </TableView>
-      <ImageView fitHeight="56.0" fitWidth="55.0" layoutX="62.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="56.0" fitWidth="55.0" layoutX="86.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Screenshot 2024-04-11 154259.png" />
          </image>
@@ -63,6 +63,11 @@
       <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="540.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="34.0" layoutX="17.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/back button.png" />
          </image>
       </ImageView>
    </children>

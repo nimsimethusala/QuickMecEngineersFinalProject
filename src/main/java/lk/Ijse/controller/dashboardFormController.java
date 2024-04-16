@@ -2,6 +2,9 @@ package lk.Ijse.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -11,7 +14,25 @@ public class dashboardFormController {
     private AnchorPane dashboardRoot;
 
     @FXML
+    private Label lblCustomerCount;
+
+    @FXML
+    private Label lblJobCount;
+
+    @FXML
     private AnchorPane root;
+
+    @FXML
+    private TableColumn<?, ?> tblCustomerName;
+
+    @FXML
+    private TableView<?> tblDashboard;
+
+    @FXML
+    private TableColumn<?, ?> tblJobID;
+
+    @FXML
+    private TableColumn<?, ?> tblLocation;
 
     @FXML
     private TextField txtSearch;
