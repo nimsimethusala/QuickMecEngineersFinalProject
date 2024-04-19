@@ -43,7 +43,7 @@ create table defect(
 );
 
 insert into defect values('D001','reduce piston from top');
-insert into defect values('D002','removing and refitting cylinder liner')
+insert into defect values('D002','removing and refitting cylinder liner');
 
 create table item_defect_details(
                                     item_No varchar(6),
@@ -71,15 +71,23 @@ create table spare(
 );
 
 create table supplier(
-                         supplier_id varchar(6),
+                         supplier_id varchar(6)primary key ,
                          name varchar(25),
                          location varchar(20),
                          contact int(10)
 );
 
 create table machine(
-                        machine_id varchar(6),
+                        machine_id varchar(6)primary key ,
                         date date,
                         Emp_id varchar(6),
                         foreign key(Emp_id)references employee(Emp_id)on update cascade on delete cascade
 );
+
+create table credential(
+                        username varchar(25),
+                        password varchar(10)
+
+);
+
+insert into credential values ('nimsi', '123');
