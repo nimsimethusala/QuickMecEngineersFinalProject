@@ -34,6 +34,9 @@ public class defectFormController {
     private TextField txtPrice;
 
     @FXML
+    private TextField txtSearch;
+
+    @FXML
     void btnClearOnAction(ActionEvent event) {
 
     }
