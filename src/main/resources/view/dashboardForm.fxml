@@ -15,71 +15,65 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="Root" prefHeight="602.0" prefWidth="965.0" style="-fx-background-color: #485460;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.dashboardFormController">
+<AnchorPane fx:id="Root" prefHeight="655.0" prefWidth="965.0" style="-fx-background-color: #485460;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.dashboardFormController">
    <children>
-      <AnchorPane fx:id="dashboardRoot" layoutX="181.0" prefHeight="602.0" prefWidth="784.0" style="-fx-background-color: #1e272e;">
+      <AnchorPane fx:id="dashboardRoot" layoutX="181.0" prefHeight="655.0" prefWidth="846.0" style="-fx-background-color: #1e272e;">
          <children>
-            <Group layoutX="21.0" layoutY="17.0">
-               <children>
-                  <Text fill="WHITE" layoutX="63.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DASHBOARD">
-                     <font>
-                        <Font name="System Bold" size="23.0" />
-                     </font>
-                  </Text>
-                  <ImageView fitHeight="56.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Screenshot 2024-04-11 105556.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Group>
+            <Group layoutX="21.0" layoutY="17.0" />
             <Group layoutX="350.0" layoutY="306.0" />
-            <Group layoutX="392.0" layoutY="25.0">
-               <children>
-                  <TextField fx:id="txtSearch" onAction="#txtSearchOnAction" prefHeight="27.0" prefWidth="364.0" promptText="Search" />
-                  <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="334.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Group>
+            <Group layoutX="392.0" layoutY="25.0" />
             <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="83.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true" />
             <Group layoutX="457.0" layoutY="458.0" />
-            <TableView fx:id="tblDashboard" layoutX="172.0" layoutY="311.0" prefHeight="200.0" prefWidth="438.0">
+            <TableView fx:id="tblDashboard" layoutX="172.0" layoutY="336.0" prefHeight="200.0" prefWidth="438.0">
               <columns>
                 <TableColumn fx:id="tblJobID" prefWidth="95.20001220703125" text="Job_Id" />
                 <TableColumn fx:id="tblCustomerName" prefWidth="170.40008544921875" text="Customer Name" />
                   <TableColumn fx:id="tblLocation" prefWidth="170.40008544921875" text="Location" />
               </columns>
             </TableView>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffcccc" height="107.0" layoutX="109.0" layoutY="142.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffcccc" height="107.0" layoutX="456.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="225.0" />
-            <Label layoutX="159.0" layoutY="160.0" text="Job Count">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffcccc" height="107.0" layoutX="110.0" layoutY="165.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffcccc" height="107.0" layoutX="457.0" layoutY="165.0" stroke="BLACK" strokeType="INSIDE" width="225.0" />
+            <Label layoutX="160.0" layoutY="183.0" text="Job Count">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
-            <Label layoutX="488.0" layoutY="158.0" text="Customer Count">
+            <Label layoutX="489.0" layoutY="180.0" text="Customer Count">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
-            <Label fx:id="lblJobCount" layoutX="193.0" layoutY="191.0" text="25">
+            <Label fx:id="lblJobCount" layoutX="194.0" layoutY="214.0" text="25">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
-            <Label fx:id="lblCustomerCount" layoutX="552.0" layoutY="189.0" text="25">
+            <Label fx:id="lblCustomerCount" layoutX="553.0" layoutY="211.0" text="25">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
-            <JFXButton layoutX="668.0" layoutY="542.0" onAction="#btnBackOnAction" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: #FFC312;" text="Back" textFill="WHITE">
+            <JFXButton layoutX="717.0" layoutY="576.0" onAction="#btnBackOnAction" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: #FFC312;" text="Back" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
+            <Text fill="WHITE" layoutX="101.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DASHBOARD">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="56.0" fitWidth="56.0" layoutX="38.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Screenshot 2024-04-11 105556.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="txtSearch" layoutX="449.0" layoutY="51.0" onAction="#txtSearchOnAction" prefHeight="27.0" prefWidth="364.0" promptText="Search" />
+            <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="783.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <Group layoutX="190.0" layoutY="138.0" />

@@ -10,75 +10,75 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="602.0" prefWidth="734.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.itemFormController">
+<AnchorPane fx:id="root" prefHeight="655.0" prefWidth="846.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.itemFormController">
    <children>
-      <ImageView fitHeight="602.0" fitWidth="734.0" layoutX="1.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="602.0" fitWidth="734.0" layoutX="1.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Untitled design.png" />
          </image>
       </ImageView>
-      <Text fill="CORAL" layoutX="148.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM FORM">
+      <Text fill="CORAL" layoutX="163.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM FORM">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="txtItemId" layoutX="51.0" layoutY="235.0" onAction="#txtItemIdOnAction" prefHeight="34.0" prefWidth="250.0" promptText="Item id" />
-      <TextField fx:id="txtName" layoutX="51.0" layoutY="305.0" prefHeight="34.0" prefWidth="250.0" promptText="Name" />
-      <TextField fx:id="txtItemCount" layoutX="51.0" layoutY="375.0" prefHeight="34.0" prefWidth="250.0" promptText="Item count" />
-      <TableView fx:id="tblItem" layoutX="341.0" layoutY="211.0" prefHeight="214.0" prefWidth="343.0">
+      <TextField fx:id="txtItemId" layoutX="96.0" layoutY="251.0" onAction="#txtItemIdOnAction" prefHeight="34.0" prefWidth="250.0" promptText="Item id" />
+      <TextField fx:id="txtName" layoutX="96.0" layoutY="321.0" prefHeight="34.0" prefWidth="250.0" promptText="Name" />
+      <TextField fx:id="txtItemCount" layoutX="96.0" layoutY="391.0" prefHeight="34.0" prefWidth="250.0" promptText="Item count" />
+      <TableView fx:id="tblItem" layoutX="404.0" layoutY="232.0" prefHeight="214.0" prefWidth="343.0">
         <columns>
           <TableColumn fx:id="tblItemId" prefWidth="108.0" text="Item_id" />
           <TableColumn fx:id="tblName" prefWidth="130.4000244140625" text="Name" />
             <TableColumn fx:id="tblItemCount" prefWidth="103.19999999999999" text="Item_count" />
         </columns>
       </TableView>
-      <Button layoutX="51.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Save">
+      <Button layoutX="115.0" layoutY="522.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Save">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="226.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #a4b0be;" text="Update">
+      <Button layoutX="290.0" layoutY="522.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #a4b0be;" text="Update">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="403.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Delete">
+      <Button layoutX="467.0" layoutY="522.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Delete">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="578.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="21.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Clear">
+      <Button layoutX="642.0" layoutY="522.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="21.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Clear">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <ImageView fitHeight="55.0" fitWidth="58.0" layoutX="81.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="55.0" fitWidth="58.0" layoutX="96.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Screenshot 2024-04-11 111137.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtSearch" layoutX="190.0" layoutY="129.0" onAction="#txtSearchOnAction" prefHeight="33.0" prefWidth="354.0" promptText="Search" />
-      <ImageView fitHeight="34.0" fitWidth="31.0" layoutX="507.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="txtSearch" layoutX="246.0" layoutY="129.0" onAction="#txtSearchOnAction" prefHeight="33.0" prefWidth="354.0" promptText="Search" />
+      <ImageView fitHeight="34.0" fitWidth="31.0" layoutX="563.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="51.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item ID">
+      <Text fill="WHITE" layoutX="96.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item ID">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="52.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name">
+      <Text fill="WHITE" layoutX="97.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="52.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Count">
+      <Text fill="WHITE" layoutX="97.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Count">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="26.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/back%20button.png" />
          </image>
