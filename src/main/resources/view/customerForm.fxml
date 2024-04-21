@@ -22,7 +22,7 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Text>
-      <TextField fx:id="txtCustomerId" layoutX="83.0" layoutY="175.0" onAction="#txtCustomerIdOnAction" prefHeight="30.0" prefWidth="234.0" promptText="Customer id" />
+      <TextField fx:id="txtCustomerId" layoutX="83.0" layoutY="175.0" prefHeight="30.0" prefWidth="234.0" promptText="Customer id" />
       <TextField fx:id="txtCustomerNumber" layoutX="83.0" layoutY="256.0" prefHeight="30.0" prefWidth="234.0" promptText="Contact Number" />
       <TextField fx:id="txtCustomerName" layoutX="509.0" layoutY="178.0" prefHeight="30.0" prefWidth="234.0" promptText="Customer Name" />
       <TextField fx:id="txtAddress" layoutX="509.0" layoutY="259.0" prefHeight="30.0" prefWidth="234.0" promptText="Addresss" />
@@ -95,7 +95,7 @@
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="34.0" layoutX="25.0" layoutY="20.0" onDragDetected="#imgBackOnAction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="33.0" fitWidth="34.0" layoutX="25.0" layoutY="20.0" onDragDetected="#imgBackOnAction" onMouseClicked="#imgBackOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/back%20button.png" />
          </image>
