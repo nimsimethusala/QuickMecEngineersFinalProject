@@ -7,12 +7,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerRepo {
-    public static boolean save(Customer customer){
+    public static boolean save(Customer customer) throws SQLException {
         String sql = "INSERT INTO customer VALUES(?, ?, ?, ?)";
 
-        try {
             Connection connection = DbConnection.getInstance().getConnection();
             PreparedStatement pstm = connection.prepareStatement(sql);
 
@@ -23,15 +24,11 @@ public class CustomerRepo {
 
             return pstm.executeUpdate() > 0;
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
-    public static boolean update(Customer customer){
-        String sql = "UPDATE customer SET name = ?, address = ?, tel = ? WHERE id = ?";
+    public static boolean update(Customer customer) throws SQLException {
+        String sql = "UPDATE customer SET customer_name = ?, address = ?, contact = ? WHERE customer_id = ?";
 
-        try {
             Connection connection = DbConnection.getInstance().getConnection();
             PreparedStatement pstm = connection.prepareStatement(sql);
 
@@ -42,30 +39,21 @@ public class CustomerRepo {
 
             return pstm.executeUpdate() > 0;
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
-    public static boolean delete(String cusId) {
-        String sql = "DELETE FROM customer WHERE id = ?";
+    public static boolean delete(String cusId) throws SQLException {
+        String sql = "DELETE FROM customer WHERE customer_id = ?";
 
-        try {
             Connection connection = DbConnection.getInstance().getConnection();
             PreparedStatement pstm = connection.prepareStatement(sql);
             pstm.setObject(1, cusId);
 
             return pstm.executeUpdate() > 0;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
-    public static Customer searchById(String id) {
-        String sql = "SELECT * FROM customer WHERE id = ?";
+    public static Customer searchById(String id) throws SQLException {
+        String sql = "SELECT * FROM customer WHERE customer_id = ?";
 
-        try {
             Connection connection = DbConnection.getInstance().getConnection();
             PreparedStatement pstm = connection.prepareStatement(sql);
             pstm.setObject(1, id);
@@ -82,10 +70,29 @@ public class CustomerRepo {
                 return customer;
             }
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        return null;
+    }
+
+    public static List<Customer> getAll() throws SQLException {
+        String sql = "SELECT * FROM customer";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<Customer> customerList = new ArrayList<>();
+
+        while (resultSet.next()){
+            String cusId = resultSet.getString(1);
+            String cusName = resultSet.getString(2);
+            String address = resultSet.getString(3);
+            int contact = resultSet.getInt(4);
+
+            Customer customer = new Customer(cusId, cusName, address, contact);
+            customerList.add(customer);
         }
 
-        return null;
+        return customerList;
     }
 }

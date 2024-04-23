@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="DefectRoot" prefHeight="655.0" prefWidth="846.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.defectFormController">
+<AnchorPane fx:id="DefectRoot" prefHeight="655.0" prefWidth="846.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.DefectFormController">
    <children>
       <ImageView fitHeight="655.0" fitWidth="846.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,7 +17,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="txtDefectId" layoutX="103.0" layoutY="195.0" onAction="#txtDefectIdOnAction" prefHeight="26.0" prefWidth="272.0" promptText="Defect id" />
+      <TextField fx:id="txtDefectId" layoutX="103.0" layoutY="195.0" prefHeight="26.0" prefWidth="272.0" promptText="Defect id" />
       <TextField fx:id="txtDescription" layoutX="103.0" layoutY="260.0" prefHeight="26.0" prefWidth="272.0" promptText="Description" />
       <TextField fx:id="txtPrice" layoutX="103.0" layoutY="324.0" prefHeight="26.0" prefWidth="272.0" promptText="Price" />
       <Button layoutX="466.0" layoutY="211.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Save">
@@ -47,9 +42,9 @@
       </Button>
       <TableView fx:id="tblDefect" layoutX="103.0" layoutY="397.0" prefHeight="206.0" prefWidth="637.0">
         <columns>
-          <TableColumn fx:id="tblDefectId" prefWidth="91.19998168945312" text="Defect_id" />
-          <TableColumn fx:id="tblDescription" prefWidth="391.6000518798828" text="Description" />
-            <TableColumn fx:id="tblPrice" prefWidth="110.0" text="Price" />
+          <TableColumn fx:id="colDefectId" prefWidth="118.60000610351562" text="Defect_id" />
+          <TableColumn fx:id="colDescription" prefWidth="365.3999786376953" text="Description" />
+            <TableColumn fx:id="colPrice" prefWidth="152.00002441406252" text="Price" />
         </columns>
       </TableView>
       <Text fill="WHITE" layoutX="103.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defect ID">
@@ -72,7 +67,7 @@
             <Image url="@../images/Screenshot 2024-04-11 151822.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="35.0" layoutX="37.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="40.0" fitWidth="35.0" layoutX="37.0" layoutY="26.0" onMouseClicked="#imgBackOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/back button.png" />
          </image>

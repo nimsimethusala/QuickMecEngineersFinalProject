@@ -8,7 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
-public class jobFormController {
+public class JobFormController {
 
     @FXML
     private AnchorPane JobRoot;

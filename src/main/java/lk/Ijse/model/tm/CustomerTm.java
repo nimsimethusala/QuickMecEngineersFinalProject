@@ -1,5 +1,6 @@
 package lk.Ijse.model.tm;
 
+import lk.Ijse.model.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

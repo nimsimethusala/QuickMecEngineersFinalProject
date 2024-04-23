@@ -10,11 +10,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
 
-public class dashboardFormController {
+public class DashboardFormController {
 
     @FXML
     private AnchorPane dashboardRoot;
