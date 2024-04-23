@@ -27,7 +27,8 @@ create table item(
 
 create table defect(
                        defect_id varchar(6)primary key,
-                       description varchar(25)
+                       description varchar(25),
+                       price varchar(10)
 );
 
 create table item_defect_details(
