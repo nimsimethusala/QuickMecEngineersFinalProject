@@ -1,19 +1,29 @@
 package lk.Ijse.controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.model.Item;
+import lk.Ijse.repository.ItemRepo;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ItemFormController {
+    @FXML
+    public JFXComboBox txtJobId;
+
+    @FXML
+    public TableColumn colJobId;
 
     @FXML
     private AnchorPane itemRoot;
@@ -22,13 +32,13 @@ public class ItemFormController {
     private TableView<?> tblItem;
 
     @FXML
-    private TableColumn<?, ?> tblItemCount;
+    private TableColumn<?, ?> colItemCount;
 
     @FXML
-    private TableColumn<?, ?> tblItemId;
+    private TableColumn<?, ?> colItemId;
 
     @FXML
-    private TableColumn<?, ?> tblName;
+    private TableColumn<?, ?> colName;
 
     @FXML
     private TextField txtItemCount;
@@ -44,17 +54,34 @@ public class ItemFormController {
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
-
+        clearFeilds();
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+        String itemId = txtItemId.getText();
 
+        try {
+            boolean isDeleted = ItemRepo.delete(itemId);
+
+            if (isDeleted){
+                new Alert(Alert.AlertType.CONFIRMATION, "Item is deleted successfully...!");
+                clearFeilds();
+            }
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage());
+        }
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+        String itemId = txtItemId.getText();
+        String name = txtName.getText();
+        int count = Integer.parseInt(txtItemCount.getText());
 
+        Item item = new Item(itemId, name, count);
+        //boolean isSaved = ItemRepo.save(item);
     }
 
     @FXML
@@ -82,5 +109,11 @@ public class ItemFormController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void clearFeilds(){
+        txtItemId.setText("");
+        txtName.setText("");
+        txtItemCount.setText("");
     }
 }

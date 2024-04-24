@@ -50,8 +50,7 @@ create table employee(
 create table spare(
                       Spare_id varchar(6)primary key,
                       Name varchar(25),
-                      type varchar(20),
-                      contact varchar(10)
+                      type varchar(20)
 );
 
 create table supplier(
