@@ -49,6 +49,7 @@ public class DashboardFormController {
             Scene scene = new Scene(root);
             Stage stage = (Stage) dashboardRoot.getScene().getWindow();
             stage.setScene(scene);
+            stage.centerOnScreen();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -62,6 +63,7 @@ public class DashboardFormController {
             Scene scene = new Scene(root);
             Stage stage = (Stage) dashboardRoot.getScene().getWindow();
             stage.setScene(scene);
+            stage.centerOnScreen();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -75,6 +77,7 @@ public class DashboardFormController {
             Scene scene = new Scene(root);
             Stage stage = (Stage) dashboardRoot.getScene().getWindow();
             stage.setScene(scene);
+            stage.centerOnScreen();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -88,6 +91,7 @@ public class DashboardFormController {
             Scene scene = new Scene(root);
             Stage stage = (Stage) dashboardRoot.getScene().getWindow();
             stage.setScene(scene);
+            stage.centerOnScreen();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -101,6 +105,7 @@ public class DashboardFormController {
             Scene scene = new Scene(root);
             Stage stage = (Stage) dashboardRoot.getScene().getWindow();
             stage.setScene(scene);
+            stage.centerOnScreen();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -114,6 +119,7 @@ public class DashboardFormController {
             Scene scene = new Scene(root);
             Stage stage = (Stage) dashboardRoot.getScene().getWindow();
             stage.setScene(scene);
+            stage.centerOnScreen();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -127,6 +133,7 @@ public class DashboardFormController {
             Scene scene = new Scene(root);
             Stage stage = (Stage) dashboardRoot.getScene().getWindow();
             stage.setScene(scene);
+            stage.centerOnScreen();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -145,6 +152,7 @@ public class DashboardFormController {
             Scene scene = new Scene(root);
             Stage stage = (Stage) Root.getScene().getWindow();
             stage.setScene(scene);
+            stage.centerOnScreen();
 
         } catch (IOException e) {
             throw new RuntimeException(e);

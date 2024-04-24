@@ -69,6 +69,7 @@ public class LoginFormController {
             Scene scene = new Scene(root);
             Stage stage = (Stage) rootLogin.getScene().getWindow();
             stage.setScene(scene);
+            stage.centerOnScreen();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
