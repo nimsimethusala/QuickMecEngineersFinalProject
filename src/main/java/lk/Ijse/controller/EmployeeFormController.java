@@ -112,7 +112,14 @@ public class EmployeeFormController {
             List<Employee> empList = EmployeeRepo.getAll();
 
             for (Employee employee : empList){
-                EmployeeTm employeeTm = new EmployeeTm(employee.getEmpId(), employee.getName(), employee.getAttendance(), employee.getContact(), employee.getAddress(), employee.getSalary());
+                EmployeeTm employeeTm = new EmployeeTm(
+                        employee.getEmpId(),
+                        employee.getName(),
+                        employee.getAttendance(),
+                        employee.getContact(),
+                        employee.getAddress(),
+                        employee.getSalary()
+                );
                 obList.add(employeeTm);
             }
 
@@ -202,24 +209,7 @@ public class EmployeeFormController {
 
     @FXML
     void txtSearchOnAction(KeyEvent event) {
-        String empId = txtSearch.getText();
 
-        try {
-            Employee employee = EmployeeRepo.search(empId);
-            if (employee != null){
-                txtEmployeeId.setText(employee.getEmpId());
-                txtEmployeeName.setText(employee.getName());
-                txtAttendance.setText(employee.getName());
-                txtContact.setText(employee.getName());
-                txtAddress.setText(employee.getName());
-                txtSalary.setText(employee.getName());
-            }else {
-                new Alert(Alert.AlertType.INFORMATION, "Employee not found!").show();
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
     @FXML
     void imgBackOnAction(MouseEvent mouseEvent) {

@@ -83,4 +83,10 @@ public class SpareFormController {
             throw new RuntimeException(e);
         }
     }
+
+    private void clearFields() {
+        txtSapreId.setText("");
+        txtName.setText("");
+        txtType.setText("");
+    }
 }
