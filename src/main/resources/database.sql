@@ -43,7 +43,8 @@ create table employee(
                          Name varchar(25),
                          attendence int(5),
                          address varchar(20),
-                         contact varchar(10)
+                         contact varchar(10),
+                         salary varchar(10)
 );
 
 create table spare(
