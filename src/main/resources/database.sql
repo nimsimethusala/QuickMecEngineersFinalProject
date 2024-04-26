@@ -14,7 +14,13 @@ create table job(
                     Model varchar(25),
                     Date date,
                     customer_id varchar(6),
-                    foreign key(customer_id) references customer(customer_id) on update cascade on delete cascade
+                    foreign key(customer_id) references customer(customer_id) on update cascade on delete cascade,
+                    item_No varchar(6),
+                    foreign key(item_No) references item(item_No) on update cascade on delete cascade,
+                    defect_id varchar(6),
+                    foreign key(defect_id) references defect(defect_id) on update cascade on delete cascade,
+                    Spare_id varchar(6),
+                    foreign key(Spare_id) references spare(Spare_id) on update cascade on delete cascade
 );
 
 create table item(
@@ -50,7 +56,9 @@ create table employee(
 create table spare(
                       Spare_id varchar(6)primary key,
                       Name varchar(25),
-                      type varchar(20)
+                      type varchar(20),
+                      count varchar(10),
+                      price varchar(10)
 );
 
 create table supplier(

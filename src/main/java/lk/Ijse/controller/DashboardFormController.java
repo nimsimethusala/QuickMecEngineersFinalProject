@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,6 +16,7 @@ import java.io.IOException;
 
 public class DashboardFormController {
 
+    public LineChart chart;
     @FXML
     private AnchorPane dashboardRoot;
 
@@ -46,10 +48,8 @@ public class DashboardFormController {
     void btnCustomerOnAction(ActionEvent event) {
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/view/customerForm.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) dashboardRoot.getScene().getWindow();
-            stage.setScene(scene);
-            stage.centerOnScreen();
+            dashboardRoot.getChildren().clear();
+            dashboardRoot.getChildren().add(root);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -60,10 +60,8 @@ public class DashboardFormController {
     void btnDefectOnAction(ActionEvent event) {
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/view/defectForm.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) dashboardRoot.getScene().getWindow();
-            stage.setScene(scene);
-            stage.centerOnScreen();
+            dashboardRoot.getChildren().clear();
+            dashboardRoot.getChildren().add(root);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -74,10 +72,8 @@ public class DashboardFormController {
     void btnEmployeeOnAction(ActionEvent event) {
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/view/employeeForm.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) dashboardRoot.getScene().getWindow();
-            stage.setScene(scene);
-            stage.centerOnScreen();
+            dashboardRoot.getChildren().clear();
+            dashboardRoot.getChildren().add(root);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -88,10 +84,8 @@ public class DashboardFormController {
     void btnItemOnAction(ActionEvent event) {
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/view/itemForm.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) dashboardRoot.getScene().getWindow();
-            stage.setScene(scene);
-            stage.centerOnScreen();
+            dashboardRoot.getChildren().clear();
+            dashboardRoot.getChildren().add(root);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -116,10 +110,8 @@ public class DashboardFormController {
     void btnSparesOnAction(ActionEvent event) {
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/view/spareForm.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) dashboardRoot.getScene().getWindow();
-            stage.setScene(scene);
-            stage.centerOnScreen();
+            dashboardRoot.getChildren().clear();
+            dashboardRoot.getChildren().add(root);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -130,10 +122,8 @@ public class DashboardFormController {
     void btnSupplierOnAction(ActionEvent event) {
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/view/supplierForm.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) dashboardRoot.getScene().getWindow();
-            stage.setScene(scene);
-            stage.centerOnScreen();
+            dashboardRoot.getChildren().clear();
+            dashboardRoot.getChildren().add(root);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
