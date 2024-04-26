@@ -95,6 +95,7 @@ public class CustomerFormController {
 
             if (isDelete){
                 new Alert(Alert.AlertType.CONFIRMATION, "Customer is Deleted!").show();
+                clearFields();
             }
         }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -115,6 +116,7 @@ public class CustomerFormController {
 
             if (isSaved){
                 new Alert(Alert.AlertType.INFORMATION, "New Customer is Saved....!").show();
+                clearFields();
             }
         }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -136,6 +138,7 @@ public class CustomerFormController {
 
             if (isUpdate){
                 new Alert(Alert.AlertType.INFORMATION, "Customer is Updated....!").show();
+                clearFields();
             }
         }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -203,9 +206,9 @@ public class CustomerFormController {
     }
 
     private void setCellValueFactory(){
-        colCustomerId.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
-        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customer_name"));
+        colCustomerId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-        colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("tel"));
     }
 }

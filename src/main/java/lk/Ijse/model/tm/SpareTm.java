@@ -11,4 +11,6 @@ public class SpareTm {
     private String spareId;
     private String name;
     private String type;
+    private int count;
+    private double price;
 }

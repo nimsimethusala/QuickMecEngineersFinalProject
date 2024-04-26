@@ -87,7 +87,7 @@ public class DefectFormController {
     }
 
     private void setCellValueFactory() {
-        colDefectId.setCellValueFactory(new PropertyValueFactory<>("defect_id"));
+        colDefectId.setCellValueFactory(new PropertyValueFactory<>("defectId"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
@@ -105,6 +105,7 @@ public class DefectFormController {
             boolean isDeleted = DefectRepo.delete(defectId);
             if (isDeleted){
                 new Alert(Alert.AlertType.CONFIRMATION, "Defect is deleted...!").show();
+                clearFeilds();
             }
 
         } catch (SQLException e) {
@@ -124,6 +125,7 @@ public class DefectFormController {
             boolean isSaved = DefectRepo.save(defect);
             if (isSaved){
                 new Alert(Alert.AlertType.CONFIRMATION,"New Defect is Saved...!").show();
+                clearFeilds();
             }
 
         } catch (SQLException e) {
@@ -142,6 +144,7 @@ public class DefectFormController {
 
             if (isUpdate){
                 new Alert(Alert.AlertType.CONFIRMATION, "Defect is updated...!");
+                clearFeilds();
             }
 
         } catch (SQLException e) {
