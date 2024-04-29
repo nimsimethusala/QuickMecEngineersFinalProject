@@ -76,4 +76,37 @@ public class SpareRepo {
 
         return spareList;
     }
+
+    public static List<String> getId() throws SQLException {
+        String sql = "SELECT Spare_id FROM spare";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<String> idList = new ArrayList<>();
+        while (resultSet.next()) {
+            idList.add(resultSet.getString(1));
+        }
+        return idList;
+    }
+
+    public static String getName(String spareId) throws SQLException {
+        String sql = "SELECT Name FROM spare WHERE Spare_id = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, spareId);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()){
+            String spareName = resultSet.getString(2);
+
+            return spareName;
+        }
+
+        return null;
+    }
 }

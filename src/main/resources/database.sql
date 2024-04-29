@@ -9,14 +9,27 @@ create table customer(
                          contact varchar(10)
 );
 
+create table defect(
+                       defect_id varchar(6)primary key,
+                       description varchar(25),
+                       price varchar(10)
+);
+
+create table spare(
+                      Spare_id varchar(6)primary key,
+                      Name varchar(25),
+                      type varchar(20),
+                      count varchar(10),
+                      price varchar(10)
+);
+
 create table job(
                     job_No varchar(6)primary key,
                     Model varchar(25),
                     Date date,
                     customer_id varchar(6),
                     foreign key(customer_id) references customer(customer_id) on update cascade on delete cascade,
-                    item_No varchar(6),
-                    foreign key(item_No) references item(item_No) on update cascade on delete cascade,
+                    item_count varchar(10),
                     defect_id varchar(6),
                     foreign key(defect_id) references defect(defect_id) on update cascade on delete cascade,
                     Spare_id varchar(6),
@@ -26,22 +39,17 @@ create table job(
 create table item(
                      item_No varchar(6)primary key,
                      Name varchar(25),
-                     Item_count int(20),
-                     job_No varchar(6),
-                     foreign key(job_No)references job(job_No) on update cascade on delete cascade
+                     Item_count int(20)
 );
 
-create table defect(
-                       defect_id varchar(6)primary key,
-                       description varchar(25),
-                       price varchar(10)
-);
-
-create table item_defect_details(
+create table job_details(
                                     item_No varchar(6),
                                     foreign key(item_No)references item(item_No)on update cascade on delete cascade,
-                                    defect_id varchar(6),
-                                    foreign key(defect_id)references defect(defect_id) on update cascade on delete cascade
+                                    item_count varchar(10),
+                                    foreign key(item_count)references job(item_count)on update cascade on delete cascade,
+                                    Model varchar(25),
+                                    job_No varchar(6),
+                                    foreign key(job_No)references job(job_No) on update cascade on delete cascade
 );
 
 create table employee(
@@ -51,14 +59,6 @@ create table employee(
                          address varchar(20),
                          contact varchar(10),
                          salary varchar(10)
-);
-
-create table spare(
-                      Spare_id varchar(6)primary key,
-                      Name varchar(25),
-                      type varchar(20),
-                      count varchar(10),
-                      price varchar(10)
 );
 
 create table supplier(
@@ -73,6 +73,13 @@ create table machine(
                         date date,
                         Emp_id varchar(6),
                         foreign key(Emp_id)references employee(Emp_id)on update cascade on delete cascade
+);
+
+create table spare_supplier_detail(
+                        Spare_id varchar(6),
+                        foreign key(Spare_id)references spare(Spare_id)on update cascade on delete cascade,
+                        supplier_id varchar(6),
+                        foreign key(supplier_id)references supplier(supplier_id)on update cascade on delete cascade
 );
 
 create table credential(

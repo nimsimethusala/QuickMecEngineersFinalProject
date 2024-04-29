@@ -68,4 +68,21 @@ public class DefectRepo {
 
         return defectList;
     }
+
+    public static String getDescription(String defectId) throws SQLException {
+        String sql = "SELECT description FROM defect WHERE defect_id = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, defectId);
+
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+            String desc = resultSet.getString(2);
+
+            return desc;
+        }
+
+        return null;
+    }
 }
