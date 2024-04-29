@@ -24,17 +24,16 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TableView fx:id="tblJob" layoutX="43.0" layoutY="410.0" prefHeight="270.0" prefWidth="1253.0">
+      <TableView fx:id="tblJob" layoutX="43.0" layoutY="409.0" prefHeight="270.0" prefWidth="1246.0">
         <columns>
           <TableColumn fx:id="colJobId" prefWidth="90.39999389648438" text="Job_id" />
-          <TableColumn fx:id="colDate" prefWidth="121.5999755859375" text="Date" />
-            <TableColumn fx:id="colVehicleModel" prefWidth="136.79998779296875" text="Vehicle_model" />
-            <TableColumn fx:id="colCustomerName" prefWidth="188.800048828125" text="Customer Name" />
-            <TableColumn fx:id="colItemName" prefWidth="103.199951171875" text="Item_Name" />
-            <TableColumn fx:id="colItemCount" prefWidth="108.79998779296875" text="Item_Count" />
-            <TableColumn fx:id="colSpareName" prefWidth="126.39996337890625" text="Spare_Name" />
-            <TableColumn fx:id="colDefect" prefWidth="237.60002441406255" text="Defect_Description" />
-            <TableColumn fx:id="colPayment" prefWidth="137.5999999999999" text="Payment" />
+          <TableColumn fx:id="colDate" prefWidth="138.40003967285156" text="Date" />
+            <TableColumn fx:id="colVehicleModel" prefWidth="160.0" text="Vehicle_model" />
+            <TableColumn fx:id="colCustomerName" prefWidth="168.80001831054688" text="Customer Name" />
+            <TableColumn fx:id="colItemName" prefWidth="137.60003662109375" text="Item_Name" />
+            <TableColumn fx:id="colItemCount" prefWidth="124.79998779296875" text="Item_Count" />
+            <TableColumn fx:id="colSpareName" prefWidth="163.20001220703125" text="Spare_Name" />
+            <TableColumn fx:id="colDefect" prefWidth="263.99993896484375" text="Defect_Description" />
         </columns>
       </TableView>
       <ImageView fitHeight="58.0" fitWidth="66.0" layoutX="66.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
@@ -62,7 +61,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="lblCustomerId" layoutX="262.0" layoutY="204.0" prefHeight="26.0" prefWidth="199.0" unFocusColor="WHITE" />
+      <JFXComboBox fx:id="lblCustomerId" layoutX="264.0" layoutY="204.0" prefHeight="26.0" prefWidth="199.0" unFocusColor="WHITE" />
       <Label layoutX="104.0" layoutY="281.0" text="Vehicle model    :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -93,7 +92,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <JFXButton layoutX="489.0" layoutY="202.0" onAction="#btnNewCustomerOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: #ffa502;" text="New  " textFill="WHITE">
+      <JFXButton layoutX="516.0" layoutY="202.0" onAction="#btnNewCustomerOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: #ffa502;" text="New  " textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -163,16 +162,6 @@
          </font>
       </JFXButton>
       <Label fx:id="lblJobId" layoutX="264.0" layoutY="128.0" prefHeight="27.0" prefWidth="199.0" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="104.0" layoutY="317.0" prefHeight="27.0" prefWidth="145.0" text="Payment             :" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblPayment" layoutX="264.0" layoutY="316.0" prefHeight="27.0" prefWidth="199.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

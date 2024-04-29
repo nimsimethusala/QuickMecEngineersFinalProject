@@ -95,4 +95,35 @@ public class CustomerRepo {
 
         return customerList;
     }
+
+    public static List<String> getId() throws SQLException {
+        String sql = "SELECT customer_id FROM customer";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<String> idList = new ArrayList<>();
+        while (resultSet.next()) {
+            idList.add(resultSet.getString(1));
+        }
+        return idList;
+    }
+
+    public static String getName(String cusId) throws SQLException {
+        String sql = "SELECT customer_name FROM customer WHERE customer_id = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, cusId);
+
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+            String cusName = resultSet.getString(2);
+
+            return cusName;
+        }
+        return null;
+    }
 }
