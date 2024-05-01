@@ -56,13 +56,13 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="103.0" layoutY="243.0" text="Customer Name :" textFill="WHITE">
+      <Label layoutX="103.0" layoutY="247.0" text="Customer Name :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="lblCustomerId" layoutX="264.0" layoutY="204.0" prefHeight="26.0" prefWidth="199.0" unFocusColor="WHITE" />
-      <Label layoutX="104.0" layoutY="281.0" text="Vehicle model    :" textFill="WHITE">
+      <JFXComboBox fx:id="lblCustomerId" layoutX="264.0" layoutY="207.0" onAction="#cmbCustomerIdOnAction" prefHeight="26.0" prefWidth="199.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
+      <Label layoutX="104.0" layoutY="286.0" text="Vehicle model    :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -102,9 +102,9 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXComboBox fx:id="lblItemId" layoutX="868.0" layoutY="114.0" prefHeight="26.0" prefWidth="211.0" unFocusColor="WHITE" />
-      <JFXComboBox fx:id="lblSpareId" layoutX="868.0" layoutY="239.0" prefHeight="26.0" prefWidth="211.0" unFocusColor="WHITE" />
-      <JFXComboBox fx:id="lblDefectId" layoutX="868.0" layoutY="282.0" prefHeight="26.0" prefWidth="211.0" unFocusColor="WHITE" />
+      <JFXComboBox fx:id="lblItemId" layoutX="868.0" layoutY="114.0" onAction="#lblItemIdOnAction" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
+      <JFXComboBox fx:id="lblSpareId" layoutX="868.0" layoutY="239.0" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
+      <JFXComboBox fx:id="lblDefectId" layoutX="868.0" layoutY="281.0" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
       <JFXButton layoutX="1122.0" layoutY="235.0" onAction="#btnNewSpareOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: #ffa502;" text="New  " textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -121,27 +121,17 @@
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="lblJobDate" layoutX="264.0" layoutY="168.0" prefHeight="27.0" prefWidth="199.0" textFill="WHITE">
+      <Label fx:id="lblJobDate" layoutX="264.0" layoutY="168.0" prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: #FFFFFF;">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblCustomerName" layoutX="264.0" layoutY="242.0" prefHeight="27.0" prefWidth="199.0" textFill="WHITE">
+      <Label fx:id="lblCustomerName" layoutX="264.0" layoutY="247.0" prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: #FFFFFF;">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblVehicleModel" layoutX="264.0" layoutY="280.0" prefHeight="27.0" prefWidth="199.0" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblName" layoutX="868.0" layoutY="168.0" prefHeight="27.0" prefWidth="211.0" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblCount" layoutX="868.0" layoutY="207.0" prefHeight="27.0" prefWidth="211.0" textFill="WHITE">
+      <Label fx:id="lblName" layoutX="868.0" layoutY="156.0" prefHeight="27.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -161,10 +151,12 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <Label fx:id="lblJobId" layoutX="264.0" layoutY="128.0" prefHeight="27.0" prefWidth="199.0" textFill="WHITE">
+      <Label fx:id="lblJobId" layoutX="264.0" layoutY="128.0" prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: #FFFFFF;">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <TextField fx:id="txtModel" layoutX="264.0" layoutY="284.0" prefHeight="26.0" prefWidth="199.0" promptText="model" style="-fx-background-color: white;" />
+      <TextField fx:id="txtItemCount" layoutX="868.0" layoutY="198.0" prefHeight="26.0" prefWidth="211.0" promptText="Item Count" style="-fx-background-color: #FFFFFF;" />
    </children>
 </AnchorPane>

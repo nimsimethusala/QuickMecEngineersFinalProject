@@ -102,7 +102,7 @@ public class SpareRepo {
         ResultSet resultSet = pstm.executeQuery();
 
         while (resultSet.next()){
-            String spareName = resultSet.getString(2);
+            String spareName = resultSet.getString(1);
 
             return spareName;
         }

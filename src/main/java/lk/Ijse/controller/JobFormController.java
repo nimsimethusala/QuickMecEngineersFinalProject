@@ -6,9 +6,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.Ijse.model.Job;
@@ -18,13 +20,15 @@ import lk.Ijse.model.tm.JobTm;
 import lk.Ijse.repository.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class JobFormController {
+public class JobFormController implements Initializable {
     @FXML
     public TableColumn colItemName;
 
@@ -41,10 +45,13 @@ public class JobFormController {
     public Label lblJobId;
 
     @FXML
-    private AnchorPane JobRoot;
+    public TextField txtModel;
 
     @FXML
-    private Label lblCount;
+    public TextField txtItemCount;
+
+    @FXML
+    private AnchorPane JobRoot;
 
     @FXML
     private JFXComboBox lblCustomerId;
@@ -53,7 +60,7 @@ public class JobFormController {
     private Label lblCustomerName;
 
     @FXML
-    private JFXComboBox<?> lblDefectId;
+    private JFXComboBox lblDefectId;
 
     @FXML
     private JFXComboBox lblItemId;
@@ -66,9 +73,6 @@ public class JobFormController {
 
     @FXML
     private JFXComboBox lblSpareId;
-
-    @FXML
-    private Label lblVehicleModel;
 
     @FXML
     private TableColumn<?, ?> colCustomerName;
@@ -95,10 +99,6 @@ public class JobFormController {
     private TableColumn<?, ?> colVehicleModel;
 
     private ObservableList<JobTm> obList = FXCollections.observableArrayList();
-
-    private void setCellValueFactory(){
-
-    }
 
     @FXML
     void btnNewCustomerOnAction(ActionEvent event) {
@@ -142,7 +142,7 @@ public class JobFormController {
             lblItemId.setItems(obList);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -166,12 +166,12 @@ public class JobFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = SpareRepo.getId();
+            List<String> idList = DefectRepo.getId();
 
             for (String code : idList) {
                 obList.add(code);
             }
-            //lblSpareId.setItems(obList);
+            lblDefectId.setItems(obList);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -256,10 +256,10 @@ public class JobFormController {
         String itemId = (String) lblItemId.getValue();
         Date date = Date.valueOf(lblJobDate.getText());
         String cusId = (String) lblCustomerId.getValue();
-        String model = lblVehicleModel.getText();
+        String model = txtModel.getText();
         String spareId = (String) lblSpareId.getValue();
         String defectId = (String) lblDefectId.getValue();
-        int count = Integer.parseInt(lblCount.getText());
+        int count = Integer.parseInt(txtItemCount.getText());
 
         try {
             String itemName = ItemRepo.getName(itemId);
@@ -298,10 +298,10 @@ public class JobFormController {
         String itemId = (String) lblItemId.getValue();
         Date date = Date.valueOf(lblJobDate.getText());
         String cusId = (String) lblCustomerId.getValue();
-        String model = lblVehicleModel.getText();
+        String model = txtModel.getText();
         String spareId = (String) lblSpareId.getValue();
         String defectId = (String) lblDefectId.getValue();
-        int count = Integer.parseInt(lblCount.getText());
+        int count = Integer.parseInt(txtItemCount.getText());
 
         Job job = new Job(jobId, model, date, cusId, defectId, count, spareId);
         List<JobDetail> list = new ArrayList<>();
@@ -339,5 +339,69 @@ public class JobFormController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void setCellValueFactory(){
+        colJobId.setCellValueFactory(new PropertyValueFactory<>("jobId"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colVehicleModel.setCellValueFactory(new PropertyValueFactory<>("vehicleModel"));
+        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        colItemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        colItemCount.setCellValueFactory(new PropertyValueFactory<>("itemCount"));
+        colSpareName.setCellValueFactory(new PropertyValueFactory<>("spareName"));
+        colDefect.setCellValueFactory(new PropertyValueFactory<>("defectDescription"));
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setNextJobId();
+        setDate();
+        getCustomerId();
+        getItemId();
+        getSpareId();
+        getDefectId();
+        setCellValueFactory();
+    }
+
+    private void setNextJobId() {
+        try {
+            String nextJobId =  JobRepo.getNextJobID();
+            lblJobId.setText(nextJobId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void setCustomerName(){
+        String cusId = (String) lblCustomerId.getValue();
+
+        try {
+            String cusName = CustomerRepo.getName(cusId);
+            lblCustomerName.setText(cusName);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void setItemName(){
+        String itemId = (String) lblItemId.getValue();
+
+        try {
+            String itemName = ItemRepo.getName(itemId);
+            lblName.setText(itemName);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void cmbCustomerIdOnAction(ActionEvent actionEvent) {
+        setCustomerName();
+    }
+
+    public void lblItemIdOnAction(ActionEvent actionEvent) {
+        setItemName();
     }
 }
