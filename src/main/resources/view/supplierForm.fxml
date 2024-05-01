@@ -12,11 +12,6 @@
 
 <AnchorPane fx:id="supplierRoot" prefHeight="655.0" prefWidth="846.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.SupplierFormController">
    <children>
-      <ImageView fitHeight="589.0" fitWidth="734.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Untitled design.png" />
-         </image>
-      </ImageView>
       <Text fill="CORAL" layoutX="179.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUPPLIER FORM">
          <font>
             <Font name="System Bold" size="30.0" />
@@ -46,7 +41,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <TableView fx:id="tblSupplier" layoutX="81.0" layoutY="378.0" prefHeight="218.0" prefWidth="684.0">
+      <TableView fx:id="tblSupplier" layoutX="81.0" layoutY="378.0" prefHeight="250.0" prefWidth="684.0">
         <columns>
           <TableColumn fx:id="colSupplierId" prefWidth="116.79995346069336" text="Supplier_id" />
           <TableColumn fx:id="colName" prefWidth="174.3999786376953" text="Name" />

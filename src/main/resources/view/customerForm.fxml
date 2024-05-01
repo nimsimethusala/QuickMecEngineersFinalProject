@@ -12,11 +12,6 @@
 
 <AnchorPane fx:id="CustomerRoot" prefHeight="655.0" prefWidth="846.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.CustomerFormController">
    <children>
-      <ImageView fitHeight="572.0" fitWidth="773.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Untitled design.png" />
-         </image>
-      </ImageView>
       <Text fill="CORAL" layoutX="138.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CUSTOMER FORM">
          <font>
             <Font name="System Bold" size="25.0" />
@@ -46,12 +41,12 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <TableView fx:id="tblCustomer" layoutX="86.0" layoutY="421.0" prefHeight="179.0" prefWidth="679.0">
+      <TableView fx:id="tblCustomer" layoutX="65.0" layoutY="397.0" prefHeight="230.0" prefWidth="715.0">
         <columns>
           <TableColumn fx:id="colCustomerId" prefWidth="111.99996948242188" text="Customer_id" />
-          <TableColumn fx:id="colCustomerName" prefWidth="180.80006408691406" text="Name" />
-            <TableColumn fx:id="colContact" prefWidth="194.4000244140625" text="Contact" />
-            <TableColumn fx:id="colAddress" prefWidth="190.39996337890625" text="Address" />
+          <TableColumn fx:id="colCustomerName" prefWidth="210.4001007080078" text="Name" />
+            <TableColumn fx:id="colContact" prefWidth="191.199951171875" text="Contact" />
+            <TableColumn fx:id="colAddress" prefWidth="201.5999755859375" text="Address" />
         </columns>
       </TableView>
       <Text layoutX="83.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID">
@@ -89,8 +84,8 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="txtSearch" layoutX="509.0" layoutY="64.0" prefHeight="30.0" prefWidth="275.0" promptText="Search" visible="false" />
-      <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="749.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <TextField fx:id="txtSearch" layoutX="486.0" layoutY="64.0" prefHeight="30.0" prefWidth="298.0" promptText="Search" />
+      <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="749.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
          </image>

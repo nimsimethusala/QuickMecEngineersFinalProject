@@ -88,9 +88,4 @@ public class LoginFormController {
             throw new RuntimeException(e);
         }
     }
-
-    @FXML
-    void registerOnAction(ActionEvent event) {
-
-    }
 }

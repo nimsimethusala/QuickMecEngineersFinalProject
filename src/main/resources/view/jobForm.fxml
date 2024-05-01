@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="JobRoot" prefHeight="769.0" prefWidth="1333.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.JobFormController">
+<AnchorPane fx:id="JobRoot" prefHeight="769.0" prefWidth="1333.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.JobFormController">
    <children>
       <ImageView fitHeight="650.0" fitWidth="844.0" layoutX="91.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -156,7 +150,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtModel" layoutX="264.0" layoutY="284.0" prefHeight="26.0" prefWidth="199.0" promptText="model" style="-fx-background-color: white;" />
+      <TextField fx:id="txtModel" layoutX="264.0" layoutY="286.0" prefHeight="26.0" prefWidth="199.0" promptText="model" style="-fx-background-color: white;" />
       <TextField fx:id="txtItemCount" layoutX="868.0" layoutY="198.0" prefHeight="26.0" prefWidth="211.0" promptText="Item Count" style="-fx-background-color: #FFFFFF;" />
    </children>
 </AnchorPane>
