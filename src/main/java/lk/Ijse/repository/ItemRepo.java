@@ -46,8 +46,8 @@ public class ItemRepo {
         pstm.setObject(1, itemId);
 
         ResultSet resultSet = pstm.executeQuery();
-        while (resultSet.next()){
-            String itemName = resultSet.getString(2);
+        if (resultSet.next()){
+            String itemName = resultSet.getString(1);
 
             return itemName;
         }
@@ -74,6 +74,32 @@ public class ItemRepo {
 
         pstm.setInt(1, itemCount);
         pstm.setString(2, itemId);
+
+        return pstm.executeUpdate() > 0;
+    }
+
+    public static boolean save(Item item) throws SQLException {
+        String sql = "INSERT INTO item VALUES(?, ?, ?)";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setObject(1, item.getItemID());
+        pstm.setObject(2, item.getItemName());
+        pstm.setObject(3, item.getItemCount());
+
+        return pstm.executeUpdate() > 0;
+    }
+
+    public static boolean updateItem(Item item) throws SQLException {
+        String sql = "UPDATE customer SET Name = ?, Item_count = ? WHERE item_No = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setObject(1, item.getItemID());
+        pstm.setObject(2, item.getItemName());
+        pstm.setObject(3, item.getItemCount());
 
         return pstm.executeUpdate() > 0;
     }

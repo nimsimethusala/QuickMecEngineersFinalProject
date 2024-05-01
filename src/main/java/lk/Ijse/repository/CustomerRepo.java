@@ -112,14 +112,14 @@ public class CustomerRepo {
     }
 
     public static String getName(String cusId) throws SQLException {
-        String sql = "SELECT customer_name FROM customer WHERE customer_id = ?";
+        String sql = "SELECT * FROM customer WHERE customer_id = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setObject(1, cusId);
 
         ResultSet resultSet = pstm.executeQuery();
-        while (resultSet.next()){
+        if (resultSet.next()){
             String cusName = resultSet.getString(2);
 
             return cusName;

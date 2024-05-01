@@ -12,16 +12,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.model.Customer;
 import lk.Ijse.model.Item;
+import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.repository.ItemRepo;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class ItemFormController {
-    @FXML
-    public JFXComboBox txtJobId;
-
     @FXML
     public TableColumn colJobId;
 
@@ -81,12 +80,36 @@ public class ItemFormController {
         int count = Integer.parseInt(txtItemCount.getText());
 
         Item item = new Item(itemId, name, count);
-        //boolean isSaved = ItemRepo.save(item);
+        try {
+            boolean isSaved = ItemRepo.save(item);
+            if (isSaved){
+                new Alert(Alert.AlertType.CONFIRMATION, "New Item is saved SuccessFully...!").show();
+                clearFeilds();
+            }
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage());
+        }
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+        String itemId = txtItemId.getText();
+        String itemName = txtName.getText();
+        int count = Integer.parseInt(txtItemCount.getText());
 
+        try {
+            Item item = new Item(itemId, itemName, count);
+
+            boolean isUpdate = ItemRepo.updateItem(item);
+
+            if (isUpdate){
+                new Alert(Alert.AlertType.INFORMATION, "Item is Updated....!").show();
+                clearFeilds();
+            }
+        }catch (SQLException e){
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     @FXML
