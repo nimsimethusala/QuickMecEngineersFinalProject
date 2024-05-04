@@ -1,5 +1,6 @@
 package lk.Ijse.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,15 +8,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.model.Customer;
 import lk.Ijse.model.Job;
 import lk.Ijse.model.JobDetail;
 import lk.Ijse.model.PlaceJob;
+import lk.Ijse.model.tm.CustomerTm;
 import lk.Ijse.model.tm.JobTm;
 import lk.Ijse.repository.*;
 
@@ -26,6 +30,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class JobFormController implements Initializable {
@@ -39,9 +44,6 @@ public class JobFormController implements Initializable {
     public TableColumn colSpareName;
 
     @FXML
-    public TableColumn colDefect;
-
-    @FXML
     public Label lblJobId;
 
     @FXML
@@ -49,6 +51,15 @@ public class JobFormController implements Initializable {
 
     @FXML
     public TextField txtItemCount;
+
+    @FXML
+    public TableColumn colDefectDescription;
+
+    @FXML
+    public TextField txtSpareCount;
+
+    @FXML
+    public TableColumn colSpareCount;
 
     @FXML
     private AnchorPane JobRoot;
@@ -90,7 +101,7 @@ public class JobFormController implements Initializable {
     private TableView<JobTm> tblJob;
 
     @FXML
-    private TableColumn<?, ?> colJobId;
+    private TableColumn<?, ?> colAction;
 
     @FXML
     private TableColumn<?, ?> colSpareId;
@@ -178,27 +189,6 @@ public class JobFormController implements Initializable {
         }
     }
 
-    private void getCurrentOrderId() {
-        try {
-            String currentId = JobRepo.getCurrentId();
-
-            String nextOrderId = generateNextOrderId(currentId);
-            lblJobId.setText(nextOrderId);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private String generateNextOrderId(String currentId) {
-        if(currentId != null) {
-            String[] split = currentId.split("O");
-            int idNum = Integer.parseInt(split[1]);
-            return "O" + ++idNum;
-        }
-        return "O1";
-    }
-
     private void setDate() {
         LocalDate now = LocalDate.now();
         lblJobDate.setText(String.valueOf(now));
@@ -252,20 +242,37 @@ public class JobFormController implements Initializable {
     }
 
     public void btnAddToJobOnAction(ActionEvent actionEvent) {
-        String jobId = lblJobId.getText();
         String itemId = (String) lblItemId.getValue();
         Date date = Date.valueOf(lblJobDate.getText());
         String cusId = (String) lblCustomerId.getValue();
         String model = txtModel.getText();
         String spareId = (String) lblSpareId.getValue();
         String defectId = (String) lblDefectId.getValue();
-        int count = Integer.parseInt(txtItemCount.getText());
+        int itemCount = Integer.parseInt(txtItemCount.getText());
+        int SpareCount = Integer.parseInt(txtSpareCount.getText());
 
         try {
             String itemName = ItemRepo.getName(itemId);
             String cusName = CustomerRepo.getName(cusId);
             String spareName = SpareRepo.getName(spareId);
             String desc = DefectRepo.getDescription(defectId);
+
+            JFXButton btnRemove = new JFXButton("Remove");
+            btnRemove.setCursor(Cursor.HAND);
+
+            btnRemove.setOnAction((e) -> {
+                ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                if(type.orElse(no) == yes) {
+                    int selectedIndex = tblJob.getSelectionModel().getSelectedIndex();
+                    obList.remove(selectedIndex);
+
+                    tblJob.refresh();
+                }
+            });
 
             if (itemName.equals(null)){
                 btnNewItemOnAction(actionEvent);
@@ -283,7 +290,7 @@ public class JobFormController implements Initializable {
                 btnNewDefectOnAction(actionEvent);
             }
 
-            JobTm jobTm = new JobTm(jobId, date, model, cusName, itemName, count, spareName, desc);
+            JobTm jobTm = new JobTm(date, model, cusName, itemName, itemCount, spareName, SpareCount, desc, btnRemove);
             obList.add(jobTm);
 
             tblJob.setItems(obList);
@@ -302,14 +309,15 @@ public class JobFormController implements Initializable {
         String spareId = (String) lblSpareId.getValue();
         String defectId = (String) lblDefectId.getValue();
         int count = Integer.parseInt(txtItemCount.getText());
+        int spareCount = Integer.parseInt(txtSpareCount.getText());
 
-        Job job = new Job(jobId, model, date, cusId, defectId, count, spareId);
+        Job job = new Job(jobId, model, date, cusId, defectId, count, spareId, spareCount);
         List<JobDetail> list = new ArrayList<>();
 
         for (int i = 0; i < tblJob.getItems().size(); i++){
             JobTm tm = obList.get(i);
 
-            JobDetail jobDetail = new JobDetail(itemId, tm.getItemCount(), tm.getVehicleModel(), jobId);
+            JobDetail jobDetail = new JobDetail(itemId, tm.getItemCount(), tm.getVehicleModel(), jobId, tm.getSpareCount());
             list.add(jobDetail);
         }
 
@@ -342,14 +350,15 @@ public class JobFormController implements Initializable {
     }
 
     private void setCellValueFactory(){
-        colJobId.setCellValueFactory(new PropertyValueFactory<>("jobId"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colVehicleModel.setCellValueFactory(new PropertyValueFactory<>("vehicleModel"));
         colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         colItemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         colItemCount.setCellValueFactory(new PropertyValueFactory<>("itemCount"));
         colSpareName.setCellValueFactory(new PropertyValueFactory<>("spareName"));
-        colDefect.setCellValueFactory(new PropertyValueFactory<>("defectDescription"));
+        colSpareCount.setCellValueFactory(new PropertyValueFactory<>("spareCount"));
+        colDefectDescription.setCellValueFactory(new PropertyValueFactory<>("defectDescription"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("btnAction"));
     }
 
     @Override

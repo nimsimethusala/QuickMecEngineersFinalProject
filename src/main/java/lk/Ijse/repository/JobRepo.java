@@ -1,33 +1,16 @@
 package lk.Ijse.repository;
 
 import lk.Ijse.db.DbConnection;
+import lk.Ijse.model.Customer;
 import lk.Ijse.model.Job;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JobRepo {
-
-    public static String getCurrentId() throws SQLException {
-        String sql = "SELECT job_No FROM job ORDER BY job_No DESC LIMIT 1";
-
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        ResultSet resultSet = pstm.executeQuery();
-
-        if(resultSet.next()) {
-            String jobId = resultSet.getString(1);
-            return jobId;
-        }
-
-        return null;
-    }
-
     public static boolean save(Job job) throws SQLException {
-        String sql = "INSERT INTO job VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO job VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -39,6 +22,7 @@ public class JobRepo {
         pstm.setInt(5, job.getItemCount());
         pstm.setString(6, job.getDefectId());
         pstm.setString(7, job.getSpareId());
+        pstm.setInt(8, job.getSpareCount());
 
         return pstm.executeUpdate() > 0;
     }
@@ -66,6 +50,47 @@ public class JobRepo {
             }
         }
         return "J001";
+    }
 
+    public static List<Job> getAll() throws SQLException {
+        String sql = "SELECT * FROM job";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<Job> jobList = new ArrayList<>();
+
+        while (resultSet.next()){
+            String jobId = resultSet.getString(1);
+            String model = resultSet.getString(2);
+            Date date = resultSet.getDate(3);
+            String cusId = resultSet.getString(4);
+            int itemCount = resultSet.getInt(5);
+            String defectId = resultSet.getString(6);
+            String spareId = resultSet.getString(7);
+            int spareCount = resultSet.getInt(8);
+
+            Job job = new Job(jobId, model, date, cusId, defectId, itemCount, spareId, spareCount);
+            jobList.add(job);
+        }
+
+        return jobList;
+    }
+
+    public static List<String> getId() throws SQLException {
+        String sql = "SELECT job_No FROM job";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<String> idList = new ArrayList<>();
+        while (resultSet.next()) {
+            idList.add(resultSet.getString(1));
+        }
+        return idList;
     }
 }

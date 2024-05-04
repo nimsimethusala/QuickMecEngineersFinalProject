@@ -14,4 +14,5 @@ public class Employee {
     private int contact;
     private String address;
     private double salary;
+    private double cost;
 }

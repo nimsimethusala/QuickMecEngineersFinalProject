@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class Spares {
     private String spareId;
     private String name;
-    private String type;
     private int count;
     private double price;
 

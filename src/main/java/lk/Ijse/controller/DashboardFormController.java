@@ -148,4 +148,15 @@ public class DashboardFormController {
             throw new RuntimeException(e);
         }
     }
+
+    public void btnPaymentOnAction(ActionEvent actionEvent) {
+        try {
+            AnchorPane root = FXMLLoader.load(getClass().getResource("/view/paymentForm.fxml"));
+            dashboardRoot.getChildren().clear();
+            dashboardRoot.getChildren().add(root);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -12,7 +12,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane fx:id="paymentRoot" prefHeight="655.0" prefWidth="846.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.PaymentFormController">
    <children>
       <Text fill="WHITE" layoutX="119.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYMENT FORM">
@@ -30,7 +29,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Text>
-      <TableView fx:id="tblPayment" layoutX="31.0" layoutY="266.0" prefHeight="362.0" prefWidth="783.0">
+      <TableView fx:id="tblPayment" layoutX="31.0" layoutY="266.0" pickOnBounds="false" prefHeight="362.0" prefWidth="783.0">
         <columns>
           <TableColumn fx:id="colPaymentId" prefWidth="100.00002670288086" text="Payment ID" />
           <TableColumn fx:id="colJobId" prefWidth="111.20004272460938" text="Job ID" />
@@ -40,12 +39,7 @@
             <TableColumn fx:id="lblTotalPayment" prefWidth="140.8000366210938" text="Total Payment" />
         </columns>
       </TableView>
-      <Button layoutX="330.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #ffbe76;" text="ADD">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="475.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #ffbe76;" text="Clear">
+      <Button layoutX="471.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #ffbe76;" text="ADD">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

@@ -17,5 +17,6 @@ public class Job {
     private String defectId;
     private int itemCount;
     private String spareId;
+    private int spareCount;
 
 }

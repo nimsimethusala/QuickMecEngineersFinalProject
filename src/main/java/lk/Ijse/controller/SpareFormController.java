@@ -24,44 +24,42 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class SpareFormController {
-    @FXML
-    public TableColumn colCount;
-
-    @FXML
-    public TextField txtCount;
-
-    @FXML
-    public TextField txtPrice;
-
-    @FXML
-    public TableColumn colPrice;
 
     @FXML
     private AnchorPane SpareRoot;
 
     @FXML
+    private TableColumn<?, ?> colCount;
+
+    @FXML
     private TableColumn<?, ?> colName;
 
     @FXML
-    private TableView<SpareTm> tblSpare;
+    private TableColumn<?, ?> colPrice;
 
     @FXML
     private TableColumn<?, ?> colSpareId;
 
     @FXML
-    private TableColumn<?, ?> colType;
+    private TableColumn<?, ?> colTotal;
+
+    @FXML
+    private TableView<SpareTm> tblSpare;
+
+    @FXML
+    private TextField txtCount;
 
     @FXML
     private TextField txtName;
+
+    @FXML
+    private TextField txtPrice;
 
     @FXML
     private TextField txtSapreId;
 
     @FXML
     private TextField txtSearch;
-
-    @FXML
-    private TextField txtType;
 
     public void initialize(){
         txtSapreId.setOnKeyPressed(event -> {
@@ -71,12 +69,6 @@ public class SpareFormController {
         });
 
         txtName.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                txtType.requestFocus();
-            }
-        });
-
-        txtType.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 txtCount.requestFocus();
             }
@@ -98,7 +90,7 @@ public class SpareFormController {
         try {
             List<Spares> spareList = SpareRepo.getAll();
             for (Spares spares : spareList){
-                SpareTm spareTm = new SpareTm(spares.getSpareId(), spares.getName(), spares.getType(), spares.getCount(), spares.getPrice());
+                SpareTm spareTm = new SpareTm(spares.getSpareId(), spares.getName(), spares.getCount(), spares.getPrice());
                 obList.add(spareTm);
             }
             tblSpare.setItems(obList);
@@ -111,7 +103,6 @@ public class SpareFormController {
     private void setCellValueFactory() {
         colSpareId.setCellValueFactory(new PropertyValueFactory<>("spareId"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
         colCount.setCellValueFactory(new PropertyValueFactory<>("count"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
@@ -141,11 +132,10 @@ public class SpareFormController {
     void btnSaveOnAction(ActionEvent event) {
         String spareId = txtSapreId.getText();
         String name = txtName.getText();
-        String type = txtType.getText();
         int count = Integer.parseInt(txtCount.getText());
         double price = Double.parseDouble(txtPrice.getText());
 
-        Spares spares = new Spares(spareId, name, type, count, price);
+        Spares spares = new Spares(spareId, name, count, price);
         try {
             boolean isSaved = SpareRepo.save(spares);
             if (isSaved){
@@ -156,18 +146,16 @@ public class SpareFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
-
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         String spareId = txtSapreId.getText();
         String name = txtName.getText();
-        String type = txtType.getText();
         int count = Integer.parseInt(txtCount.getText());
         double price = Double.parseDouble(txtPrice.getText());
 
-        Spares spares = new Spares(spareId, name, type, count, price);
+        Spares spares = new Spares(spareId, name, count, price);
         try {
             boolean isUpdated = SpareRepo.update(spares);
             if (isUpdated){
@@ -181,12 +169,7 @@ public class SpareFormController {
     }
 
     @FXML
-    void txtSearchOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void imgBackOnAction(MouseEvent mouseEvent) {
+    void imgBackOnAction(MouseEvent event) {
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/view/dashboardForm.fxml"));
             Scene scene = new Scene(root);
@@ -198,10 +181,16 @@ public class SpareFormController {
         }
     }
 
+    @FXML
+    void txtSearchOnAction(ActionEvent event) {
+
+    }
+
     private void clearFields() {
         txtSapreId.setText("");
         txtName.setText("");
-        txtType.setText("");
+        txtCount.setText("");
         txtPrice.setText("");
     }
 }
+
