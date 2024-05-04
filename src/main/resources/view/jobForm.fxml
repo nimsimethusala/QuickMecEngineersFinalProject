@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="JobRoot" prefHeight="769.0" prefWidth="1333.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.JobFormController">
+<AnchorPane fx:id="JobRoot" prefHeight="769.0" prefWidth="1401.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.controller.JobFormController">
    <children>
       <ImageView fitHeight="650.0" fitWidth="844.0" layoutX="91.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -18,16 +24,17 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TableView fx:id="tblJob" layoutX="43.0" layoutY="409.0" prefHeight="270.0" prefWidth="1246.0">
+      <TableView fx:id="tblJob" layoutX="43.0" layoutY="409.0" prefHeight="270.0" prefWidth="1260.0">
         <columns>
-          <TableColumn fx:id="colJobId" prefWidth="90.39999389648438" text="Job_id" />
-          <TableColumn fx:id="colDate" prefWidth="138.40003967285156" text="Date" />
-            <TableColumn fx:id="colVehicleModel" prefWidth="160.0" text="Vehicle_model" />
-            <TableColumn fx:id="colCustomerName" prefWidth="168.80001831054688" text="Customer Name" />
-            <TableColumn fx:id="colItemName" prefWidth="137.60003662109375" text="Item_Name" />
-            <TableColumn fx:id="colItemCount" prefWidth="124.79998779296875" text="Item_Count" />
-            <TableColumn fx:id="colSpareName" prefWidth="163.20001220703125" text="Spare_Name" />
-            <TableColumn fx:id="colDefect" prefWidth="263.99993896484375" text="Defect_Description" />
+          <TableColumn fx:id="colDate" prefWidth="90.39999389648438" text="Date" />
+          <TableColumn fx:id="colVehicleModel" prefWidth="138.40003967285156" text="Vehicle Model" />
+            <TableColumn fx:id="colCustomerName" prefWidth="160.0" text="Customer Name" />
+            <TableColumn fx:id="colItemName" prefWidth="148.80001831054688" text="Item Name" />
+            <TableColumn fx:id="colItemCount" prefWidth="105.60003662109375" text="Item Count" />
+            <TableColumn fx:id="colSpareName" prefWidth="156.79998779296875" text="Spare Name" />
+            <TableColumn fx:id="colSpareCount" prefWidth="108.79998779296875" text="Spare Count" />
+            <TableColumn fx:id="colDefectDescription" prefWidth="225.60003662109375" text="Defect Description" />
+            <TableColumn fx:id="colAction" prefWidth="243.9998779296875" text="Action" />
         </columns>
       </TableView>
       <ImageView fitHeight="58.0" fitWidth="66.0" layoutX="66.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
@@ -61,50 +68,50 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="761.0" layoutY="115.0" prefHeight="27.0" prefWidth="102.0" text="Item Id       :" textFill="WHITE">
+      <Label layoutX="720.0" layoutY="109.0" prefHeight="27.0" prefWidth="134.0" text="Item Id             :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="761.0" layoutY="159.0" prefHeight="27.0" prefWidth="102.0" text="Name         :" textFill="WHITE">
+      <Label layoutX="720.0" layoutY="153.0" prefHeight="27.0" prefWidth="134.0" text="Name               :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="761.0" layoutY="198.0" prefHeight="27.0" prefWidth="102.0" text="Count         :" textFill="WHITE">
+      <Label layoutX="720.0" layoutY="192.0" prefHeight="27.0" prefWidth="134.0" text="Count               :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="761.0" layoutY="239.0" prefHeight="27.0" prefWidth="102.0" text="Spare Id     :" textFill="WHITE">
+      <Label layoutX="720.0" layoutY="233.0" prefHeight="27.0" prefWidth="134.0" text="Spare Id           :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="761.0" layoutY="282.0" prefHeight="27.0" prefWidth="102.0" text="Defect Id    :" textFill="WHITE">
+      <Label layoutX="105.0" layoutY="326.0" prefHeight="27.0" prefWidth="145.0" text="Defect Id            :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <JFXButton layoutX="516.0" layoutY="202.0" onAction="#btnNewCustomerOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: #ffa502;" text="New  " textFill="WHITE">
+      <JFXButton layoutX="516.0" layoutY="207.0" onAction="#btnNewCustomerOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: #ffa502;" text="New  " textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="1122.0" layoutY="108.0" onAction="#btnNewItemOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: #ffa502;" text="New  " textFill="WHITE">
+      <JFXButton layoutX="1122.0" layoutY="106.0" onAction="#btnNewItemOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: #ffa502;" text="New  " textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXComboBox fx:id="lblItemId" layoutX="868.0" layoutY="114.0" onAction="#lblItemIdOnAction" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
-      <JFXComboBox fx:id="lblSpareId" layoutX="868.0" layoutY="239.0" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
-      <JFXComboBox fx:id="lblDefectId" layoutX="868.0" layoutY="281.0" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
-      <JFXButton layoutX="1122.0" layoutY="235.0" onAction="#btnNewSpareOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: #ffa502;" text="New  " textFill="WHITE">
+      <JFXComboBox fx:id="lblItemId" layoutX="863.0" layoutY="108.0" onAction="#lblItemIdOnAction" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
+      <JFXComboBox fx:id="lblSpareId" layoutX="863.0" layoutY="233.0" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
+      <JFXComboBox fx:id="lblDefectId" layoutX="264.0" layoutY="326.0" prefHeight="28.0" prefWidth="199.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
+      <JFXButton layoutX="1122.0" layoutY="231.0" onAction="#btnNewSpareOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: #ffa502;" text="New  " textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="1122.0" layoutY="281.0" onAction="#btnNewDefectOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: #ffa502;" text="New  " textFill="WHITE">
+      <JFXButton layoutX="516.0" layoutY="323.0" onAction="#btnNewDefectOnAction" prefHeight="31.0" prefWidth="102.0" style="-fx-background-color: #ffa502;" text="New  " textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -115,21 +122,9 @@
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="lblJobDate" layoutX="264.0" layoutY="168.0" prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: #FFFFFF;">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblCustomerName" layoutX="264.0" layoutY="247.0" prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: #FFFFFF;">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblName" layoutX="868.0" layoutY="156.0" prefHeight="27.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
+      <Label fx:id="lblJobDate" layoutX="264.0" layoutY="168.0" prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: #FFFFFF;" />
+      <Label fx:id="lblCustomerName" layoutX="264.0" layoutY="247.0" prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: #FFFFFF;" />
+      <Label fx:id="lblName" layoutX="863.0" layoutY="153.0" prefHeight="27.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;" />
       <JFXButton layoutX="1141.0" layoutY="348.0" onAction="#btnAddToJobOnAction" prefHeight="40.0" prefWidth="122.0" style="-fx-background-color: #e74c3c;" text="Add to Job" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -145,12 +140,20 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <Label fx:id="lblJobId" layoutX="264.0" layoutY="128.0" prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: #FFFFFF;">
+      <Label fx:id="lblJobId" layoutX="264.0" layoutY="128.0" prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: #FFFFFF;" />
+      <TextField fx:id="txtModel" layoutX="264.0" layoutY="286.0" prefHeight="26.0" prefWidth="199.0" promptText="model" style="-fx-background-color: white;" />
+      <TextField fx:id="txtItemCount" layoutX="863.0" layoutY="192.0" prefHeight="26.0" prefWidth="211.0" promptText="Item Count" style="-fx-background-color: #FFFFFF;" />
+      <Label layoutX="719.0" layoutY="275.0" prefHeight="27.0" prefWidth="134.0" text="Spare Count    :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtModel" layoutX="264.0" layoutY="286.0" prefHeight="26.0" prefWidth="199.0" promptText="model" style="-fx-background-color: white;" />
-      <TextField fx:id="txtItemCount" layoutX="868.0" layoutY="198.0" prefHeight="26.0" prefWidth="211.0" promptText="Item Count" style="-fx-background-color: #FFFFFF;" />
+      <TextField fx:id="txtSpareCount" layoutX="863.0" layoutY="275.0" prefHeight="26.0" prefWidth="211.0" promptText="Spare Count" style="-fx-background-color: #FFFFFF;" />
+      <Label layoutX="720.0" layoutY="316.0" prefHeight="27.0" prefWidth="134.0" text="Employee Id    :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cmbEmployeeId" layoutX="863.0" layoutY="316.0" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
    </children>
 </AnchorPane>

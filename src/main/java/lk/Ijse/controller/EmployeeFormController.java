@@ -25,6 +25,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class EmployeeFormController {
+    @FXML
+    public TextField txtCost;
 
     @FXML
     private AnchorPane EmployeeRoot;
@@ -102,6 +104,12 @@ public class EmployeeFormController {
             }
         });
 
+        txtSalary.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                txtCost.requestFocus();
+            }
+        });
+
         setCellValueFactory();
         loadAllEmployees();
     }
@@ -168,8 +176,9 @@ public class EmployeeFormController {
         int contact = Integer.parseInt(txtContact.getText());
         String address = txtAddress.getText();
         double salary = Double.parseDouble(txtSalary.getText());
+        double cost = Double.parseDouble(txtCost.getText());
 
-        Employee employee = new Employee(empId, name, attendence, contact, address, salary);
+        Employee employee = new Employee(empId, name, attendence, contact, address, salary, cost);
 
         try {
             boolean isSaved = EmployeeRepo.save(employee);
@@ -192,8 +201,9 @@ public class EmployeeFormController {
         int contact = Integer.parseInt(txtContact.getText());
         String address = txtAddress.getText();
         double salary = Double.parseDouble(txtSalary.getText());
+        double cost = Double.parseDouble(txtCost.getText());
 
-        Employee employee = new Employee(empId, empName, attendence, contact, address, salary);
+        Employee employee = new Employee(empId, empName, attendence, contact, address, salary, cost);
 
         try {
             boolean isUpdated = EmployeeRepo.update(employee);
@@ -231,5 +241,6 @@ public class EmployeeFormController {
         txtContact.setText("");
         txtAddress.setText("");
         txtSalary.setText("");
+        txtCost.setText("");
     }
 }

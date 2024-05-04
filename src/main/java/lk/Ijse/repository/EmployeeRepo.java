@@ -23,7 +23,7 @@ public class EmployeeRepo {
     }
 
     public static boolean save(Employee employee) throws SQLException {
-        String sql = "INSERT INTO employee VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO employee VALUES(?, ?, ?, ?, ?, ?, ?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -34,12 +34,13 @@ public class EmployeeRepo {
         pstm.setObject(4,employee.getAddress());
         pstm.setObject(5, employee.getContact());
         pstm.setObject(6, employee.getSalary());
+        pstm.setObject(7, employee.getCost());
 
         return pstm.executeUpdate() > 0;
     }
 
     public static boolean update(Employee employee) throws SQLException {
-        String sql = "UPDATE employee SET Emp_id = ?, Name = ?, attendence = ?, address = ?, contact = ?, salary = ?";
+        String sql = "UPDATE employee SET Emp_id = ?, Name = ?, attendence = ?, address = ?, contact = ?, salary = ?, cost = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -50,6 +51,7 @@ public class EmployeeRepo {
         pstm.setObject(4, employee.getAddress());
         pstm.setObject(5, employee.getContact());
         pstm.setObject(6, employee.getSalary());
+        pstm.setObject(7, employee.getCost());
 
         return pstm.executeUpdate() > 0;
     }
@@ -70,8 +72,9 @@ public class EmployeeRepo {
             String address = resultSet.getString(4);
             int contact = resultSet.getInt(5);
             double salary = resultSet.getDouble(6);
+            double cost = resultSet.getDouble(7);
 
-            Employee employee = new Employee(empId, name, attendence, contact, address, salary);
+            Employee employee = new Employee(empId, name, attendence, contact, address, salary, cost);
             empList.add(employee);
         }
 
@@ -94,8 +97,9 @@ public class EmployeeRepo {
             String address = resultSet.getString(4);
             int contact = resultSet.getInt(5);
             double salary = resultSet.getDouble(6);
+            double cost = resultSet.getDouble(7);
 
-            Employee employee = new Employee(employeeId, name, attendence, contact, address, salary);
+            Employee employee = new Employee(employeeId, name, attendence, contact, address, salary, cost);
             return employee;
         }
 

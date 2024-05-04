@@ -57,7 +57,7 @@ public class ItemRepo {
 
     public static boolean update(List<JobDetail> jobList) throws SQLException {
         for (JobDetail list : jobList) {
-            boolean isUpdateCount = updateQty(list.getItemId(), list.getItemCount());
+            boolean isUpdateCount = updateQty(list.getItemId(), list.getItemCount(), list.getSpareCount());
 
             if(!isUpdateCount) {
                 return false;
@@ -66,14 +66,15 @@ public class ItemRepo {
         return true;
     }
 
-    private static boolean updateQty(String itemId, int itemCount) throws SQLException {
-        String sql = "UPDATE item SET Item_count = Item_count - ? WHERE item_No = ?";
+    private static boolean updateQty(String itemId, int itemCount, int spareCount) throws SQLException {
+        String sql = "UPDATE item SET Item_count = Item_count - ?, Spare_count = Spare_count - ? WHERE item_No = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setInt(1, itemCount);
-        pstm.setString(2, itemId);
+        pstm.setInt(2, spareCount);
+        pstm.setString(3, itemId);
 
         return pstm.executeUpdate() > 0;
     }

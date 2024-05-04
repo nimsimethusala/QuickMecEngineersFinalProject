@@ -12,4 +12,5 @@ public class JobDetail {
     private int itemCount;
     private String model;
     private String jobId;
+    private int spareCount;
 }

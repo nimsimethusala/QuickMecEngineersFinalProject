@@ -84,7 +84,7 @@
             <Image url="@../images/Screenshot 2024-04-11 110817.png" />
          </image>
       </ImageView>
-      <VBox layoutX="62.0" layoutY="140.0" prefHeight="336.0" prefWidth="118.0">
+      <VBox layoutX="62.0" layoutY="140.0" prefHeight="386.0" prefWidth="118.0">
          <children>
             <JFXButton alignment="BASELINE_LEFT" onAction="#btnCustomerOnAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #485460;" text="Customer" textFill="WHITE">
                <font>
@@ -112,6 +112,11 @@
                </font>
             </JFXButton>
             <JFXButton alignment="BASELINE_LEFT" onAction="#btnSupplierOnAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #485460;" text="Supplier" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" onAction="#btnPaymentOnAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #485460;" text="Payment" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -154,17 +159,22 @@
       </Group>
       <Group layoutX="27.0" layoutY="522.0">
          <children>
-            <Button alignment="BASELINE_LEFT" layoutY="-15.0" mnemonicParsing="false" onAction="#btnNewJobOnAction" prefHeight="40.0" prefWidth="127.0" style="-fx-background-color: #f9ca24;" text="New Job">
+            <Button alignment="BASELINE_LEFT" layoutY="30.0" mnemonicParsing="false" onAction="#btnNewJobOnAction" prefHeight="40.0" prefWidth="127.0" style="-fx-background-color: #f9ca24;" text="New Job">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="92.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="92.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Screenshot 2024-04-11 160804.png" />
                </image>
             </ImageView>
          </children>
       </Group>
+      <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="17.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Screenshot%202024-05-01%20130529.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -24,31 +24,29 @@ public class SpareRepo {
     }
 
     public static boolean save(Spares spares) throws SQLException {
-        String sql = "INSERT INTO spare VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO spare VALUES(?, ?, ?, ?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setObject(1, spares.getSpareId());
         pstm.setObject(2,spares.getName());
-        pstm.setObject(3, spares.getType());
-        pstm.setObject(4, spares.getCount());
-        pstm.setObject(5, spares.getPrice());
+        pstm.setObject(3, spares.getCount());
+        pstm.setObject(4, spares.getPrice());
 
         return pstm.executeUpdate() > 0;
     }
 
     public static boolean update(Spares spares) throws SQLException {
-        String sql = "UPDATE spare SET Spare_id = ?, Name = ?, type = ?, count = ?, price = ?";
+        String sql = "UPDATE spare SET Spare_id = ?, Name = ?, count = ?, price = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setObject(1, spares.getSpareId());
         pstm.setObject(2, spares.getName());
-        pstm.setObject(3, spares.getType());
-        pstm.setObject(4, spares.getCount());
-        pstm.setObject(5, spares.getPrice());
+        pstm.setObject(3, spares.getCount());
+        pstm.setObject(4, spares.getPrice());
 
         return pstm.executeUpdate() > 0;
     }
@@ -66,11 +64,10 @@ public class SpareRepo {
         while (resultSet.next()){
             String spareId = resultSet.getString(1);
             String name = resultSet.getString(2);
-            String type = resultSet.getString(3);
-            int count = resultSet.getInt(4);
-            double price = resultSet.getDouble(5);
+            int count = resultSet.getInt(3);
+            double price = resultSet.getDouble(4);
 
-            Spares spares = new Spares(spareId, name, type, count, price);
+            Spares spares = new Spares(spareId, name, count, price);
             spareList.add(spares);
         }
 
