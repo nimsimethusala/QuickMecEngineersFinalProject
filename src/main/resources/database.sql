@@ -9,11 +9,8 @@ create table customer(
                          contact varchar(10)
 );
 
-create table defect(
-                       defect_id varchar(6)primary key,
-                       description varchar(25),
-                       price varchar(10)
-);
+/*insert into customer values ("C002","Kasun","Galle",0759843615);
+insert into customer values ("C003","Supun","Moratuwa",0756479958);*/
 
 create table spare(
                       Spare_id varchar(6)primary key,
@@ -21,6 +18,33 @@ create table spare(
                       count varchar(10),
                       price varchar(10)
 );
+
+/*insert into spare values ("SP001","Piston Rings",10,5000);
+insert into spare values ("SP002","Main Bearing",9,5000);*/
+
+create table defect(
+                       defect_id varchar(6)primary key,
+                       description varchar(70),
+                       price varchar(10),
+                       Spare_id varchar(6),
+                       foreign key(Spare_id) references spare(Spare_id) on update cascade on delete cascade
+);
+
+/*insert into defect values ("D001","Removing & Refitting Cylinder Liner",10000,"SP001");
+insert into defect values ("D002","Refilling Main Bearing Parent Bore",15000,"SP002");*/
+
+create table employee(
+                         Emp_id varchar(6)primary key,
+                         Name varchar(25),
+                         attendence int(5),
+                         address varchar(20),
+                         contact varchar(10),
+                         salary varchar(10),
+                         cost varchar(10)
+);
+
+/*insert into employee values ("E001","Sadakan",30,"Panadura",0789542165,25000,2500);
+insert into employee values ("E002","Kushan",25,"Piliyandala",0789559465,26000,1500);*/
 
 create table job(
                     job_No varchar(6)primary key,
@@ -34,14 +58,19 @@ create table job(
                     Spare_id varchar(6),
                     foreign key(Spare_id) references spare(Spare_id) on update cascade on delete cascade,
                     Spare_count varchar(10),
-                    Employee_id varchar(10)
+                    Emp_id varchar(10),
+                    foreign key(Emp_id) references employee(Emp_id) on update cascade on delete cascade
 );
 
 create table item(
                      item_No varchar(6)primary key,
                      Name varchar(25),
-                     Item_count int(20)
+                     defect_id varchar(6),
+                     foreign key(defect_id) references defect(defect_id) on update cascade on delete cascade
 );
+
+/*insert into item values ("I001","Block","D001");
+insert into item values ("I002","Crank","D002");*/
 
 create table payment(
                     payment_id  varchar(10),
@@ -63,16 +92,6 @@ create table job_details(
                                     foreign key(job_No)references job(job_No) on update cascade on delete cascade
 );
 
-create table employee(
-                         Emp_id varchar(6)primary key,
-                         Name varchar(25),
-                         attendence int(5),
-                         address varchar(20),
-                         contact varchar(10),
-                         salary varchar(10),
-                         cost varchar(10)
-);
-
 create table supplier(
                          supplier_id varchar(6)primary key ,
                          name varchar(25),
@@ -80,12 +99,18 @@ create table supplier(
                          contact int(10)
 );
 
+/*insert into supplier values ("S001","Spare Enterprices","Colombo",0796654123);
+insert into supplier values ("S002","Nishan Enterprices","Colombo",0796265123);*/
+
 create table machine(
                         machine_id varchar(6)primary key ,
                         date date,
                         Emp_id varchar(6),
                         foreign key(Emp_id)references employee(Emp_id)on update cascade on delete cascade
 );
+
+/*insert into machine values ("M001","2015/05/25","E001");
+insert into machine values ("M002","2014/07/15","E002");*/
 
 create table spare_supplier_detail(
                         Spare_id varchar(6),

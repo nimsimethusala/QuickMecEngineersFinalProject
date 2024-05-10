@@ -6,18 +6,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.controller.util.Regex;
+import lk.Ijse.controller.util.TextFeildRegex;
 import lk.Ijse.model.Employee;
 import lk.Ijse.model.tm.EmployeeTm;
+import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.repository.EmployeeRepo;
 
 import java.io.IOException;
@@ -27,6 +27,8 @@ import java.util.List;
 public class EmployeeFormController {
     @FXML
     public TextField txtCost;
+
+    public Label lblEmployeeId;
 
     @FXML
     private AnchorPane EmployeeRoot;
@@ -62,9 +64,6 @@ public class EmployeeFormController {
     private TextField txtContact;
 
     @FXML
-    private TextField txtEmployeeId;
-
-    @FXML
     private TextField txtEmployeeName;
 
     @FXML
@@ -73,13 +72,9 @@ public class EmployeeFormController {
     @FXML
     private TextField txtSearch;
 
-    public void initialize(){
-        txtEmployeeId.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                txtEmployeeName.requestFocus();
-            }
-        });
+    private int idCounter;
 
+    public void initialize(){
         txtEmployeeName.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 txtAttendance.requestFocus();
@@ -110,9 +105,31 @@ public class EmployeeFormController {
             }
         });
 
+        getCurrentEmployeeId();
         setCellValueFactory();
         loadAllEmployees();
     }
+
+    private void getCurrentEmployeeId() {
+        try {
+            //String orderId = CustomerRepo.GetOrderId();
+
+            String nextOrderId = EmployeeRepo.generateNextEmployeeId();
+            lblEmployeeId.setText(nextOrderId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /*private void generateEmployeeId() {
+        String customerId = String.format("E%03d", idCounter);
+        lblEmployeeId.setText(customerId);
+    }
+
+    private void incrementIdCounter() {
+        idCounter++;
+        generateEmployeeId();
+    }*/
 
     private void loadAllEmployees() {
         ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
@@ -154,7 +171,7 @@ public class EmployeeFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String empId = txtEmployeeId.getText();
+        String empId = lblEmployeeId.getText();
 
         try {
             boolean isDeleted = EmployeeRepo.delete(empId);
@@ -170,7 +187,7 @@ public class EmployeeFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String empId = txtEmployeeId.getText();
+        String empId = lblEmployeeId.getText();
         String name = txtEmployeeName.getText();
         double attendence = Double.parseDouble(txtAttendance.getText());
         int contact = Integer.parseInt(txtContact.getText());
@@ -195,7 +212,7 @@ public class EmployeeFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String empId = txtEmployeeId.getText();
+        String empId = lblEmployeeId.getText();
         String empName = txtEmployeeName.getText();
         double attendence = Double.parseDouble(txtAttendance.getText());
         int contact = Integer.parseInt(txtContact.getText());
@@ -235,12 +252,31 @@ public class EmployeeFormController {
     }
 
     private void clearFleids(){
-        txtEmployeeId.setText("");
         txtEmployeeName.setText("");
         txtAttendance.setText("");
         txtContact.setText("");
         txtAddress.setText("");
         txtSalary.setText("");
         txtCost.setText("");
+    }
+
+    public void txtCostOnAction(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFeildRegex.PRICE,txtCost);
+    }
+
+    public void txtSalaryOnAction(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFeildRegex.PRICE,txtSalary);
+    }
+
+    public void txtEmployeeNameOnAction(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFeildRegex.NAME,txtEmployeeName);
+    }
+
+    public void txtAttendanceOnAction(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFeildRegex.ATTENDANCE,txtAttendance);
+    }
+
+    public void txtContactOnAction(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFeildRegex.CONTACT,txtContact);
     }
 }

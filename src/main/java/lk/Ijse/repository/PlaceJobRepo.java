@@ -12,14 +12,17 @@ public class PlaceJobRepo {
         connection.setAutoCommit(false);
 
         try {
-            boolean isOrderSaved = JobRepo.save(placeJob.getJob());
-            if (isOrderSaved) {
+            boolean isJobSaved = JobRepo.save(placeJob.getJob());
+            if (isJobSaved) {
                 boolean isQtyUpdated = ItemRepo.update(placeJob.getJobList());
                 if (isQtyUpdated) {
                     boolean isOrderDetailSaved = JobDetailRepo.save(placeJob.getJobList());
                     if (isOrderDetailSaved) {
-                        connection.commit();
-                        return true;
+                        boolean isSpareQtyUpdate = SpareRepo.update(placeJob.getJob());
+                        if (isSpareQtyUpdate) {
+                            connection.commit();
+                            return true;
+                        }
                     }
                 }
             }

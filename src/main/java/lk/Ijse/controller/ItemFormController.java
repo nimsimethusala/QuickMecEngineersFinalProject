@@ -1,37 +1,44 @@
 package lk.Ijse.controller;
 
 import com.jfoenix.controls.JFXComboBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.Ijse.model.Customer;
+import lk.Ijse.controller.util.Regex;
+import lk.Ijse.controller.util.TextFeildRegex;
 import lk.Ijse.model.Item;
+import lk.Ijse.model.tm.ItemTm;
 import lk.Ijse.repository.CustomerRepo;
+import lk.Ijse.repository.DefectRepo;
 import lk.Ijse.repository.ItemRepo;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ItemFormController {
     @FXML
     public TableColumn colJobId;
 
     @FXML
+    public JFXComboBox cmbDefectId;
+
+    public Label lblItemId;
+
+    @FXML
     private AnchorPane itemRoot;
 
     @FXML
-    private TableView<?> tblItem;
-
-    @FXML
-    private TableColumn<?, ?> colItemCount;
+    private TableView<ItemTm> tblItem;
 
     @FXML
     private TableColumn<?, ?> colItemId;
@@ -43,13 +50,40 @@ public class ItemFormController {
     private TextField txtItemCount;
 
     @FXML
-    private TextField txtItemId;
-
-    @FXML
     private TextField txtName;
 
     @FXML
     private TextField txtSearch;
+
+    private int idCounter;
+
+    public void initialize(){
+        getCurrentItemId();
+        getDefectId();
+        setCellValueFactory();
+        loadAllCustomer();
+    }
+
+    private void getCurrentItemId() {
+        try {
+            //String orderId = CustomerRepo.GetOrderId();
+
+            String nextOrderId = ItemRepo.generateNextItemId();
+            lblItemId.setText(nextOrderId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /*private void generateItemId() {
+        String itemId = String.format("I%03d", idCounter);
+        lblItemId.setText(itemId);
+    }
+
+    private void incrementIdCounter() {
+        idCounter++;
+        generateItemId();
+    }*/
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
@@ -58,7 +92,7 @@ public class ItemFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String itemId = txtItemId.getText();
+        String itemId = lblItemId.getText();
 
         try {
             boolean isDeleted = ItemRepo.delete(itemId);
@@ -75,11 +109,11 @@ public class ItemFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String itemId = txtItemId.getText();
+        String itemId = lblItemId.getText();
         String name = txtName.getText();
-        int count = Integer.parseInt(txtItemCount.getText());
+        String defectId = (String) cmbDefectId.getValue();
 
-        Item item = new Item(itemId, name, count);
+        Item item = new Item(itemId, name, defectId);
         try {
             boolean isSaved = ItemRepo.save(item);
             if (isSaved){
@@ -94,12 +128,12 @@ public class ItemFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String itemId = txtItemId.getText();
+        String itemId = lblItemId.getText();
         String itemName = txtName.getText();
-        int count = Integer.parseInt(txtItemCount.getText());
+        String defectId = (String) cmbDefectId.getValue();
 
         try {
-            Item item = new Item(itemId, itemName, count);
+            Item item = new Item(itemId, itemName, defectId);
 
             boolean isUpdate = ItemRepo.updateItem(item);
 
@@ -113,14 +147,10 @@ public class ItemFormController {
     }
 
     @FXML
-    void txtItemIdOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
     void txtSearchOnAction(ActionEvent event) {
 
     }
+
     @FXML
     void imgBackOnAction(MouseEvent mouseEvent) {
         try {
@@ -135,8 +165,53 @@ public class ItemFormController {
     }
 
     public void clearFeilds(){
-        txtItemId.setText("");
+        lblItemId.setText("");
         txtName.setText("");
-        txtItemCount.setText("");
+    }
+
+    private void getDefectId(){
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        try {
+            List<String> idList = DefectRepo.getId();
+
+            for (String code : idList) {
+                obList.add(code);
+            }
+            cmbDefectId.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadAllCustomer(){
+        ObservableList<ItemTm> obList = FXCollections.observableArrayList();
+
+        try {
+            List<Item> itemList = ItemRepo.getAll();
+            for (Item item : itemList){
+                ItemTm itemTm = new ItemTm(
+                        item.getItemID(),
+                        item.getItemName(),
+                        item.getDefectId()
+                );
+                obList.add(itemTm);
+            }
+            tblItem.setItems(obList);
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
+    }
+
+    private void setCellValueFactory(){
+        colItemId.setCellValueFactory(new PropertyValueFactory<>("itemID"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        colJobId.setCellValueFactory(new PropertyValueFactory<>("defectId"));
+    }
+
+    public void txtItemNameOnAction(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFeildRegex.NAME,txtName);
     }
 }

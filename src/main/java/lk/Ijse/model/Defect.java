@@ -11,4 +11,5 @@ public class Defect {
     private String defectId;
     private String description;
     private double price;
+    private String spareId;
 }

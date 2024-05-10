@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
@@ -17,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.Ijse.model.Supplier;
 import lk.Ijse.model.tm.SupplierTm;
+import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.repository.SupplierRepo;
 
 import java.io.IOException;
@@ -24,6 +22,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class SupplierFormController {
+    public Label lblSupplierId;
 
     @FXML
     private AnchorPane supplierRoot;
@@ -53,18 +52,11 @@ public class SupplierFormController {
     private TextField txtSearch;
 
     @FXML
-    private TextField txtSupplierId;
-
-    @FXML
     private TextField txtSupplierName;
 
-    public void initialize() {
-        txtSupplierId.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                txtSupplierName.requestFocus();
-            }
-        });
+    private int idCounter;
 
+    public void initialize() {
         txtSupplierName.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 txtContactNo.requestFocus();
@@ -77,9 +69,32 @@ public class SupplierFormController {
             }
         });
 
+        getCurrentSpareId();
         setCellValueFactory();
         loadAllSupplier();
     }
+
+    private void getCurrentSpareId() {
+        try {
+            //String orderId = CustomerRepo.GetOrderId();
+
+            String nextOrderId = SupplierRepo.generateNextSupplierId();
+            lblSupplierId.setText(nextOrderId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /*private void generateSupplierId() {
+        String customerId = String.format("S%03d", idCounter);
+        lblSupplierId.setText(customerId);
+        System.out.println(customerId);
+    }
+
+    private void incrementIdCounter() {
+        idCounter++;
+        generateSupplierId();
+    }*/
 
     private void loadAllSupplier() {
         ObservableList<SupplierTm> obList = FXCollections.observableArrayList();
@@ -111,7 +126,7 @@ public class SupplierFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String supId = txtSupplierId.getText();
+        String supId = lblSupplierId.getText();
 
         try {
             boolean isDeleted = SupplierRepo.delete(supId);
@@ -128,7 +143,7 @@ public class SupplierFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String supId = txtSupplierId.getText();
+        String supId = lblSupplierId.getText();
         String supName = txtSupplierName.getText();
         int contact = Integer.parseInt(txtContactNo.getText());
         String location = txtLocation.getText();
@@ -150,7 +165,7 @@ public class SupplierFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String supId = txtSupplierId.getText();
+        String supId = lblSupplierId.getText();
         String supName = txtSupplierName.getText();
         int contact = Integer.parseInt(txtContactNo.getText());
         String location = txtLocation.getText();
@@ -187,7 +202,6 @@ public class SupplierFormController {
     }
 
     public void clearFeilds(){
-        txtSupplierId.setText("");
         txtSupplierName.setText("");
         txtContactNo.setText("");
         txtLocation.setText("");

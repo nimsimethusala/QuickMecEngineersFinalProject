@@ -18,5 +18,5 @@ public class Job {
     private int itemCount;
     private String spareId;
     private int spareCount;
-
+    private double empCost;
 }

@@ -126,4 +126,79 @@ public class CustomerRepo {
         }
         return null;
     }
+
+    public static String getNextCustomerId() throws SQLException {
+        String sql = "SELECT customer_id FROM customer ORDER BY customer_id DESC LIMIT 1" ;
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String lastJobID = resultSet.getString(1);
+
+            if (!(lastJobID == null)) {
+                int index = Integer.parseInt(lastJobID.substring(1));
+                index++;
+
+                if (index < 10) {
+                    return "C00" + index;
+                } else if (index < 100) {
+                    return "C0" + index;
+                }
+
+            }
+        }
+        return "C001";
+    }
+
+    public static String generateNextCustomerId() throws SQLException {
+        String sql = "SELECT customer_id FROM customer ORDER BY customer_id DESC LIMIT 1";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return splitOrderId(resultSet.getString(1));
+        }
+        return splitOrderId(null);
+    }
+
+    private static String splitOrderId(String string) {
+        if(string != null) {
+            String[] strings = string.split("C0");
+            int id = Integer.parseInt(strings[1]);
+            id++;
+            String ID = String.valueOf(id);
+            int length = ID.length();
+            if (length < 2){
+                return "C00"+id;
+            }else {
+                if (length < 3){
+                    return "C0"+id;
+                }else {
+                    return "C"+id;
+                }
+            }
+        }
+        return "C001";
+    }
+
+    public static List<String> GetCustomerTel() throws SQLException {
+        String sql = "SELECT contact FROM customer WHERE contact = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        List<String> telList = new ArrayList<>();
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()) {
+            String tel = resultSet.getString(4);
+            telList.add(tel);
+        }
+        return telList;
+    }
 }

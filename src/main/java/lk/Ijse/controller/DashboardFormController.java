@@ -1,5 +1,8 @@
 package lk.Ijse.controller;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,38 +14,33 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
+import static java.awt.AWTEventMulticaster.add;
 
 public class DashboardFormController {
+    @FXML
+    public Label lblDate;
 
-    public LineChart chart;
     @FXML
     private AnchorPane dashboardRoot;
 
     @FXML
-    private Label lblCustomerCount;
-
-    @FXML
-    private Label lblJobCount;
-
-    @FXML
     private AnchorPane Root;
 
-    @FXML
-    private TableColumn<?, ?> tblCustomerName;
+    public void initialize(){
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            updateTime();
+        }));
 
-    @FXML
-    private TableView<?> tblDashboard;
-
-    @FXML
-    private TableColumn<?, ?> tblJobID;
-
-    @FXML
-    private TableColumn<?, ?> tblLocation;
-
-    @FXML
-    private TextField txtSearch;
+        timeline.setCycleCount(Animation.INDEFINITE); // Repeat indefinitely
+        timeline.play();
+    }
 
     @FXML
     void btnCustomerOnAction(ActionEvent event) {
@@ -129,12 +127,6 @@ public class DashboardFormController {
             throw new RuntimeException(e);
         }
     }
-
-    @FXML
-    void txtSearchOnAction(ActionEvent event) {
-
-    }
-
     @FXML
     void btnBackOnAction(ActionEvent actionEvent) {
         try {
@@ -159,4 +151,24 @@ public class DashboardFormController {
             throw new RuntimeException(e);
         }
     }
+
+    private void updateTime() {
+        // Get current time and format it
+        LocalTime currentTime = LocalTime.now();
+        String formattedTime = currentTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        // Update the label text
+        lblDate.setText(formattedTime);
+    }
+    /*private void setTime(){
+        Timer timer = new Timer(1000, e -> getCurrentTime());
+        timer.start();
+
+        add(lblDate);
+    }
+
+    private void getCurrentTime(){
+        LocalTime currentTime = LocalTime.now();
+        String formattedTime = currentTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        lblDate.setText(formattedTime);
+    }*/
 }

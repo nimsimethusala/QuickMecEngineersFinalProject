@@ -10,7 +10,7 @@ import java.util.List;
 
 public class JobRepo {
     public static boolean save(Job job) throws SQLException {
-        String sql = "INSERT INTO job VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO job VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -23,6 +23,7 @@ public class JobRepo {
         pstm.setString(6, job.getDefectId());
         pstm.setString(7, job.getSpareId());
         pstm.setInt(8, job.getSpareCount());
+        pstm.setObject(9, job.getEmpCost());
 
         return pstm.executeUpdate() > 0;
     }
@@ -71,8 +72,9 @@ public class JobRepo {
             String defectId = resultSet.getString(6);
             String spareId = resultSet.getString(7);
             int spareCount = resultSet.getInt(8);
+            double empCost = resultSet.getDouble(9);
 
-            Job job = new Job(jobId, model, date, cusId, defectId, itemCount, spareId, spareCount);
+            Job job = new Job(jobId, model, date, cusId, defectId, itemCount, spareId, spareCount, empCost);
             jobList.add(job);
         }
 
@@ -92,5 +94,39 @@ public class JobRepo {
             idList.add(resultSet.getString(1));
         }
         return idList;
+    }
+
+    public static String getEmployeeId(String jobId) throws SQLException {
+        String sql = "SELECT Emp_id FROM job WHERE job_No = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, jobId);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()){
+            String empId = resultSet.getString(9);
+
+            return empId;
+        }
+        return null;
+    }
+
+    public static String getSpareId(String jobId) throws SQLException {
+        String sql = "SELECT Spare_id FROM job WHERE job_No = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, jobId);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()){
+            String spareId = resultSet.getString(7);
+
+            return spareId;
+        }
+        return null;
     }
 }

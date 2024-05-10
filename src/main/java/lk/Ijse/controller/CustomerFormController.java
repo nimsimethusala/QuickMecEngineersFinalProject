@@ -6,24 +6,28 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.controller.util.Regex;
+import lk.Ijse.controller.util.TextFeildRegex;
 import lk.Ijse.model.Customer;
 import lk.Ijse.model.tm.CustomerTm;
 import lk.Ijse.repository.CustomerRepo;
+import lk.Ijse.repository.JobRepo;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 public class CustomerFormController {
+    @FXML
+    public Label lblCustomerId;
 
     @FXML
     private AnchorPane CustomerRoot;
@@ -47,9 +51,6 @@ public class CustomerFormController {
     private TextField txtAddress;
 
     @FXML
-    private TextField txtCustomerId;
-
-    @FXML
     private TextField txtCustomerName;
 
     @FXML
@@ -58,13 +59,9 @@ public class CustomerFormController {
     @FXML
     private TextField txtSearch;
 
-    public void initialize() {
-        txtCustomerId.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                txtCustomerName.requestFocus();
-            }
-        });
+    private int idCounter;
 
+    public void initialize() {
         txtCustomerName.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 txtCustomerNumber.requestFocus();
@@ -77,9 +74,30 @@ public class CustomerFormController {
             }
         });
 
+        loadCustomerAllTel();
+        getCurrentCustomerId();
         setCellValueFactory();
         loadAllCustomer();
     }
+
+    private void getCurrentCustomerId() {
+        try {
+            String nextOrderId = CustomerRepo.generateNextCustomerId();
+            lblCustomerId.setText(nextOrderId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /*private void generateCustomerId() {
+        String customerId = String.format("C%03d", idCounter);
+        lblCustomerId.setText(customerId);
+    }
+
+    private void incrementIdCounter() {
+        idCounter++;
+        generateCustomerId();
+    }*/
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
@@ -88,7 +106,7 @@ public class CustomerFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String cusId = txtCustomerId.getText();
+        String cusId = lblCustomerId.getText();
 
         try {
             boolean isDelete = CustomerRepo.delete(cusId);
@@ -104,7 +122,7 @@ public class CustomerFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String cusId = txtCustomerId.getText();
+        String cusId = lblCustomerId.getText();
         String cusName = txtCustomerName.getText();
         String address = txtAddress.getText();
         int contact = Integer.parseInt(txtCustomerNumber.getText());
@@ -126,7 +144,7 @@ public class CustomerFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String cusId = txtCustomerId.getText();
+        String cusId = lblCustomerId.getText();
         String cusName = txtCustomerName.getText();
         String address = txtAddress.getText();
         int contact = Integer.parseInt(txtCustomerNumber.getText());
@@ -159,15 +177,15 @@ public class CustomerFormController {
     }
 
     @FXML
-    void txtSearchOnAction(ActionEvent keyEvent) {
-        String id = txtCustomerId.getText();
+    /*void txtSearchOnAction(ActionEvent keyEvent) {
+        String id = lblCustomerId.getText();
 
         try {
             Customer customer = CustomerRepo.searchById(id);
             txtSearch.setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.ENTER) {
                     if (customer != null) {
-                        txtCustomerId.setText(customer.getId());
+                        lblCustomerId.setText(customer.getId());
                         txtCustomerName.setText(customer.getName());
                         txtAddress.setText(customer.getAddress());
                         txtCustomerNumber.setText(String.valueOf(customer.getTel()));
@@ -179,11 +197,21 @@ public class CustomerFormController {
         }catch (SQLException e){
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }*/
 
+    private void loadCustomerAllTel() {
+        try {
+            List<String> cusTel = CustomerRepo.GetCustomerTel();
+            String[] possibleNames = cusTel.toArray(new String[0]);
+
+            TextFields.bindAutoCompletion(txtSearch, possibleNames);
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     private void clearFields() {
-        txtCustomerId.setText("");
         txtCustomerName.setText("");
         txtAddress.setText("");
         txtCustomerNumber.setText("");
@@ -210,5 +238,14 @@ public class CustomerFormController {
         colCustomerName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colContact.setCellValueFactory(new PropertyValueFactory<>("tel"));
+    }
+
+    public void txtCustomerNameOnAction(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFeildRegex.NAME,txtCustomerName);
+
+    }
+
+    public void txtNumberOnAction(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFeildRegex.CONTACT,txtCustomerNumber);
     }
 }

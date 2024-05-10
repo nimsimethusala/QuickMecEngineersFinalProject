@@ -1,15 +1,13 @@
 package lk.Ijse.controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
@@ -17,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.Ijse.model.Spares;
 import lk.Ijse.model.tm.SpareTm;
+import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.repository.SpareRepo;
 
 import java.io.IOException;
@@ -24,6 +23,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class SpareFormController {
+    public Label lblSpareId;
 
     @FXML
     private AnchorPane SpareRoot;
@@ -56,18 +56,11 @@ public class SpareFormController {
     private TextField txtPrice;
 
     @FXML
-    private TextField txtSapreId;
-
-    @FXML
     private TextField txtSearch;
 
-    public void initialize(){
-        txtSapreId.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                txtName.requestFocus();
-            }
-        });
+    private int idCounter;
 
+    public void initialize(){
         txtName.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 txtCount.requestFocus();
@@ -80,9 +73,31 @@ public class SpareFormController {
             }
         });
 
+        getCurrentSpareId();
         setCellValueFactory();
         loadAllSpares();
     }
+
+    private void getCurrentSpareId() {
+        try {
+            //String orderId = CustomerRepo.GetOrderId();
+
+            String nextOrderId = SpareRepo.generateNextSpareId();
+            lblSpareId.setText(nextOrderId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /*private void generateSpareId() {
+        String customerId = String.format("SP%03d", idCounter);
+        lblSpareId.setText(customerId);
+        System.out.println(customerId);
+    }
+    private void incrementIdCounter() {
+        idCounter++;
+        generateSpareId();
+    }*/
 
     private void loadAllSpares() {
         ObservableList<SpareTm> obList = FXCollections.observableArrayList();
@@ -114,7 +129,7 @@ public class SpareFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String spareId = txtSapreId.getText();
+        String spareId = lblSpareId.getText();
 
         try {
             boolean isDeleted = SpareRepo.delete(spareId);
@@ -130,7 +145,7 @@ public class SpareFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String spareId = txtSapreId.getText();
+        String spareId = lblSpareId.getText();
         String name = txtName.getText();
         int count = Integer.parseInt(txtCount.getText());
         double price = Double.parseDouble(txtPrice.getText());
@@ -150,7 +165,7 @@ public class SpareFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String spareId = txtSapreId.getText();
+        String spareId = lblSpareId.getText();
         String name = txtName.getText();
         int count = Integer.parseInt(txtCount.getText());
         double price = Double.parseDouble(txtPrice.getText());
@@ -187,7 +202,6 @@ public class SpareFormController {
     }
 
     private void clearFields() {
-        txtSapreId.setText("");
         txtName.setText("");
         txtCount.setText("");
         txtPrice.setText("");

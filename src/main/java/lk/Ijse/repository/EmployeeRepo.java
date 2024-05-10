@@ -105,4 +105,69 @@ public class EmployeeRepo {
 
         return null;
     }
+
+    public static double getEmployeeCost(String empId) throws SQLException {
+        String sql = "SELECT cost FROM employee WHERE Emp_id = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, empId);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        if (resultSet.next()){
+            double cost = resultSet.getDouble(1);
+            return cost;
+        }
+        return 0.0;
+    }
+
+    public static List<String> getId() throws SQLException {
+        String sql = "SELECT Emp_id FROM employee";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<String> idList = new ArrayList<>();
+        while (resultSet.next()) {
+            idList.add(resultSet.getString(1));
+        }
+        return idList;
+    }
+
+    public static String generateNextEmployeeId() throws SQLException {
+        String sql = "SELECT Emp_id FROM employee ORDER BY Emp_id DESC LIMIT 1";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return splitEmployeeId(resultSet.getString(1));
+        }
+        return splitEmployeeId(null);
+    }
+
+    private static String splitEmployeeId(String string) {
+        if(string != null) {
+            String[] strings = string.split("E0");
+            int id = Integer.parseInt(strings[1]);
+            id++;
+            String ID = String.valueOf(id);
+            int length = ID.length();
+            if (length < 2){
+                return "E00"+id;
+            }else {
+                if (length < 3){
+                    return "E0"+id;
+                }else {
+                    return "E"+id;
+                }
+            }
+        }
+        return "E001";
+    }
 }

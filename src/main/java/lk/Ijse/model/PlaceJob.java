@@ -1,5 +1,6 @@
 package lk.Ijse.model;
 
+import javafx.collections.ObservableList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
