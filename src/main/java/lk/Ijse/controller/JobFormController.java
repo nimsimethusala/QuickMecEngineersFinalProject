@@ -62,6 +62,12 @@ public class JobFormController implements Initializable {
     public TableColumn colSpareCount;
 
     @FXML
+    public TableColumn colEmployeeCost;
+
+    @FXML
+    public JFXComboBox cmbEmployeeId;
+
+    @FXML
     private AnchorPane JobRoot;
 
     @FXML
@@ -189,6 +195,22 @@ public class JobFormController implements Initializable {
         }
     }
 
+    private void getEmployeeId(){
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        try {
+            List<String> idList = EmployeeRepo.getId();
+
+            for (String code : idList) {
+                obList.add(code);
+            }
+            cmbEmployeeId.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void setDate() {
         LocalDate now = LocalDate.now();
         lblJobDate.setText(String.valueOf(now));
@@ -250,12 +272,14 @@ public class JobFormController implements Initializable {
         String defectId = (String) lblDefectId.getValue();
         int itemCount = Integer.parseInt(txtItemCount.getText());
         int SpareCount = Integer.parseInt(txtSpareCount.getText());
+        String empId = (String) cmbEmployeeId.getValue();
 
         try {
             String itemName = ItemRepo.getName(itemId);
             String cusName = CustomerRepo.getName(cusId);
             String spareName = SpareRepo.getName(spareId);
             String desc = DefectRepo.getDescription(defectId);
+            double empCost = EmployeeRepo.getEmployeeCost(empId);
 
             JFXButton btnRemove = new JFXButton("Remove");
             btnRemove.setCursor(Cursor.HAND);
@@ -290,7 +314,7 @@ public class JobFormController implements Initializable {
                 btnNewDefectOnAction(actionEvent);
             }
 
-            JobTm jobTm = new JobTm(date, model, cusName, itemName, itemCount, spareName, SpareCount, desc, btnRemove);
+            JobTm jobTm = new JobTm(date, model, cusName, itemName, itemCount, spareName, SpareCount, empCost, desc, btnRemove);
             obList.add(jobTm);
 
             tblJob.setItems(obList);
@@ -308,10 +332,11 @@ public class JobFormController implements Initializable {
         String model = txtModel.getText();
         String spareId = (String) lblSpareId.getValue();
         String defectId = (String) lblDefectId.getValue();
-        int count = Integer.parseInt(txtItemCount.getText());
+        int itemCount = Integer.parseInt(txtItemCount.getText());
         int spareCount = Integer.parseInt(txtSpareCount.getText());
+        double empCost = (double) cmbEmployeeId.getValue();
 
-        Job job = new Job(jobId, model, date, cusId, defectId, count, spareId, spareCount);
+        Job job = new Job(jobId, model, date, cusId, defectId, itemCount, spareId, spareCount, empCost);
         List<JobDetail> list = new ArrayList<>();
 
         for (int i = 0; i < tblJob.getItems().size(); i++){
@@ -357,6 +382,7 @@ public class JobFormController implements Initializable {
         colItemCount.setCellValueFactory(new PropertyValueFactory<>("itemCount"));
         colSpareName.setCellValueFactory(new PropertyValueFactory<>("spareName"));
         colSpareCount.setCellValueFactory(new PropertyValueFactory<>("spareCount"));
+        colEmployeeCost.setCellValueFactory(new PropertyValueFactory<>("empCost"));
         colDefectDescription.setCellValueFactory(new PropertyValueFactory<>("defectDescription"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("btnAction"));
     }
@@ -369,6 +395,7 @@ public class JobFormController implements Initializable {
         getItemId();
         getSpareId();
         getDefectId();
+        getEmployeeId();
         setCellValueFactory();
     }
 
@@ -406,11 +433,21 @@ public class JobFormController implements Initializable {
         }
     }
 
+    private void clearFields() {
+        txtModel.setText("");
+        txtSpareCount.setText("");
+        txtItemCount.setText("");
+    }
+
     public void cmbCustomerIdOnAction(ActionEvent actionEvent) {
         setCustomerName();
     }
 
     public void lblItemIdOnAction(ActionEvent actionEvent) {
         setItemName();
+    }
+
+    public void btnClearOnAction(ActionEvent actionEvent) {
+        clearFields();
     }
 }

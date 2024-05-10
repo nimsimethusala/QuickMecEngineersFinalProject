@@ -22,7 +22,7 @@ public class DefectRepo {
     }
 
     public static boolean save(Defect defect) throws SQLException {
-        String sql = "INSERT INTO defect VALUES(?, ?, ?)";
+        String sql = "INSERT INTO defect VALUES(?, ?, ?, ?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -30,19 +30,21 @@ public class DefectRepo {
         pstm.setObject(1, defect.getDefectId());
         pstm.setObject(2, defect.getDescription());
         pstm.setObject(3, defect.getPrice());
+        pstm.setObject(4, defect.getSpareId());
 
         return pstm.executeUpdate() > 0;
     }
 
-    public static boolean update(String defectId, String desc, double price) throws SQLException {
-        String sql = "UPDATE defect SET defect_id = ?, description = ?, price = ?";
+    public static boolean update(Defect defect) throws SQLException {
+        String sql = "UPDATE defect SET defect_id = ?, description = ?, price = ?, Spare_id = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
-        pstm.setObject(1, defectId);
-        pstm.setObject(2, desc);
-        pstm.setObject(3, price);
+        pstm.setObject(1, defect.getDefectId());
+        pstm.setObject(2, defect.getDescription());
+        pstm.setObject(3, defect.getPrice());
+        pstm.setObject(4, defect.getSpareId());
 
         return pstm.executeUpdate() > 0;
 
@@ -61,8 +63,9 @@ public class DefectRepo {
             String defectId = resultSet.getString(1);
             String desc = resultSet.getString(2);
             double price = resultSet.getDouble(3);
+            String spareId = resultSet.getString(4);
 
-            Defect defect = new Defect(defectId, desc, price);
+            Defect defect = new Defect(defectId, desc, price, spareId);
             defectList.add(defect);
         }
 
@@ -101,5 +104,39 @@ public class DefectRepo {
             idList.add(resultSet.getString(1));
         }
         return idList;
+    }
+
+    public static String generateNextDefectId() throws SQLException {
+        String sql = "SELECT defect_id FROM defect ORDER BY defect_id DESC LIMIT 1";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return splitDefectId(resultSet.getString(1));
+        }
+        return splitDefectId(null);
+    }
+
+    private static String splitDefectId(String string) {
+        if(string != null) {
+            String[] strings = string.split("D0");
+            int id = Integer.parseInt(strings[1]);
+            id++;
+            String ID = String.valueOf(id);
+            int length = ID.length();
+            if (length < 2){
+                return "D00"+id;
+            }else {
+                if (length < 3){
+                    return "D0"+id;
+                }else {
+                    return "D"+id;
+                }
+            }
+        }
+        return "D001";
     }
 }

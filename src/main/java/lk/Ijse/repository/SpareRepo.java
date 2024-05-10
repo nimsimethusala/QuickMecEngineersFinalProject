@@ -2,6 +2,8 @@ package lk.Ijse.repository;
 
 import lk.Ijse.db.DbConnection;
 import lk.Ijse.model.Customer;
+import lk.Ijse.model.Job;
+import lk.Ijse.model.JobDetail;
 import lk.Ijse.model.Spares;
 
 import java.sql.Connection;
@@ -105,5 +107,60 @@ public class SpareRepo {
         }
 
         return null;
+    }
+
+    public static boolean update(Job job) throws SQLException {
+        boolean isUpdateCount = updateQty(job.getSpareId(), job.getSpareCount());
+
+        if(!isUpdateCount) {
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean updateQty(String spareId, int spareCount) throws SQLException {
+        String sql = "UPDATE spare SET count = count - ? WHERE Spare_id = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setInt(1, spareCount);
+        pstm.setString(2, spareId);
+
+        return pstm.executeUpdate() > 0;
+    }
+
+    public static String generateNextSpareId() throws SQLException {
+        String sql = "SELECT Spare_id FROM spare ORDER BY Spare_id DESC LIMIT 1";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return splitSpareId(resultSet.getString(1));
+        }
+        return splitSpareId(null);
+    }
+
+    private static String splitSpareId(String string) {
+        if(string != null) {
+            String[] strings = string.split("SP0");
+            int id = Integer.parseInt(strings[1]);
+            id++;
+            String ID = String.valueOf(id);
+            int length = ID.length();
+            if (length < 2){
+                return "SP00"+id;
+            }else {
+                if (length < 3){
+                    return "SP0"+id;
+                }else {
+                    return "SP"+id;
+                }
+            }
+        }
+        return "SP001";
     }
 }

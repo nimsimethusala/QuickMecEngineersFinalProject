@@ -63,13 +63,47 @@ public class SupplierRepo {
         while (resultSet.next()){
             String supId = resultSet.getString(1);
             String supName = resultSet.getString(2);
-            int contact = resultSet.getInt(3);
-            String location = resultSet.getString(4);
+            String location = resultSet.getString(3);
+            int contact = resultSet.getInt(4);
 
             Supplier supplier = new Supplier(supId, supName, contact, location);
             supplierList.add(supplier);
         }
 
         return supplierList;
+    }
+
+    public static String generateNextSupplierId() throws SQLException {
+        String sql = "SELECT supplier_id FROM supplier ORDER BY supplier_id DESC LIMIT 1";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return splitSupplierId(resultSet.getString(1));
+        }
+        return splitSupplierId(null);
+    }
+
+    private static String splitSupplierId(String string) {
+        if(string != null) {
+            String[] strings = string.split("S0");
+            int id = Integer.parseInt(strings[1]);
+            id++;
+            String ID = String.valueOf(id);
+            int length = ID.length();
+            if (length < 2){
+                return "S00"+id;
+            }else {
+                if (length < 3){
+                    return "S0"+id;
+                }else {
+                    return "S"+id;
+                }
+            }
+        }
+        return "S001";
     }
 }

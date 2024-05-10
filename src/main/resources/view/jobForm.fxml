@@ -24,18 +24,19 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TableView fx:id="tblJob" layoutX="43.0" layoutY="409.0" prefHeight="270.0" prefWidth="1260.0">
-        <columns>
-          <TableColumn fx:id="colDate" prefWidth="90.39999389648438" text="Date" />
-          <TableColumn fx:id="colVehicleModel" prefWidth="138.40003967285156" text="Vehicle Model" />
+      <TableView fx:id="tblJob" layoutX="17.0" layoutY="403.0" prefHeight="270.0" prefWidth="1365.0">
+         <columns>
+            <TableColumn fx:id="colDate" prefWidth="90.39999389648438" text="Date" />
+            <TableColumn fx:id="colVehicleModel" prefWidth="138.40003967285156" text="Vehicle Model" />
             <TableColumn fx:id="colCustomerName" prefWidth="160.0" text="Customer Name" />
-            <TableColumn fx:id="colItemName" prefWidth="148.80001831054688" text="Item Name" />
-            <TableColumn fx:id="colItemCount" prefWidth="105.60003662109375" text="Item Count" />
-            <TableColumn fx:id="colSpareName" prefWidth="156.79998779296875" text="Spare Name" />
-            <TableColumn fx:id="colSpareCount" prefWidth="108.79998779296875" text="Spare Count" />
-            <TableColumn fx:id="colDefectDescription" prefWidth="225.60003662109375" text="Defect Description" />
-            <TableColumn fx:id="colAction" prefWidth="243.9998779296875" text="Action" />
-        </columns>
+            <TableColumn fx:id="colItemName" prefWidth="135.99993896484375" text="Item Name" />
+            <TableColumn fx:id="colItemCount" prefWidth="98.4000244140625" text="Item Count" />
+            <TableColumn fx:id="colSpareName" prefWidth="151.99993896484375" text="Spare Name" />
+            <TableColumn fx:id="colSpareCount" prefWidth="120.0" text="Spare Count" />
+            <TableColumn fx:id="colEmployeeCost" prefWidth="119.199951171875" text="Employee Cost" />
+            <TableColumn fx:id="colDefectDescription" prefWidth="211.20001220703125" text="Defect Description" />
+            <TableColumn fx:id="colAction" prefWidth="135.2000732421875" text="Action" />
+         </columns>
       </TableView>
       <ImageView fitHeight="58.0" fitWidth="66.0" layoutX="66.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -155,5 +156,10 @@
          </font>
       </Label>
       <JFXComboBox fx:id="cmbEmployeeId" layoutX="863.0" layoutY="316.0" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
+      <JFXButton layoutX="1188.0" layoutY="710.0" onAction="#btnClearOnAction" prefHeight="40.0" prefWidth="122.0" style="-fx-background-color: #12CBC4;" text="Clear">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

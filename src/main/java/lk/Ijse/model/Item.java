@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 public class Item {
     private String itemID;
     private String itemName;
-    private int itemCount;
-
+    private String defectId;
 }

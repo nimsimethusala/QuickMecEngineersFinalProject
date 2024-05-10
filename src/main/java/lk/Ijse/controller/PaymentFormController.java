@@ -7,15 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.model.tm.PaymentTm;
 import lk.Ijse.repository.CustomerRepo;
-import lk.Ijse.repository.JobRepo;
 import lk.Ijse.repository.PaymentRepo;
 
 import java.io.IOException;
@@ -52,12 +49,13 @@ public class PaymentFormController {
     private AnchorPane paymentRoot;
 
     @FXML
-    private TableView<?> tblPayment;
+    private TableView<PaymentTm> tblPayment;
 
     @FXML
     private TextField txtSearch;
 
     public void initialize(){
+        getCurrentCustomerId();
         getJobId();
     }
 
@@ -67,8 +65,26 @@ public class PaymentFormController {
         String paymentId = lblPaymentId.getText();
 
         try {
-            int defectTotalCost = PaymentRepo.getTotalDefectCost(jobId);
-            int employeeTotalCost = PaymentRepo.getTotalEmployeeCost(jobId);
+            double defectTotalCost = PaymentRepo.getTotalDefectCost(jobId);
+            double employeeTotalCost = PaymentRepo.getTotalEmployeeCost(jobId);
+            double spareTotalCost = PaymentRepo.getTotalSpareCost(jobId);
+
+            double total = defectTotalCost + employeeTotalCost + spareTotalCost;
+
+            ObservableList<PaymentTm> obList = FXCollections.observableArrayList();
+
+            PaymentTm paymentTm = new PaymentTm(paymentId, jobId, defectTotalCost, employeeTotalCost, spareTotalCost, total);
+            obList.add(paymentTm);
+
+            tblPayment.setItems(obList);
+
+            boolean isPaymentPlaced = PaymentRepo.save(paymentTm);
+
+            if (isPaymentPlaced){
+                new Alert(Alert.AlertType.CONFIRMATION, "New Payment is placed successfully...!");
+            }else {
+                new Alert(Alert.AlertType.ERROR, "New Payment is not placed successfully...!");
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -125,4 +141,12 @@ public class PaymentFormController {
 
     }
 
+    private void getCurrentCustomerId() {
+        try {
+            String nextPaymentId = PaymentRepo.generateNextPaymentId();
+            lblPaymentId.setText(nextPaymentId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

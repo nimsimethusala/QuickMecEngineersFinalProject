@@ -18,6 +18,7 @@ public class JobTm {
     private int itemCount;
     private String spareName;
     private int spareCount;
+    private double empCost;
     private String defectDescription;
     private JFXButton btnAction;
 }

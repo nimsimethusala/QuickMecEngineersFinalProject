@@ -1,29 +1,36 @@
 package lk.Ijse.controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.controller.util.Regex;
+import lk.Ijse.controller.util.TextFeildRegex;
 import lk.Ijse.model.Defect;
 import lk.Ijse.model.tm.DefectTm;
+import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.repository.DefectRepo;
+import lk.Ijse.repository.SpareRepo;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 public class DefectFormController {
+    @FXML
+    public JFXComboBox cmbSpareId;
+
+    public Label lblDefectId;
 
     @FXML
     private AnchorPane DefectRoot;
@@ -41,9 +48,6 @@ public class DefectFormController {
     private TableColumn<?, ?> colPrice;
 
     @FXML
-    private TextField txtDefectId;
-
-    @FXML
     private TextField txtDescription;
 
     @FXML
@@ -51,23 +55,41 @@ public class DefectFormController {
 
     @FXML
     private TextField txtSearch;
+    private int idCounter;
 
     public void initialize() {
-        txtDefectId.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                txtDescription.requestFocus();
-            }
-        });
-
         txtDescription.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 txtPrice.requestFocus();
             }
         });
 
+        getCurrentDefectId();
+        getSpareId();
         setCellValueFactory();
         loadAllDefect();
     }
+
+    private void getCurrentDefectId() {
+        try {
+            //String orderId = CustomerRepo.GetOrderId();
+
+            String nextOrderId = DefectRepo.generateNextDefectId();
+            lblDefectId.setText(nextOrderId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /*private void generateCustomerId() {
+        String customerId = String.format("D%03d", idCounter);
+        lblDefectId.setText(customerId);
+    }
+
+    private void incrementIdCounter() {
+        idCounter++;
+        generateCustomerId();
+    }*/
 
     private void loadAllDefect() {
         ObservableList<DefectTm> odList = FXCollections.observableArrayList();
@@ -99,7 +121,7 @@ public class DefectFormController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String defectId = txtDefectId.getText();
+        String defectId = lblDefectId.getText();
 
         try {
             boolean isDeleted = DefectRepo.delete(defectId);
@@ -115,11 +137,12 @@ public class DefectFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String defectId = txtDefectId.getText();
+        String defectId = lblDefectId.getText();
         String desc = txtDescription.getText();
         double price = Double.parseDouble(txtPrice.getText());
+        String spareId = (String) cmbSpareId.getValue();
 
-        Defect defect = new Defect(defectId, desc, price);
+        Defect defect = new Defect(defectId, desc, price, spareId);
 
         try {
             boolean isSaved = DefectRepo.save(defect);
@@ -135,12 +158,14 @@ public class DefectFormController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String defectId = txtDefectId.getText();
+        String defectId = lblDefectId.getText();
         String desc = txtDescription.getText();
         double price = Double.parseDouble(txtPrice.getText());
+        String spareId = (String) cmbSpareId.getValue();
 
+        Defect defect = new Defect(defectId, desc, price, spareId);
         try {
-            boolean isUpdate = DefectRepo.update(defectId, desc, price);
+            boolean isUpdate = DefectRepo.update(defect);
 
             if (isUpdate){
                 new Alert(Alert.AlertType.CONFIRMATION, "Defect is updated...!");
@@ -165,9 +190,28 @@ public class DefectFormController {
         }
     }
 
+    private void getSpareId(){
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        try {
+            List<String> idList = SpareRepo.getId();
+
+            for (String code : idList) {
+                obList.add(code);
+            }
+            cmbSpareId.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void clearFeilds(){
-        txtDefectId.setText("");
         txtDescription.setText("");
         txtPrice.setText("");
+    }
+
+    public void txtPriceOnAction(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFeildRegex.PRICE,txtPrice);
     }
 }
