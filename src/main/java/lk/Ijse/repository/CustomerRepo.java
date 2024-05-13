@@ -186,8 +186,8 @@ public class CustomerRepo {
         return "C001";
     }
 
-    public static List<String> GetCustomerTel() throws SQLException {
-        String sql = "SELECT contact FROM customer WHERE contact = ?";
+    /*public static List<String> GetCustomerTel() throws SQLException {
+        String sql = "SELECT contact FROM customer";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -200,5 +200,5 @@ public class CustomerRepo {
             telList.add(tel);
         }
         return telList;
-    }
+    }*/
 }

@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.controller.util.GenerateQRCode;
 import lk.Ijse.model.tm.PaymentTm;
 import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.repository.PaymentRepo;
@@ -82,8 +83,9 @@ public class PaymentFormController {
 
             if (isPaymentPlaced){
                 new Alert(Alert.AlertType.CONFIRMATION, "New Payment is placed successfully...!");
+
             }else {
-                new Alert(Alert.AlertType.ERROR, "New Payment is not placed successfully...!");
+                new Alert(Alert.AlertType.ERROR, "New Payment is not placed unsuccessfully...!");
             }
 
         } catch (SQLException e) {

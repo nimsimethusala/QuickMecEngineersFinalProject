@@ -159,16 +159,4 @@ public class DashboardFormController {
         // Update the label text
         lblDate.setText(formattedTime);
     }
-    /*private void setTime(){
-        Timer timer = new Timer(1000, e -> getCurrentTime());
-        timer.start();
-
-        add(lblDate);
-    }
-
-    private void getCurrentTime(){
-        LocalTime currentTime = LocalTime.now();
-        String formattedTime = currentTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-        lblDate.setText(formattedTime);
-    }*/
 }

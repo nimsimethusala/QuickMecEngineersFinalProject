@@ -18,8 +18,6 @@ import lk.Ijse.controller.util.TextFeildRegex;
 import lk.Ijse.model.Customer;
 import lk.Ijse.model.tm.CustomerTm;
 import lk.Ijse.repository.CustomerRepo;
-import lk.Ijse.repository.JobRepo;
-import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -74,7 +72,7 @@ public class CustomerFormController {
             }
         });
 
-        loadCustomerAllTel();
+        //loadCustomerAllTel();
         getCurrentCustomerId();
         setCellValueFactory();
         loadAllCustomer();
@@ -199,7 +197,7 @@ public class CustomerFormController {
         }
     }*/
 
-    private void loadCustomerAllTel() {
+    /*private void loadCustomerAllTel() {
         try {
             List<String> cusTel = CustomerRepo.GetCustomerTel();
             String[] possibleNames = cusTel.toArray(new String[0]);
@@ -209,7 +207,7 @@ public class CustomerFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
-    }
+    }*/
 
     private void clearFields() {
         txtCustomerName.setText("");
@@ -244,7 +242,6 @@ public class CustomerFormController {
         Regex.setTextColor(TextFeildRegex.NAME,txtCustomerName);
 
     }
-
     public void txtNumberOnAction(KeyEvent keyEvent) {
         Regex.setTextColor(TextFeildRegex.CONTACT,txtCustomerNumber);
     }
