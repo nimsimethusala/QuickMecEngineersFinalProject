@@ -13,11 +13,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.Ijse.controller.util.Regex;
-import lk.Ijse.controller.util.TextFeildRegex;
+import lk.Ijse.util.Regex;
+import lk.Ijse.util.TextFeildRegex;
 import lk.Ijse.model.Item;
 import lk.Ijse.model.tm.ItemTm;
-import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.repository.DefectRepo;
 import lk.Ijse.repository.ItemRepo;
 

@@ -1,10 +1,8 @@
-package lk.Ijse.controller.util;
+package lk.Ijse.util;
 
 import javafx.scene.control.TextField;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static lk.Ijse.controller.util.TextFeildRegex.*;
 
 public class Regex {
     public   static boolean isTextFieldValid(TextFeildRegex textField  , String text){

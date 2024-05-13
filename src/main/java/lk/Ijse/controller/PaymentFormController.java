@@ -11,9 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.Ijse.controller.util.GenerateQRCode;
 import lk.Ijse.model.tm.PaymentTm;
-import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.repository.PaymentRepo;
 
 import java.io.IOException;
