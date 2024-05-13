@@ -1,4 +1,4 @@
-package lk.Ijse.controller.util;
+package lk.Ijse.util;
 
 public enum TextFeildRegex {
     CONTACT,PRICE,NAME,ATTENDANCE
