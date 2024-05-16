@@ -112,9 +112,8 @@ public class JobRepo {
 
         ResultSet resultSet = pstm.executeQuery();
 
-        while (resultSet.next()){
-            String empId = resultSet.getString(11);
-
+        if (resultSet.next()){
+            String empId = resultSet.getString(1);
             return empId;
         }
         return null;
@@ -130,7 +129,7 @@ public class JobRepo {
         ResultSet resultSet = pstm.executeQuery();
 
         while (resultSet.next()){
-            String spareId = resultSet.getString(7);
+            String spareId = resultSet.getString(1);
 
             return spareId;
         }

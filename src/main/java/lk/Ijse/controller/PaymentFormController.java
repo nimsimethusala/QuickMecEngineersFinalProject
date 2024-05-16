@@ -8,11 +8,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.Ijse.db.DbConnection;
+import lk.Ijse.model.Customer;
+import lk.Ijse.model.Payment;
+import lk.Ijse.model.tm.CustomerTm;
 import lk.Ijse.model.tm.PaymentTm;
+import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.repository.PaymentRepo;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -26,6 +31,8 @@ import java.util.List;
 import java.util.Map;
 
 public class PaymentFormController {
+    @FXML
+    public TableColumn colTotalPayment;
 
     @FXML
     private JFXComboBox cmbJobId;
@@ -49,9 +56,6 @@ public class PaymentFormController {
     private Label lblPaymentId;
 
     @FXML
-    private TableColumn<?, ?> lblTotalPayment;
-
-    @FXML
     private AnchorPane paymentRoot;
 
     @FXML
@@ -61,6 +65,7 @@ public class PaymentFormController {
     private TextField txtSearch;
 
     public void initialize(){
+        loadAllPayments();
         getCurrentCustomerId();
         getJobId();
     }
@@ -94,6 +99,7 @@ public class PaymentFormController {
             }
 
         } catch (SQLException e) {
+            //new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             throw new RuntimeException(e);
         }
     }
@@ -172,5 +178,30 @@ public class PaymentFormController {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
 
+    }
+
+    private void loadAllPayments(){
+        ObservableList<PaymentTm> obList = FXCollections.observableArrayList();
+
+        try {
+            List<Payment> paymentList = PaymentRepo.getAll();
+            for (Payment payment : paymentList){
+                PaymentTm paymentTm = new PaymentTm();
+                obList.add(paymentTm);
+            }
+            tblPayment.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void setCellValueFactory(){
+        colPaymentId.setCellValueFactory(new PropertyValueFactory<>("paymentId"));
+        colJobId.setCellValueFactory(new PropertyValueFactory<>("jobId"));
+        colDefectTotalCost.setCellValueFactory(new PropertyValueFactory<>("defectTotal"));
+        colEmployeeTotalCost.setCellValueFactory(new PropertyValueFactory<>("employeeTotal"));
+        colSpareTotalCost.setCellValueFactory(new PropertyValueFactory<>("spareTotal"));
+        colTotalPayment.setCellValueFactory(new PropertyValueFactory<>("total"));
     }
 }
