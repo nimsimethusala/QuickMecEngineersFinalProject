@@ -55,37 +55,37 @@
       </ImageView>
       <VBox layoutX="62.0" layoutY="140.0" prefHeight="386.0" prefWidth="118.0">
          <children>
-            <JFXButton alignment="BASELINE_LEFT" onAction="#btnCustomerOnAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #485460;" text="Customer" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" onAction="#btnCustomerOnAction" prefHeight="54.0" prefWidth="126.0" styleClass="dashboardButton" stylesheets="@../Style/Css.css" text="Customer" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" onAction="#btnItemOnAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #485460;" text="Item" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" onAction="#btnItemOnAction" prefHeight="54.0" prefWidth="126.0" styleClass="dashboardButton" stylesheets="@../Style/Css.css" text="Item" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" onAction="#btnDefectOnAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #485460;" text="Defect" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" onAction="#btnDefectOnAction" prefHeight="54.0" prefWidth="126.0" styleClass="dashboardButton" stylesheets="@../Style/Css.css" text="Defect" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" onAction="#btnSparesOnAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #485460;" text="Spares" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" onAction="#btnSparesOnAction" prefHeight="54.0" prefWidth="126.0" styleClass="dashboardButton" stylesheets="@../Style/Css.css" text="Spares" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" onAction="#btnEmployeeOnAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #485460;" text="Employee" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" onAction="#btnEmployeeOnAction" prefHeight="54.0" prefWidth="126.0" styleClass="dashboardButton" stylesheets="@../Style/Css.css" text="Employee" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" onAction="#btnSupplierOnAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #485460;" text="Supplier" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" onAction="#btnSupplierOnAction" prefHeight="54.0" prefWidth="126.0" styleClass="dashboardButton" stylesheets="@../Style/Css.css" text="Supplier" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" onAction="#btnPaymentOnAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #485460;" text="Payment" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" onAction="#btnPaymentOnAction" prefHeight="54.0" prefWidth="126.0" styleClass="dashboardButton" stylesheets="@../Style/Css.css" text="Payment" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -140,7 +140,7 @@
             </ImageView>
          </children>
       </Group>
-      <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="17.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="16.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Screenshot 2024-05-01 130529.png" />
          </image>

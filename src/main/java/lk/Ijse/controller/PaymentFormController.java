@@ -11,12 +11,19 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.db.DbConnection;
 import lk.Ijse.model.tm.PaymentTm;
 import lk.Ijse.repository.PaymentRepo;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PaymentFormController {
 
@@ -148,5 +155,22 @@ public class PaymentFormController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void btnReportOnAction(ActionEvent actionEvent) {
+        JasperDesign jasperDesign = null;
+        try {
+            jasperDesign = JRXmlLoader.load("src/main/resources/report/Job_Report.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            Map<String,Object> data = new HashMap<>();
+            data.put("JobID","J001");
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint,false);
+        } catch (JRException | SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
+
     }
 }

@@ -39,7 +39,7 @@
             <TableColumn fx:id="lblTotalPayment" prefWidth="140.8000366210938" text="Total Payment" />
         </columns>
       </TableView>
-      <Button layoutX="471.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #ffbe76;" text="ADD">
+      <Button layoutX="482.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="101.0" stylesheets="@../Style/Css.css" text="ADD">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -51,7 +51,7 @@
       </Text>
       <JFXComboBox fx:id="cmbJobId" layoutX="63.0" layoutY="146.0" onAction="#cmbJobIdOnAction" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #c7ecee;" />
       <Label fx:id="lblPaymentId" layoutX="63.0" layoutY="204.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #c7ecee;" />
-      <Button layoutX="625.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnBackOnAction" prefHeight="40.0" prefWidth="101.0" style="-fx-background-color: #ffbe76;" text="Back">
+      <Button layoutX="625.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnBackOnAction" prefHeight="40.0" prefWidth="101.0" stylesheets="@../Style/Css.css" text="Back">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -62,5 +62,10 @@
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
          </image>
       </ImageView>
+      <Button layoutX="340.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="101.0" stylesheets="@../Style/Css.css" text="Report">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -54,6 +54,7 @@ public class DefectFormController {
 
     @FXML
     private TextField txtSearch;
+
     private int idCounter;
 
     public void initialize() {
@@ -71,10 +72,9 @@ public class DefectFormController {
 
     private void getCurrentDefectId() {
         try {
-            //String orderId = CustomerRepo.GetOrderId();
-
             String nextOrderId = DefectRepo.generateNextDefectId();
             lblDefectId.setText(nextOrderId);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

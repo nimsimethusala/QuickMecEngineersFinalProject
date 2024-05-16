@@ -14,7 +14,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        /*AnchorPane root = FXMLLoader.load(getClass().getResource("/view/loginForm.fxml"));*/
+        //AnchorPane root = FXMLLoader.load(getClass().getResource("/view/loginForm.fxml"));
         AnchorPane root = FXMLLoader.load(getClass().getResource("/view/dashboardForm.fxml")); // login page eke idn load wela enn on nm meka ain kranna
         Scene scene = new Scene(root);
         Stage stage = new Stage();

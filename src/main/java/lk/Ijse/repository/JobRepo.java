@@ -10,7 +10,7 @@ import java.util.List;
 
 public class JobRepo {
     public static boolean save(Job job) throws SQLException {
-        String sql = "INSERT INTO job VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO job VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -21,9 +21,12 @@ public class JobRepo {
         pstm.setString(4, job.getCustomerId());
         pstm.setInt(5, job.getItemCount());
         pstm.setString(6, job.getDefectId());
-        pstm.setString(7, job.getSpareId());
-        pstm.setInt(8, job.getSpareCount());
-        pstm.setObject(9, job.getEmpCost());
+        pstm.setString(7, job.getDefectName());
+        pstm.setString(8, job.getSpareId());
+        pstm.setString(9, job.getSpareName());
+        pstm.setInt(10, job.getSpareCount());
+        pstm.setString(11, job.getEmpId());
+        pstm.setObject(12, job.getEmpName());
 
         return pstm.executeUpdate() > 0;
     }
@@ -70,11 +73,15 @@ public class JobRepo {
             String cusId = resultSet.getString(4);
             int itemCount = resultSet.getInt(5);
             String defectId = resultSet.getString(6);
-            String spareId = resultSet.getString(7);
-            int spareCount = resultSet.getInt(8);
-            double empCost = resultSet.getDouble(9);
+            String defectName = resultSet.getString(7);
+            String spareId = resultSet.getString(8);
+            String spareName = resultSet.getString(9);
+            int spareCount = resultSet.getInt(10);
+            String empId = resultSet.getString(11);
+            double empCost = resultSet.getDouble(12);
+            String empName = resultSet.getString(13);
 
-            Job job = new Job(jobId, model, date, cusId, defectId, itemCount, spareId, spareCount, empCost);
+            Job job = new Job(jobId, model, date, cusId, defectId, defectName, itemCount, spareId, spareName, spareCount, empId, empCost, empName);
             jobList.add(job);
         }
 
@@ -106,7 +113,7 @@ public class JobRepo {
         ResultSet resultSet = pstm.executeQuery();
 
         while (resultSet.next()){
-            String empId = resultSet.getString(9);
+            String empId = resultSet.getString(11);
 
             return empId;
         }

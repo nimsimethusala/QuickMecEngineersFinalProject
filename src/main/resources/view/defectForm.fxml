@@ -19,46 +19,46 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="txtDescription" layoutX="103.0" layoutY="260.0" prefHeight="26.0" prefWidth="272.0" promptText="Description" />
-      <TextField fx:id="txtPrice" layoutX="103.0" layoutY="324.0" onKeyReleased="#txtPriceOnAction" prefHeight="26.0" prefWidth="272.0" promptText="Price" />
-      <Button layoutX="466.0" layoutY="211.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Save">
+      <TextField fx:id="txtDescription" layoutX="103.0" layoutY="240.0" prefHeight="26.0" prefWidth="272.0" promptText="Description" />
+      <TextField fx:id="txtPrice" layoutX="103.0" layoutY="304.0" onKeyReleased="#txtPriceOnAction" prefHeight="26.0" prefWidth="272.0" promptText="Price" />
+      <Button layoutX="466.0" layoutY="219.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="46.0" prefWidth="105.0" stylesheets="@../Style/Css.css" text="Save">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <Button layoutX="633.0" layoutY="211.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #a4b0be;" text="Update">
+      <Button layoutX="633.0" layoutY="219.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" stylesheets="@../Style/Css.css" text="Update">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <Button layoutX="466.0" layoutY="290.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Delete">
+      <Button layoutX="466.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="46.0" prefWidth="105.0" stylesheets="@../Style/Css.css" text="Delete">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <Button layoutX="633.0" layoutY="290.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #a4b0be;" text="Clear">
+      <Button layoutX="633.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="46.0" prefWidth="105.0" stylesheets="@../Style/Css.css" text="Clear">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <TableView fx:id="tblDefect" layoutX="70.0" layoutY="442.0" prefHeight="195.0" prefWidth="706.0">
+      <TableView fx:id="tblDefect" layoutX="70.0" layoutY="417.0" prefHeight="220.0" prefWidth="706.0">
         <columns>
           <TableColumn fx:id="colDefectId" prefWidth="118.60000610351562" text="Defect_id" />
           <TableColumn fx:id="colDescription" prefWidth="430.40003967285156" text="Description" />
             <TableColumn fx:id="colPrice" prefWidth="155.20001220703125" text="Price" />
         </columns>
       </TableView>
-      <Text fill="WHITE" layoutX="103.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defect ID">
+      <Text fill="WHITE" layoutX="103.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defect ID">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="103.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+      <Text fill="WHITE" layoutX="103.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="102.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
+      <Text fill="WHITE" layoutX="102.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -79,12 +79,12 @@
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="103.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spare id">
+      <Text fill="WHITE" layoutX="103.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spare id">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <JFXComboBox fx:id="cmbSpareId" layoutX="102.0" layoutY="391.0" prefHeight="26.0" prefWidth="272.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
-      <Label fx:id="lblDefectId" layoutX="102.0" layoutY="196.0" prefHeight="26.0" prefWidth="272.0" style="-fx-background-color: #FFFFFF;" text="Label" />
+      <JFXComboBox fx:id="cmbSpareId" layoutX="102.0" layoutY="371.0" prefHeight="26.0" prefWidth="272.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
+      <Label fx:id="lblDefectId" layoutX="102.0" layoutY="176.0" prefHeight="26.0" prefWidth="272.0" style="-fx-background-color: #FFFFFF;" />
    </children>
 </AnchorPane>

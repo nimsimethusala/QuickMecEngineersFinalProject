@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -19,6 +20,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginFormController {
+    @FXML
+    public Label lblUsername;
+    @FXML
+    public Label lblPassword;
 
     @FXML
     private AnchorPane rootLogin;
