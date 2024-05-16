@@ -173,8 +173,8 @@ public class CustomerFormController {
         }
     }
 
-    @FXML
-    /*void txtSearchOnAction(ActionEvent keyEvent) {
+    /*@FXML
+    void txtSearchOnAction(ActionEvent keyEvent) {
         String id = lblCustomerId.getText();
 
         try {

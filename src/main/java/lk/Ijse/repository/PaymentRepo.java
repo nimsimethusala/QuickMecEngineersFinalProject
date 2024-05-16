@@ -1,6 +1,8 @@
 package lk.Ijse.repository;
 
 import lk.Ijse.db.DbConnection;
+import lk.Ijse.model.Customer;
+import lk.Ijse.model.Payment;
 import lk.Ijse.model.tm.PaymentTm;
 
 import java.sql.Connection;
@@ -87,10 +89,10 @@ public class PaymentRepo {
         ResultSet resultSet = pstm.executeQuery();
 
         while (resultSet.next()){
-            double empCost = resultSet.getDouble(7);
-
+            double empCost = resultSet.getDouble(1);
             return empCost;
         }
+
         return 0;
     }
 
@@ -106,7 +108,7 @@ public class PaymentRepo {
         ResultSet resultSet = pstm.executeQuery();
 
         while (resultSet.next()){
-            double SpareCost = resultSet.getDouble(7);
+            double SpareCost = resultSet.getDouble(1);
 
             return SpareCost;
         }
@@ -161,5 +163,30 @@ public class PaymentRepo {
             }
         }
         return "P001";
+    }
+
+    public static List<Payment> getAll() throws SQLException {
+        String sql = "SELECT * FROM payment";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<Payment> paymentList = new ArrayList<>();
+
+        while (resultSet.next()){
+            String paymentId = resultSet.getString(1);
+            String jobId = resultSet.getString(2);
+            double defectTotal = resultSet.getDouble(3);
+            double employeeTotal = resultSet.getDouble(4);
+            double spareTotal = resultSet.getDouble(5);
+            double total = resultSet.getDouble(5);
+
+            Payment payment = new Payment(paymentId, jobId, defectTotal, employeeTotal, spareTotal, total);
+            paymentList.add(payment);
+        }
+
+        return paymentList;
     }
 }
