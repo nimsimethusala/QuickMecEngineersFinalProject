@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -29,6 +30,14 @@ public class PasswordForm {
 
     @FXML
     private TextField txtNewPassword;
+
+    public void initialize(){
+        txtNewPassword.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                txtConfirmPassword.requestFocus();
+            }
+        });
+    }
 
     @FXML
     void btnConfirmOnAction(ActionEvent event) {

@@ -68,14 +68,18 @@ public class ItemRepo {
     }
 
     private static boolean updateQty(String itemId, int itemCount, int spareCount) throws SQLException {
-        String sql = "UPDATE item SET Item_count = Item_count - ?, Spare_count = Spare_count - ? WHERE item_No = ?";
+
+        System.out.println(itemId);
+        System.out.println(itemCount);
+        System.out.println(spareCount);
+
+        String sql = "UPDATE item SET Item_count = Item_count - ? WHERE item_No = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setInt(1, itemCount);
-        pstm.setInt(2, spareCount);
-        pstm.setString(3, itemId);
+        pstm.setString(2, itemId);
 
         return pstm.executeUpdate() > 0;
     }

@@ -110,7 +110,7 @@ public class CustomerFormController {
             boolean isDelete = CustomerRepo.delete(cusId);
 
             if (isDelete){
-                new Alert(Alert.AlertType.CONFIRMATION, "Customer is Deleted!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Customer is Deleted...!").show();
                 clearFields();
             }
         }catch (SQLException e){
@@ -131,7 +131,7 @@ public class CustomerFormController {
             boolean isSaved = CustomerRepo.save(customer);
 
             if (isSaved){
-                new Alert(Alert.AlertType.INFORMATION, "New Customer is Saved....!").show();
+                new Alert(Alert.AlertType.INFORMATION, "New Customer is Saved...!").show();
                 clearFields();
             }
         }catch (SQLException e){
@@ -139,7 +139,6 @@ public class CustomerFormController {
         }
 
     }
-
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         String cusId = lblCustomerId.getText();
@@ -153,7 +152,7 @@ public class CustomerFormController {
             boolean isUpdate = CustomerRepo.update(customer);
 
             if (isUpdate){
-                new Alert(Alert.AlertType.INFORMATION, "Customer is Updated....!").show();
+                new Alert(Alert.AlertType.INFORMATION, "Customer is Updated...!").show();
                 clearFields();
             }
         }catch (SQLException e){
@@ -242,6 +241,7 @@ public class CustomerFormController {
         Regex.setTextColor(TextFeildRegex.NAME,txtCustomerName);
 
     }
+
     public void txtNumberOnAction(KeyEvent keyEvent) {
         Regex.setTextColor(TextFeildRegex.CONTACT,txtCustomerNumber);
     }

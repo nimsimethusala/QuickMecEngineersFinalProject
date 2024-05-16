@@ -9,8 +9,8 @@ create table customer(
                          contact varchar(10)
 );
 
-/*insert into customer values ("C002","Kasun","Galle",0759843615);
-insert into customer values ("C003","Supun","Moratuwa",0756479958);*/
+insert into customer values ("C002","Kasun","Galle",0759843615);
+insert into customer values ("C003","Supun","Moratuwa",0756479958);
 
 create table spare(
                       Spare_id varchar(6)primary key,
@@ -19,19 +19,19 @@ create table spare(
                       price varchar(10)
 );
 
-/*insert into spare values ("SP001","Piston Rings",10,5000);
-insert into spare values ("SP002","Main Bearing",9,5000);*/
+insert into spare values ("SP001","Piston Rings",10,5000);
+insert into spare values ("SP002","Main Bearing",9,5000);
 
 create table defect(
                        defect_id varchar(6)primary key,
-                       description varchar(70),
+                       description varchar(100),
                        price varchar(10),
                        Spare_id varchar(6),
                        foreign key(Spare_id) references spare(Spare_id) on update cascade on delete cascade
 );
 
-/*insert into defect values ("D001","Removing & Refitting Cylinder Liner",10000,"SP001");
-insert into defect values ("D002","Refilling Main Bearing Parent Bore",15000,"SP002");*/
+insert into defect values ("D001","Removing & Refitting Cylinder Liner",10000,"SP001");
+insert into defect values ("D002","Refilling Main Bearing Parent Bore",15000,"SP002");
 
 create table employee(
                          Emp_id varchar(6)primary key,
@@ -43,8 +43,8 @@ create table employee(
                          cost varchar(10)
 );
 
-/*insert into employee values ("E001","Sadakan",30,"Panadura",0789542165,25000,2500);
-insert into employee values ("E002","Kushan",25,"Piliyandala",0789559465,26000,1500);*/
+insert into employee values ("E001","Sadakan",30,"Panadura",0789542165,25000,2500);
+insert into employee values ("E002","Kushan",25,"Piliyandala",0789559465,26000,1500);
 
 create table job(
                     job_No varchar(6)primary key,
@@ -55,41 +55,43 @@ create table job(
                     item_count varchar(10),
                     defect_id varchar(6),
                     foreign key(defect_id) references defect(defect_id) on update cascade on delete cascade,
+                    defect_Name varchar(100),
                     Spare_id varchar(6),
                     foreign key(Spare_id) references spare(Spare_id) on update cascade on delete cascade,
+                    Spare_Name varchar(30),
                     Spare_count varchar(10),
                     Emp_id varchar(10),
-                    foreign key(Emp_id) references employee(Emp_id) on update cascade on delete cascade
+                    foreign key(Emp_id) references employee(Emp_id) on update cascade on delete cascade,
+                    Emp_Name varchar(30)
 );
 
 create table item(
                      item_No varchar(6)primary key,
                      Name varchar(25),
+                     Item_count varchar(10),
                      defect_id varchar(6),
                      foreign key(defect_id) references defect(defect_id) on update cascade on delete cascade
 );
 
-/*insert into item values ("I001","Block","D001");
-insert into item values ("I002","Crank","D002");*/
+insert into item values ("I001","Block","10","D001");
+insert into item values ("I002","Crank","15","D002");
 
 create table payment(
-                    payment_id  varchar(10),
-                    job_No varchar(6),
-                    foreign key(job_No) references job(job_No) on update cascade on delete cascade,
-                    defect_total_cost varchar(15),
-                    employee_total_cost varchar(15),
-                    spare_total_cost varchar(15),
-                    total_cost varchar(20)
+                        payment_id  varchar(10),
+                        job_No varchar(6),
+                        foreign key(job_No) references job(job_No) on update cascade on delete cascade,
+                        defect_total_cost varchar(15),
+                        employee_total_cost varchar(15),
+                        spare_total_cost varchar(15),
+                        total_cost varchar(20)
 );
 
 create table job_details(
-                                    item_No varchar(6),
-                                    foreign key(item_No)references item(item_No)on update cascade on delete cascade,
-                                    item_count varchar(10),
-                                    foreign key(item_count)references job(item_count)on update cascade on delete cascade,
-                                    Model varchar(25),
-                                    job_No varchar(6),
-                                    foreign key(job_No)references job(job_No) on update cascade on delete cascade
+                            item_No varchar(6),
+                            foreign key(item_No)references item(item_No)on update cascade on delete cascade,
+                            Model varchar(25),
+                            job_No varchar(6),
+                            foreign key(job_No)references job(job_No) on update cascade on delete cascade
 );
 
 create table supplier(
@@ -99,8 +101,8 @@ create table supplier(
                          contact int(10)
 );
 
-/*insert into supplier values ("S001","Spare Enterprices","Colombo",0796654123);
-insert into supplier values ("S002","Nishan Enterprices","Colombo",0796265123);*/
+insert into supplier values ("S001","Spare Enterprices","Colombo",0796654123);
+insert into supplier values ("S002","Nishan Enterprices","Colombo",0796265123);
 
 create table machine(
                         machine_id varchar(6)primary key ,
@@ -109,19 +111,19 @@ create table machine(
                         foreign key(Emp_id)references employee(Emp_id)on update cascade on delete cascade
 );
 
-/*insert into machine values ("M001","2015/05/25","E001");
-insert into machine values ("M002","2014/07/15","E002");*/
+insert into machine values ("M001","2015/05/25","E001");
+insert into machine values ("M002","2014/07/15","E002");
 
 create table spare_supplier_detail(
-                        Spare_id varchar(6),
-                        foreign key(Spare_id)references spare(Spare_id)on update cascade on delete cascade,
-                        supplier_id varchar(6),
-                        foreign key(supplier_id)references supplier(supplier_id)on update cascade on delete cascade
+                                      Spare_id varchar(6),
+                                      foreign key(Spare_id)references spare(Spare_id)on update cascade on delete cascade,
+                                      supplier_id varchar(6),
+                                      foreign key(supplier_id)references supplier(supplier_id)on update cascade on delete cascade
 );
 
 create table credential(
-                        username varchar(25),
-                        password varchar(10)
+                           username varchar(25),
+                           password varchar(10)
 
 );
 

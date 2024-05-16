@@ -15,8 +15,12 @@ public class Job {
     private Date date;
     private String customerId;
     private String defectId;
+    private String defectName;
     private int itemCount;
     private String spareId;
+    private String SpareName;
     private int spareCount;
+    private String empId;
     private double empCost;
+    private String empName;
 }

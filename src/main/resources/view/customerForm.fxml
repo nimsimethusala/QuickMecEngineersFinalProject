@@ -21,22 +21,22 @@
       <TextField fx:id="txtCustomerNumber" layoutX="83.0" layoutY="256.0" onKeyReleased="#txtNumberOnAction" prefHeight="30.0" prefWidth="234.0" promptText="Contact Number" />
       <TextField fx:id="txtCustomerName" layoutX="509.0" layoutY="178.0" onKeyReleased="#txtCustomerNameOnAction" prefHeight="30.0" prefWidth="234.0" promptText="Customer Name" />
       <TextField fx:id="txtAddress" layoutX="509.0" layoutY="259.0" prefHeight="30.0" prefWidth="234.0" promptText="Addresss" />
-      <Button layoutX="283.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #a4b0be;" text="Update">
+      <Button layoutX="283.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" stylesheets="@../Style/Css.css" text="Update">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="466.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="43.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Delete">
+      <Button layoutX="466.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="43.0" prefWidth="106.0" stylesheets="@../Style/Css.css" text="Delete">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="86.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Save">
+      <Button layoutX="86.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="106.0" stylesheets="@../Style/Css.css" text="Save">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="658.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="38.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Clear">
+      <Button layoutX="658.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="38.0" prefWidth="106.0" stylesheets="@../Style/Css.css" text="Clear">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

@@ -20,15 +20,14 @@ public class JobDetailRepo {
     }
 
     private static boolean save(JobDetail list) throws SQLException {
-        String sql = "INSERT INTO job_details VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO job_details VALUES(?, ?, ?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, list.getItemId());
-        pstm.setInt(2, list.getItemCount());
-        pstm.setString(3, list.getModel());
-        pstm.setString(4, list.getJobId());
+        pstm.setString(2, list.getModel());
+        pstm.setString(3, list.getJobId());
 
         return pstm.executeUpdate() > 0;
     }

@@ -170,4 +170,21 @@ public class EmployeeRepo {
         }
         return "E001";
     }
+
+    public static String getName(String empId) throws SQLException {
+        String sql = "SELECT Name FROM employee WHERE Emp_id = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, empId);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()){
+            String empName = resultSet.getString(1);
+
+            return empName;
+        }
+        return null;
+    }
 }

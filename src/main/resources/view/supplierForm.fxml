@@ -21,22 +21,22 @@
       <TextField fx:id="txtSupplierName" layoutX="490.0" layoutY="157.0" prefHeight="28.0" prefWidth="251.0" promptText="Supplier Name" />
       <TextField fx:id="txtContactNo" layoutX="104.0" layoutY="231.0" prefHeight="28.0" prefWidth="251.0" promptText="Contact No" />
       <TextField fx:id="txtLocation" layoutX="490.0" layoutY="231.0" prefHeight="28.0" prefWidth="251.0" promptText="Location" />
-      <Button layoutX="81.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="38.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Save">
+      <Button layoutX="81.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="38.0" prefWidth="106.0" stylesheets="@../Style/Css.css" text="Save">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="279.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #a4b0be;" text="Update">
+      <Button layoutX="279.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" stylesheets="@../Style/Css.css" text="Update">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="463.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Delete">
+      <Button layoutX="463.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="31.0" prefWidth="106.0" stylesheets="@../Style/Css.css" text="Delete">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="658.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Clear">
+      <Button layoutX="658.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="31.0" prefWidth="106.0" stylesheets="@../Style/Css.css" text="Clear">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -85,6 +85,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Label fx:id="lblSupplierId" layoutX="104.0" layoutY="157.0" prefHeight="28.0" prefWidth="251.0" style="-fx-background-color: #FFFFFF;" text="Label" />
+      <Label fx:id="lblSupplierId" layoutX="104.0" layoutY="157.0" prefHeight="28.0" prefWidth="251.0" style="-fx-background-color: #FFFFFF;" />
    </children>
 </AnchorPane>

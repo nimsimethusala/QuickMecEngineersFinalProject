@@ -76,7 +76,7 @@ public class PaymentRepo {
     }
 
     public static double getTotalEmployeeCost(String jobId) throws SQLException {
-        String sql = "SELECT cost FROM employee WHERE Employee_id = ?";
+        String sql = "SELECT cost FROM employee WHERE Emp_id = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -95,7 +95,7 @@ public class PaymentRepo {
     }
 
     public static double getTotalSpareCost(String jobId) throws SQLException {
-        String sql = "SELECT cost FROM spare WHERE Spare_id = ?";
+        String sql = "SELECT price FROM spare WHERE Spare_id = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);

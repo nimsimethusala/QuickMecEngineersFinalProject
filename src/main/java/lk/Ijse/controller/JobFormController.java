@@ -334,28 +334,33 @@ public class JobFormController implements Initializable {
         String defectId = (String) lblDefectId.getValue();
         int itemCount = Integer.parseInt(txtItemCount.getText());
         int spareCount = Integer.parseInt(txtSpareCount.getText());
-        double empCost = (double) cmbEmployeeId.getValue();
+        String empId = (String) cmbEmployeeId.getValue();
 
-        Job job = new Job(jobId, model, date, cusId, defectId, itemCount, spareId, spareCount, empCost);
-        List<JobDetail> list = new ArrayList<>();
-
-        for (int i = 0; i < tblJob.getItems().size(); i++){
-            JobTm tm = obList.get(i);
-
-            JobDetail jobDetail = new JobDetail(itemId, tm.getItemCount(), tm.getVehicleModel(), jobId, tm.getSpareCount());
-            list.add(jobDetail);
-        }
-
-        PlaceJob placeJob = new PlaceJob(job, list);
         try {
-            boolean isPlaced = PlaceJobRepo.placeOrder(placeJob);
+            String spareName = SpareRepo.getName(spareId);
+            String desc = DefectRepo.getDescription(defectId);
+            String empName = EmployeeRepo.getName(empId);
+            double empCost = EmployeeRepo.getEmployeeCost(empId);
 
-            if(isPlaced) {
-                new Alert(Alert.AlertType.CONFIRMATION, "New Job is placed Successfully!").show();
-            } else {
-                new Alert(Alert.AlertType.WARNING, "Job Placed Unsuccessfully!").show();
+            Job job = new Job(jobId, model, date, cusId, defectId, desc, itemCount, spareId, spareName, spareCount, empId, empCost, empName);
+            List<JobDetail> list = new ArrayList<>();
+
+            for (int i = 0; i < tblJob.getItems().size(); i++) {
+                JobTm tm = obList.get(i);
+
+                JobDetail jobDetail = new JobDetail(itemId, tm.getItemCount(), tm.getVehicleModel(), jobId, tm.getSpareCount());
+                list.add(jobDetail);
+
+                PlaceJob placeJob = new PlaceJob(job, list);
+
+                boolean isPlaced = PlaceJobRepo.placeOrder(placeJob);
+
+                if (isPlaced) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "New Job is placed Successfully!").show();
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Job Placed Unsuccessfully!").show();
+                }
             }
-
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }

@@ -32,22 +32,22 @@
             <TableColumn fx:id="colJobId" prefWidth="152.0" text="Job_id" />
         </columns>
       </TableView>
-      <Button layoutX="115.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Save">
+      <Button layoutX="115.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="31.0" prefWidth="106.0" stylesheets="@../Style/Css.css" text="Save">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="290.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #a4b0be;" text="Update">
+      <Button layoutX="290.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" stylesheets="@../Style/Css.css" text="Update">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="467.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Delete">
+      <Button layoutX="467.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="106.0" stylesheets="@../Style/Css.css" text="Delete">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="642.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="21.0" prefWidth="106.0" style="-fx-background-color: #a4b0be;" text="Clear">
+      <Button layoutX="642.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="21.0" prefWidth="106.0" stylesheets="@../Style/Css.css" text="Clear">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -84,6 +84,6 @@
          </font>
       </Text>
       <JFXComboBox fx:id="cmbDefectId" layoutX="68.0" layoutY="420.0" prefHeight="34.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
-      <Label fx:id="lblItemId" layoutX="68.0" layoutY="279.0" prefHeight="34.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" text="Label" />
+      <Label fx:id="lblItemId" layoutX="68.0" layoutY="279.0" prefHeight="34.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" />
    </children>
 </AnchorPane>
