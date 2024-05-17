@@ -13,6 +13,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.model.Customer;
+import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.util.Regex;
 import lk.Ijse.util.TextFeildRegex;
 import lk.Ijse.model.Item;
@@ -65,24 +67,12 @@ public class ItemFormController {
 
     private void getCurrentItemId() {
         try {
-            //String orderId = CustomerRepo.GetOrderId();
-
             String nextOrderId = ItemRepo.generateNextItemId();
             lblItemId.setText(nextOrderId);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
-    /*private void generateItemId() {
-        String itemId = String.format("I%03d", idCounter);
-        lblItemId.setText(itemId);
-    }
-
-    private void incrementIdCounter() {
-        idCounter++;
-        generateItemId();
-    }*/
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
@@ -110,9 +100,10 @@ public class ItemFormController {
     void btnSaveOnAction(ActionEvent event) {
         String itemId = lblItemId.getText();
         String name = txtName.getText();
+        int itemCount = Integer.parseInt(txtName.getText());
         String defectId = (String) cmbDefectId.getValue();
 
-        Item item = new Item(itemId, name, defectId);
+        Item item = new Item(itemId, name, itemCount, defectId);
         try {
             boolean isSaved = ItemRepo.save(item);
             if (isSaved){
@@ -129,10 +120,11 @@ public class ItemFormController {
     void btnUpdateOnAction(ActionEvent event) {
         String itemId = lblItemId.getText();
         String itemName = txtName.getText();
+        int itemCount = Integer.parseInt(txtName.getText());
         String defectId = (String) cmbDefectId.getValue();
 
         try {
-            Item item = new Item(itemId, itemName, defectId);
+            Item item = new Item(itemId, itemName, itemCount, defectId);
 
             boolean isUpdate = ItemRepo.updateItem(item);
 
@@ -147,7 +139,20 @@ public class ItemFormController {
 
     @FXML
     void txtSearchOnAction(ActionEvent event) {
+        String id = txtSearch.getText();
 
+        try {
+            Item item = ItemRepo.searchById(id);
+            if (item != null) {
+                lblItemId.setText(item.getItemID());
+                txtName.setText(item.getItemName());
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "Item not found!").show();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
