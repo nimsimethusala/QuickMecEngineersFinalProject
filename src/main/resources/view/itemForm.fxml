@@ -24,7 +24,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="txtName" layoutX="69.0" layoutY="348.0" onKeyReleased="#txtItemNameOnAction" prefHeight="34.0" prefWidth="210.0" promptText="Name" />
+      <TextField fx:id="txtName" layoutX="69.0" layoutY="318.0" onKeyReleased="#txtItemNameOnAction" prefHeight="34.0" prefWidth="210.0" promptText="Name" />
       <TableView fx:id="tblItem" layoutX="315.0" layoutY="225.0" prefHeight="284.0" prefWidth="464.0">
         <columns>
           <TableColumn fx:id="colItemId" prefWidth="124.0" text="Item_id" />
@@ -63,12 +63,12 @@
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="69.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item ID">
+      <Text fill="WHITE" layoutX="69.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item ID">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="70.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name">
+      <Text fill="WHITE" layoutX="70.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -78,12 +78,18 @@
             <Image url="@../images/back button.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="70.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defect Id">
+      <Text fill="WHITE" layoutX="70.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Defect Id">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <JFXComboBox fx:id="cmbDefectId" layoutX="68.0" layoutY="420.0" prefHeight="34.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
-      <Label fx:id="lblItemId" layoutX="68.0" layoutY="279.0" prefHeight="34.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" />
+      <JFXComboBox fx:id="cmbDefectId" layoutX="68.0" layoutY="460.0" prefHeight="34.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
+      <Label fx:id="lblItemId" layoutX="68.0" layoutY="249.0" prefHeight="34.0" prefWidth="210.0" style="-fx-background-color: #FFFFFF;" />
+      <TextField fx:id="txtCount" layoutX="68.0" layoutY="392.0" onKeyReleased="#txtItemNameOnAction" prefHeight="34.0" prefWidth="210.0" promptText="Count" />
+      <Text fill="WHITE" layoutX="69.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Count">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
