@@ -65,6 +65,7 @@ public class PaymentFormController {
     private TextField txtSearch;
 
     public void initialize(){
+        setCellValueFactory();
         loadAllPayments();
         getCurrentCustomerId();
         getJobId();
@@ -80,26 +81,28 @@ public class PaymentFormController {
             double employeeTotalCost = PaymentRepo.getTotalEmployeeCost(jobId);
             double spareTotalCost = PaymentRepo.getTotalSpareCost(jobId);
 
-            double total = defectTotalCost + employeeTotalCost + spareTotalCost;
+            double total = (defectTotalCost + employeeTotalCost + spareTotalCost);
 
-            ObservableList<PaymentTm> obList = FXCollections.observableArrayList();
+            System.out.println(total);
 
-            PaymentTm paymentTm = new PaymentTm(paymentId, jobId, defectTotalCost, employeeTotalCost, spareTotalCost, total);
-            obList.add(paymentTm);
+            ObservableList<Payment> obList = FXCollections.observableArrayList();
 
-            tblPayment.setItems(obList);
+            Payment payment = new Payment(paymentId, jobId, defectTotalCost, employeeTotalCost, spareTotalCost, total);
+           // obList.add(payment);
 
-            boolean isPaymentPlaced = PaymentRepo.save(paymentTm);
+           // tblPayment.setItems(obList);
+            System.out.println(total);
+            boolean isPaymentPlaced = PaymentRepo.save(payment);
+
 
             if (isPaymentPlaced){
-                new Alert(Alert.AlertType.CONFIRMATION, "New Payment is placed successfully...!");
-
+                new Alert(Alert.AlertType.CONFIRMATION, "New Payment is placed successfully...!").show();
             }else {
-                new Alert(Alert.AlertType.ERROR, "New Payment is not placed unsuccessfully...!");
+                new Alert(Alert.AlertType.ERROR, "New Payment is not placed unsuccessfully...!").show();
             }
 
         } catch (SQLException e) {
-            //new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             throw new RuntimeException(e);
         }
     }
@@ -164,16 +167,18 @@ public class PaymentFormController {
     }
 
     public void btnReportOnAction(ActionEvent actionEvent) {
+        String jobId = (String) cmbJobId.getValue();
         JasperDesign jasperDesign = null;
         try {
             jasperDesign = JRXmlLoader.load("src/main/resources/report/Job_Report.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
             Map<String,Object> data = new HashMap<>();
-            data.put("JobID","J001");
+            data.put("JobId",jobId);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
             JasperViewer.viewReport(jasperPrint,false);
+
         } catch (JRException | SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
@@ -186,7 +191,14 @@ public class PaymentFormController {
         try {
             List<Payment> paymentList = PaymentRepo.getAll();
             for (Payment payment : paymentList){
-                PaymentTm paymentTm = new PaymentTm();
+                PaymentTm paymentTm = new PaymentTm(
+                        payment.getPaymentId(),
+                        payment.getJobId(),
+                        payment.getDefectTotal(),
+                        payment.getEmpTotal(),
+                        payment.getSpareTotal(),
+                        payment.getTotalCost()
+                );
                 obList.add(paymentTm);
             }
             tblPayment.setItems(obList);

@@ -155,7 +155,7 @@
 	</subDataset>
 	<parameter name="JobId" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT * FROM  quickmecengineers.job WHERE  quickmecengineers.job.`job_No` =  $P{JobId}  ]]>
+		<![CDATA[SELECT * FROM  quickmecengineers.job WHERE  quickmecengineers.job.`job_No` =  $P{JobId}]]>
 	</queryString>
 	<field name="job_No" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="job_No"/>
@@ -273,18 +273,18 @@
 				<text><![CDATA[246, Quick Mec Engineers, Gorakapola, Panadura]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="247" y="60" width="184" height="27" uuid="82bde39f-127e-47cf-8324-f6ba1cab1fe7"/>
+				<reportElement x="227" y="60" width="184" height="27" uuid="82bde39f-127e-47cf-8324-f6ba1cab1fe7"/>
 				<textElement>
 					<font size="15"/>
 				</textElement>
 				<text><![CDATA[Contact No : 077 910 0270]]></text>
 			</staticText>
 			<image>
-				<reportElement x="46" y="0" width="90" height="83" uuid="dd135d09-5eb2-479b-86c4-54f2649d4aab"/>
+				<reportElement x="30" y="-6" width="102" height="100" uuid="dd135d09-5eb2-479b-86c4-54f2649d4aab"/>
 				<imageExpression><![CDATA["C:/Users/Lenovo/Documents/Project/QUICK_MEC_ENGINEERS/src/main/resources/images/QUICK MEC.png"]]></imageExpression>
 			</image>
 			<rectangle>
-				<reportElement x="-8" y="106" width="570" height="1" backcolor="#030303" uuid="c73b9985-631f-4066-a340-96f70664b348"/>
+				<reportElement x="-3" y="107" width="562" height="1" backcolor="#030303" uuid="c73b9985-631f-4066-a340-96f70664b348"/>
 			</rectangle>
 		</band>
 	</title>

@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Data
 public class PaymentTm {
     private String paymentId;
@@ -14,4 +14,13 @@ public class PaymentTm {
     private double employeeTotal;
     private double spareTotal;
     private double total;
+
+    public PaymentTm(String paymentId, String jobId, double defectTotal, double employeeTotal, double spareTotal, double total) {
+        this.paymentId = paymentId;
+        this.jobId = jobId;
+        this.defectTotal = defectTotal;
+        this.employeeTotal = employeeTotal;
+        this.spareTotal = spareTotal;
+        this.total = total;
+    }
 }

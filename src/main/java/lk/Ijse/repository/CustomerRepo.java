@@ -51,12 +51,12 @@ public class CustomerRepo {
             return pstm.executeUpdate() > 0;
     }
 
-    public static Customer searchById(String id) throws SQLException {
-        String sql = "SELECT * FROM customer WHERE customer_id = ?";
+    public static Customer searchById(String tel) throws SQLException {
+        String sql = "SELECT * FROM customer WHERE contact = ?";
 
             Connection connection = DbConnection.getInstance().getConnection();
             PreparedStatement pstm = connection.prepareStatement(sql);
-            pstm.setObject(1, id);
+            pstm.setObject(1, tel);
 
             ResultSet resultSet = pstm.executeQuery();
             if (resultSet.next()) {
@@ -69,7 +69,6 @@ public class CustomerRepo {
 
                 return customer;
             }
-
         return null;
     }
 
@@ -185,20 +184,4 @@ public class CustomerRepo {
         }
         return "C001";
     }
-
-    /*public static List<String> GetCustomerTel() throws SQLException {
-        String sql = "SELECT contact FROM customer";
-
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        List<String> telList = new ArrayList<>();
-        ResultSet resultSet = pstm.executeQuery();
-
-        while (resultSet.next()) {
-            String tel = resultSet.getString(4);
-            telList.add(tel);
-        }
-        return telList;
-    }*/
 }

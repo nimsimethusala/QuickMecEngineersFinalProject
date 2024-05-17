@@ -84,7 +84,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="txtSearch" layoutX="486.0" layoutY="64.0" prefHeight="30.0" prefWidth="298.0" promptText="Search" />
+      <TextField fx:id="txtSearch" layoutX="486.0" layoutY="64.0" onAction="#txtSearchOnAction" prefHeight="30.0" prefWidth="298.0" promptText="Search" />
       <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="749.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />

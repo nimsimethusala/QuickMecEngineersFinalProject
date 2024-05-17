@@ -18,6 +18,7 @@ import lk.Ijse.util.TextFeildRegex;
 import lk.Ijse.model.Customer;
 import lk.Ijse.model.tm.CustomerTm;
 import lk.Ijse.repository.CustomerRepo;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -86,16 +87,6 @@ public class CustomerFormController {
             throw new RuntimeException(e);
         }
     }
-
-    /*private void generateCustomerId() {
-        String customerId = String.format("C%03d", idCounter);
-        lblCustomerId.setText(customerId);
-    }
-
-    private void incrementIdCounter() {
-        idCounter++;
-        generateCustomerId();
-    }*/
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
@@ -173,41 +164,6 @@ public class CustomerFormController {
         }
     }
 
-    /*@FXML
-    void txtSearchOnAction(ActionEvent keyEvent) {
-        String id = lblCustomerId.getText();
-
-        try {
-            Customer customer = CustomerRepo.searchById(id);
-            txtSearch.setOnKeyPressed(event -> {
-                if (event.getCode() == KeyCode.ENTER) {
-                    if (customer != null) {
-                        lblCustomerId.setText(customer.getId());
-                        txtCustomerName.setText(customer.getName());
-                        txtAddress.setText(customer.getAddress());
-                        txtCustomerNumber.setText(String.valueOf(customer.getTel()));
-                    } else {
-                        new Alert(Alert.AlertType.INFORMATION, "").show();
-                    }
-                }
-            });
-        }catch (SQLException e){
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-    }*/
-
-    /*private void loadCustomerAllTel() {
-        try {
-            List<String> cusTel = CustomerRepo.GetCustomerTel();
-            String[] possibleNames = cusTel.toArray(new String[0]);
-
-            TextFields.bindAutoCompletion(txtSearch, possibleNames);
-
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-    }*/
-
     private void clearFields() {
         txtCustomerName.setText("");
         txtAddress.setText("");
@@ -244,5 +200,25 @@ public class CustomerFormController {
 
     public void txtNumberOnAction(KeyEvent keyEvent) {
         Regex.setTextColor(TextFeildRegex.CONTACT,txtCustomerNumber);
+    }
+
+    public void txtSearchOnAction(ActionEvent actionEvent) {
+        String tel = txtSearch.getText();
+
+        try {
+            Customer customer = CustomerRepo.searchById(tel);
+            if (customer != null) {
+                lblCustomerId.setText(customer.getId());
+                txtCustomerName.setText(customer.getName());
+                txtAddress.setText(customer.getAddress());
+                txtCustomerNumber.setText(String.valueOf(customer.getTel()));
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
+            }
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            //throw new RuntimeException(e);
+        }
     }
 }

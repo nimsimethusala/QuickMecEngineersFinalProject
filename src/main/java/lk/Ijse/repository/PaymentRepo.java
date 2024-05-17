@@ -115,18 +115,18 @@ public class PaymentRepo {
         return 0;
     }
 
-    public static boolean save(PaymentTm paymentTm) throws SQLException {
-        String sql = "INSERT INTO payment VALUES(?, ?, ?, ?, ?, ?";
+    public static boolean save(Payment payment) throws SQLException {
+        String sql = "INSERT INTO payment VALUES(?, ?, ?, ?, ?, ?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
-        pstm.setObject(1, paymentTm.getPaymentId());
-        pstm.setObject(2, paymentTm.getJobId());
-        pstm.setObject(3, paymentTm.getDefectTotal());
-        pstm.setObject(4, paymentTm.getEmployeeTotal());
-        pstm.setObject(5, paymentTm.getSpareTotal());
-        pstm.setObject(6, paymentTm.getTotal());
+        pstm.setObject(1, payment.getPaymentId());
+        pstm.setObject(2, payment.getJobId());
+        pstm.setObject(3, payment.getDefectTotal());
+        pstm.setObject(4, payment.getEmpTotal());
+        pstm.setObject(5, payment.getSpareTotal());
+        pstm.setObject(6, payment.getTotalCost());
 
         return pstm.executeUpdate() > 0;
     }
