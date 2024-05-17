@@ -342,8 +342,6 @@ public class JobFormController implements Initializable {
             for (int i = 0; i < tblJob.getItems().size(); i++) {
                 JobTm tm = obList.get(i);
 
-                System.out.println(tm);
-
                 JobDetail jobDetail = new JobDetail(itemId, tm.getItemCount(), tm.getVehicleModel(), jobId, tm.getSpareCount());
                 list.add(jobDetail);
 
