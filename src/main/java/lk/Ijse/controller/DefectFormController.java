@@ -14,6 +14,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.model.Customer;
+import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.util.Regex;
 import lk.Ijse.util.TextFeildRegex;
 import lk.Ijse.model.Defect;
@@ -79,16 +81,6 @@ public class DefectFormController {
             throw new RuntimeException(e);
         }
     }
-
-    /*private void generateCustomerId() {
-        String customerId = String.format("D%03d", idCounter);
-        lblDefectId.setText(customerId);
-    }
-
-    private void incrementIdCounter() {
-        idCounter++;
-        generateCustomerId();
-    }*/
 
     private void loadAllDefect() {
         ObservableList<DefectTm> odList = FXCollections.observableArrayList();
@@ -167,7 +159,7 @@ public class DefectFormController {
             boolean isUpdate = DefectRepo.update(defect);
 
             if (isUpdate){
-                new Alert(Alert.AlertType.CONFIRMATION, "Defect is updated...!");
+                new Alert(Alert.AlertType.CONFIRMATION, "Defect is updated...!").show();
                 clearFeilds();
             }
 
@@ -212,5 +204,24 @@ public class DefectFormController {
 
     public void txtPriceOnAction(KeyEvent keyEvent) {
         Regex.setTextColor(TextFeildRegex.PRICE,txtPrice);
+    }
+
+    public void txtSearchOnAction(ActionEvent actionEvent) {
+        String tel = txtSearch.getText();
+
+        try {
+            Defect defect = DefectRepo.searchById(tel);
+            if (defect != null) {
+                lblDefectId.setText(defect.getDefectId());
+                txtDescription.setText(defect.getDescription());
+                txtPrice.setText(String.valueOf(defect.getPrice()));
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
+            }
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            //throw new RuntimeException(e);
+        }
     }
 }

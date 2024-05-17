@@ -18,6 +18,7 @@ public class Regex {
                 break;
             case PRICE:
                 filed = "^\\d+$";
+                break;
             case ATTENDANCE:
                 filed = "^(3[01]|[12][0-9]|[1-9])$";
         }

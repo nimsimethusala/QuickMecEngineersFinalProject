@@ -73,7 +73,7 @@
             <Image url="@../images/back button.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtSearch" layoutX="474.0" layoutY="86.0" prefHeight="26.0" prefWidth="302.0" promptText="Search" />
+      <TextField fx:id="txtSearch" layoutX="474.0" layoutY="86.0" onAction="#txtSearchOnAction" prefHeight="26.0" prefWidth="302.0" promptText="Search" />
       <ImageView fitHeight="20.0" fitWidth="23.0" layoutX="747.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />

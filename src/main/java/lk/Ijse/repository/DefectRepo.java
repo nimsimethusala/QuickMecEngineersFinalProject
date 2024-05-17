@@ -1,6 +1,7 @@
 package lk.Ijse.repository;
 
 import lk.Ijse.db.DbConnection;
+import lk.Ijse.model.Customer;
 import lk.Ijse.model.Defect;
 
 import java.sql.Connection;
@@ -36,15 +37,14 @@ public class DefectRepo {
     }
 
     public static boolean update(Defect defect) throws SQLException {
-        String sql = "UPDATE defect SET defect_id = ?, description = ?, price = ?, Spare_id = ?";
+        String sql = "UPDATE defect SET description = ?, price = ?, Spare_id = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
-        pstm.setObject(1, defect.getDefectId());
-        pstm.setObject(2, defect.getDescription());
-        pstm.setObject(3, defect.getPrice());
-        pstm.setObject(4, defect.getSpareId());
+        pstm.setObject(1, defect.getDescription());
+        pstm.setObject(2, defect.getPrice());
+        pstm.setObject(3, defect.getSpareId());
 
         return pstm.executeUpdate() > 0;
 
@@ -138,5 +138,26 @@ public class DefectRepo {
             }
         }
         return "D001";
+    }
+
+    public static Defect searchById(String tel) throws SQLException {
+        String sql = "SELECT * FROM defect WHERE defect_id = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, tel);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String defectId = resultSet.getString(1);
+            String defectName = resultSet.getString(2);
+            double price = resultSet.getDouble(3);
+            String spareId = resultSet.getString(4);
+
+            Defect defect = new Defect(defectId, defectName, price, spareId);
+
+            return defect;
+        }
+        return null;
     }
 }
