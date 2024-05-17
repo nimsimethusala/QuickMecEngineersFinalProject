@@ -12,15 +12,27 @@ create table customer(
 insert into customer values ("C002","Kasun","Galle",0759843615);
 insert into customer values ("C003","Supun","Moratuwa",0756479958);
 
+create table supplier(
+                         supplier_id varchar(6)primary key ,
+                         name varchar(25),
+                         location varchar(20),
+                         contact int(10)
+);
+
+insert into supplier values ("S001","Spare Enterprices","Colombo",0796654123);
+insert into supplier values ("S002","Nishan Enterprices","Colombo",0796265123);
+
 create table spare(
                       Spare_id varchar(6)primary key,
                       Name varchar(25),
                       count varchar(10),
-                      price varchar(10)
+                      price varchar(10),
+                      supplier_id varchar(6),
+                      foreign key(supplier_id) references supplier(supplier_id) on update cascade on delete cascade
 );
 
-insert into spare values ("SP001","Piston Rings",10,5000);
-insert into spare values ("SP002","Main Bearing",9,5000);
+insert into spare values ("SP001","Piston Rings",10,5000,"S001");
+insert into spare values ("SP002","Main Bearing",9,5000,"S002");
 
 create table defect(
                        defect_id varchar(6)primary key,
@@ -93,16 +105,6 @@ create table job_details(
                             job_No varchar(6),
                             foreign key(job_No)references job(job_No) on update cascade on delete cascade
 );
-
-create table supplier(
-                         supplier_id varchar(6)primary key ,
-                         name varchar(25),
-                         location varchar(20),
-                         contact int(10)
-);
-
-insert into supplier values ("S001","Spare Enterprices","Colombo",0796654123);
-insert into supplier values ("S002","Nishan Enterprices","Colombo",0796265123);
 
 create table machine(
                         machine_id varchar(6)primary key ,
