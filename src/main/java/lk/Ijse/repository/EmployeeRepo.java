@@ -1,6 +1,7 @@
 package lk.Ijse.repository;
 
 import lk.Ijse.db.DbConnection;
+import lk.Ijse.model.Customer;
 import lk.Ijse.model.Employee;
 
 import java.sql.Connection;
@@ -40,18 +41,18 @@ public class EmployeeRepo {
     }
 
     public static boolean update(Employee employee) throws SQLException {
-        String sql = "UPDATE employee SET Emp_id = ?, Name = ?, attendence = ?, address = ?, contact = ?, salary = ?, cost = ?";
+        String sql = "UPDATE employee SET Name = ?, attendence = ?, address = ?, contact = ?, salary = ?, cost = ? WHERE Emp_id = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
-        pstm.setObject(1, employee.getEmpId());
-        pstm.setObject(2, employee.getName());
-        pstm.setObject(3, employee.getAttendance());
-        pstm.setObject(4, employee.getAddress());
-        pstm.setObject(5, employee.getContact());
-        pstm.setObject(6, employee.getSalary());
-        pstm.setObject(7, employee.getCost());
+        pstm.setObject(1, employee.getName());
+        pstm.setObject(2, employee.getAttendance());
+        pstm.setObject(3, employee.getAddress());
+        pstm.setObject(4, employee.getContact());
+        pstm.setObject(5, employee.getSalary());
+        pstm.setObject(6, employee.getCost());
+        pstm.setObject(7, employee.getEmpId());
 
         return pstm.executeUpdate() > 0;
     }
@@ -81,7 +82,7 @@ public class EmployeeRepo {
         return empList;
     }
 
-    public static Employee search(String empId) throws SQLException {
+    /*public static Employee search(String empId) throws SQLException {
         String sql = "SELECT * FROM employee WHERE Emp_id = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
@@ -104,7 +105,7 @@ public class EmployeeRepo {
         }
 
         return null;
-    }
+    }*/
 
     public static double getEmployeeCost(String empId) throws SQLException {
         String sql = "SELECT cost FROM employee WHERE Emp_id = ?";
@@ -185,6 +186,31 @@ public class EmployeeRepo {
 
             return empName;
         }
+        return null;
+    }
+
+    public static Employee searchById(String id) throws SQLException {
+        String sql = "SELECT * FROM employee WHERE Emp_id = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, id);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()){
+            String employeeId = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            double attendence = resultSet.getDouble(3);
+            String address = resultSet.getString(4);
+            int contact = resultSet.getInt(5);
+            double salary = resultSet.getDouble(6);
+            double cost = resultSet.getDouble(7);
+
+            Employee employee = new Employee(employeeId, name, attendence, contact, address, salary, cost);
+            return employee;
+        }
+
         return null;
     }
 }

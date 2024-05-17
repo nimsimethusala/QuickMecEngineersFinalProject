@@ -13,6 +13,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.model.Customer;
+import lk.Ijse.repository.CustomerRepo;
 import lk.Ijse.util.Regex;
 import lk.Ijse.util.TextFeildRegex;
 import lk.Ijse.model.Employee;
@@ -234,10 +236,6 @@ public class EmployeeFormController {
     }
 
     @FXML
-    void txtSearchOnAction(KeyEvent event) {
-
-    }
-    @FXML
     void imgBackOnAction(MouseEvent mouseEvent) {
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("/view/dashboardForm.fxml"));
@@ -277,5 +275,27 @@ public class EmployeeFormController {
 
     public void txtContactOnAction(KeyEvent keyEvent) {
         Regex.setTextColor(TextFeildRegex.CONTACT,txtContact);
+    }
+
+    public void txtSearchOnAction(ActionEvent actionEvent) {
+        String id = txtSearch.getText();
+
+        try {
+            Employee employee = EmployeeRepo.searchById(id);
+            if (employee != null) {
+                lblEmployeeId.setText(employee.getEmpId());
+                txtEmployeeName.setText(employee.getName());
+                txtAddress.setText(employee.getAddress());
+                txtContact.setText(String.valueOf(employee.getContact()));
+                txtAttendance.setText(String.valueOf(employee.getAttendance()));
+                txtCost.setText(String.valueOf(employee.getCost()));
+                txtSalary.setText(String.valueOf(employee.getSalary()));
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "Employee not found!").show();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
