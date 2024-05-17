@@ -59,7 +59,7 @@ insert into employee values ("E001","Sadakan",30,"Panadura",0789542165,25000,250
 insert into employee values ("E002","Kushan",25,"Piliyandala",0789559465,26000,1500);
 
 create table job(
-                    job_No varchar(6)primary key,
+                    job_No varchar(6),
                     Model varchar(25),
                     Date date,
                     customer_id varchar(6),
@@ -89,7 +89,7 @@ insert into item values ("I001","Block","10","D001");
 insert into item values ("I002","Crank","15","D002");
 
 create table payment(
-                        payment_id  varchar(10),
+                        payment_id  varchar(10)primary key,
                         job_No varchar(6),
                         foreign key(job_No) references job(job_No) on update cascade on delete cascade,
                         defect_total_cost varchar(15),

@@ -181,7 +181,7 @@ public class PaymentRepo {
             double defectTotal = resultSet.getDouble(3);
             double employeeTotal = resultSet.getDouble(4);
             double spareTotal = resultSet.getDouble(5);
-            double total = resultSet.getDouble(5);
+            double total = resultSet.getDouble(6);
 
             Payment payment = new Payment(paymentId, jobId, defectTotal, employeeTotal, spareTotal, total);
             paymentList.add(payment);

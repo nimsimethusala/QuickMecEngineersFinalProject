@@ -73,7 +73,6 @@ public class CustomerFormController {
             }
         });
 
-        //loadCustomerAllTel();
         getCurrentCustomerId();
         setCellValueFactory();
         loadAllCustomer();
