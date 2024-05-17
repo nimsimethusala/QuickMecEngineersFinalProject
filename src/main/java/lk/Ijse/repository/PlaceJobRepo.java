@@ -35,9 +35,8 @@ public class PlaceJobRepo {
             return false;
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
-//            connection.rollback();
-//            return false;
+            connection.rollback();
+            return false;
 
         } finally {
             connection.setAutoCommit(true);

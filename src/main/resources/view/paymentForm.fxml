@@ -48,7 +48,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Text>
-      <JFXComboBox fx:id="cmbJobId" layoutX="63.0" layoutY="146.0" onAction="#cmbJobIdOnAction" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #c7ecee;" />
+      <JFXComboBox fx:id="cmbJobId" layoutX="63.0" layoutY="146.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #c7ecee;" />
       <Label fx:id="lblPaymentId" layoutX="63.0" layoutY="204.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: #c7ecee;" />
       <Button layoutX="625.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnBackOnAction" prefHeight="40.0" prefWidth="101.0" stylesheets="@../Style/Css.css" text="Back">
          <font>

@@ -81,6 +81,8 @@ public class PaymentFormController {
             double employeeTotalCost = PaymentRepo.getTotalEmployeeCost(jobId);
             double spareTotalCost = PaymentRepo.getTotalSpareCost(jobId);
 
+            System.out.println(defectTotalCost);
+
             double total = (defectTotalCost + employeeTotalCost + spareTotalCost);
 
             System.out.println(total);
@@ -88,9 +90,7 @@ public class PaymentFormController {
             ObservableList<Payment> obList = FXCollections.observableArrayList();
 
             Payment payment = new Payment(paymentId, jobId, defectTotalCost, employeeTotalCost, spareTotalCost, total);
-           // obList.add(payment);
 
-           // tblPayment.setItems(obList);
             System.out.println(total);
             boolean isPaymentPlaced = PaymentRepo.save(payment);
 
@@ -123,7 +123,7 @@ public class PaymentFormController {
         }
     }
 
-    private void setNextJobId() {
+    /*private void setNextPaymentId() {
         try {
             String nextPaymentId =  PaymentRepo.getNextPaymentID();
             lblPaymentId.setText(nextPaymentId);
@@ -131,7 +131,7 @@ public class PaymentFormController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
     @FXML
     void btnBackOnAction(ActionEvent event) {
@@ -147,10 +147,11 @@ public class PaymentFormController {
         }
     }
 
-    @FXML
+    /*@FXML
     void cmbJobIdOnAction(ActionEvent event) {
-        setNextJobId();
-    }
+        setNextPaymentId();
+    }*/
+
     private void getCurrentCustomerId() {
         try {
             String nextPaymentId = PaymentRepo.generateNextPaymentId();
