@@ -33,7 +33,10 @@ public class ItemFormController {
     @FXML
     public JFXComboBox cmbDefectId;
 
+    @FXML
     public Label lblItemId;
+    @FXML
+    public TextField txtCount;
 
     @FXML
     private AnchorPane itemRoot;
@@ -100,7 +103,7 @@ public class ItemFormController {
     void btnSaveOnAction(ActionEvent event) {
         String itemId = lblItemId.getText();
         String name = txtName.getText();
-        int itemCount = Integer.parseInt(txtName.getText());
+        int itemCount = Integer.parseInt(txtCount.getText());
         String defectId = (String) cmbDefectId.getValue();
 
         Item item = new Item(itemId, name, itemCount, defectId);
@@ -120,7 +123,7 @@ public class ItemFormController {
     void btnUpdateOnAction(ActionEvent event) {
         String itemId = lblItemId.getText();
         String itemName = txtName.getText();
-        int itemCount = Integer.parseInt(txtName.getText());
+        int itemCount = Integer.parseInt(txtCount.getText());
         String defectId = (String) cmbDefectId.getValue();
 
         try {
