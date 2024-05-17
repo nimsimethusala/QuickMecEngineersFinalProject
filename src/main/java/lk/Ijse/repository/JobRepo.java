@@ -56,7 +56,7 @@ public class JobRepo {
         return "J001";
     }
 
-    public static List<Job> getAll() throws SQLException {
+    /*public static List<Job> getAll() throws SQLException {
         String sql = "SELECT * FROM job";
 
         Connection connection = DbConnection.getInstance().getConnection();
@@ -86,7 +86,7 @@ public class JobRepo {
         }
 
         return jobList;
-    }
+    }*/
 
     public static List<String> getId() throws SQLException {
         String sql = "SELECT job_No FROM job";

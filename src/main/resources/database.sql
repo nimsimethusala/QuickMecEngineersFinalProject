@@ -59,7 +59,7 @@ insert into employee values ("E001","Sadakan",30,"Panadura",0789542165,25000,250
 insert into employee values ("E002","Kushan",25,"Piliyandala",0789559465,26000,1500);
 
 create table job(
-                    job_No varchar(6),
+                    job_No varchar(6)primary key,
                     Model varchar(25),
                     Date date,
                     customer_id varchar(6),

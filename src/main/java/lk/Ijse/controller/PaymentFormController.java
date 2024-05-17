@@ -123,16 +123,6 @@ public class PaymentFormController {
         }
     }
 
-    /*private void setNextPaymentId() {
-        try {
-            String nextPaymentId =  PaymentRepo.getNextPaymentID();
-            lblPaymentId.setText(nextPaymentId);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
-
     @FXML
     void btnBackOnAction(ActionEvent event) {
         try {
@@ -146,11 +136,6 @@ public class PaymentFormController {
             throw new RuntimeException(e);
         }
     }
-
-    /*@FXML
-    void cmbJobIdOnAction(ActionEvent event) {
-        setNextPaymentId();
-    }*/
 
     private void getCurrentCustomerId() {
         try {
