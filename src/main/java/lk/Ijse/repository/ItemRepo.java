@@ -85,14 +85,15 @@ public class ItemRepo {
     }
 
     public static boolean save(Item item) throws SQLException {
-        String sql = "INSERT INTO item VALUES(?, ?, ?)";
+        String sql = "INSERT INTO item VALUES(?, ?, ?, ?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setObject(1, item.getItemID());
         pstm.setObject(2, item.getItemName());
-        pstm.setObject(3, item.getDefectId());
+        pstm.setObject(3, item.getItemCount());
+        pstm.setObject(4, item.getDefectId());
 
         return pstm.executeUpdate() > 0;
     }
@@ -103,9 +104,9 @@ public class ItemRepo {
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
-        pstm.setObject(1, item.getItemID());
-        pstm.setObject(2, item.getItemName());
-        pstm.setObject(3, item.getDefectId());
+        pstm.setObject(1, item.getItemName());
+        pstm.setObject(2, item.getDefectId());
+        pstm.setObject(3, item.getItemID());
 
         return pstm.executeUpdate() > 0;
     }
@@ -123,9 +124,10 @@ public class ItemRepo {
         while (resultSet.next()){
             String itemId = resultSet.getString(1);
             String itemName = resultSet.getString(2);
-            String defectId = resultSet.getString(3);
+            int itemCount = resultSet.getInt(3);
+            String defectId = resultSet.getString(4);
 
-            Item item = new  Item(itemId,itemName,defectId);
+            Item item = new  Item(itemId,itemName, itemCount, defectId);
             itemList.add(item);
         }
 
@@ -164,5 +166,26 @@ public class ItemRepo {
             }
         }
         return "I001";
+    }
+
+    public static Item searchById(String id) throws SQLException {
+        String sql = "SELECT * FROM item WHERE item_No = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, id);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String itemId = resultSet.getString(1);
+            String itemName = resultSet.getString(2);
+            int itemCount = resultSet.getInt(3);
+            String defectId = resultSet.getString(4);
+
+            Item item = new  Item(itemId, itemName, itemCount, defectId);
+
+            return item;
+        }
+        return null;
     }
 }
