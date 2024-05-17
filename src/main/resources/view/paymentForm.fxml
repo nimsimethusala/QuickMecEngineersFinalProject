@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -56,12 +55,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="txtSearch" layoutX="459.0" layoutY="40.0" onMouseEntered="#txtSearchOnAction" prefHeight="33.0" prefWidth="330.0" promptText="Search" />
-      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="747.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />
-         </image>
-      </ImageView>
       <Button layoutX="340.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnReportOnAction" prefHeight="40.0" prefWidth="101.0" stylesheets="@../Style/Css.css" text="Report">
          <font>
             <Font name="System Bold" size="18.0" />

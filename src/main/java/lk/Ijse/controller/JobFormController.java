@@ -257,12 +257,6 @@ public class JobFormController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
-    @FXML
-    void txtSearchOnAction(ActionEvent event) {
-
-    }
-
     public void btnAddToJobOnAction(ActionEvent actionEvent) {
         String itemId = (String) lblItemId.getValue();
         Date date = Date.valueOf(lblJobDate.getText());

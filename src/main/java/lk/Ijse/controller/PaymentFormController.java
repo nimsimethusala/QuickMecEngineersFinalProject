@@ -151,12 +151,6 @@ public class PaymentFormController {
     void cmbJobIdOnAction(ActionEvent event) {
         setNextJobId();
     }
-
-    @FXML
-    void txtSearchOnAction(MouseEvent event) {
-
-    }
-
     private void getCurrentCustomerId() {
         try {
             String nextPaymentId = PaymentRepo.generateNextPaymentId();

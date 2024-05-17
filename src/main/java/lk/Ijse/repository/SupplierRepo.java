@@ -106,4 +106,25 @@ public class SupplierRepo {
         }
         return "S001";
     }
+
+    public static Supplier searchById(String id) throws SQLException {
+        String sql = "SELECT * FROM supplier WHERE supplier_id = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, id);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String supId = resultSet.getString(1);
+            String supName = resultSet.getString(2);
+            String location = resultSet.getString(3);
+            int contact = resultSet.getInt(4);
+
+            Supplier supplier = new Supplier(supId, supName, contact, location);
+
+            return supplier;
+        }
+        return null;
+    }
 }

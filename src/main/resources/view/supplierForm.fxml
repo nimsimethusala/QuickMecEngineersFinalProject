@@ -54,7 +54,7 @@
             <Image url="@../images/Screenshot 2024-04-11 154259.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtSearch" layoutX="475.0" layoutY="51.0" onAction="#txtSupplierIdOnAction" prefHeight="28.0" prefWidth="294.0" promptText="Search" />
+      <TextField fx:id="txtSearch" layoutX="475.0" layoutY="51.0" onAction="#txtSearchOnAction" prefHeight="28.0" prefWidth="294.0" promptText="Search" />
       <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="741.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/344c4b83bc1f6d1ec006569fc2dc60d0.jpg" />

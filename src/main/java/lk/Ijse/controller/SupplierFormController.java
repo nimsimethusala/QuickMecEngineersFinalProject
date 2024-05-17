@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.model.Customer;
 import lk.Ijse.model.Supplier;
 import lk.Ijse.model.tm.SupplierTm;
 import lk.Ijse.repository.CustomerRepo;
@@ -76,25 +77,12 @@ public class SupplierFormController {
 
     private void getCurrentSpareId() {
         try {
-            //String orderId = CustomerRepo.GetOrderId();
-
             String nextOrderId = SupplierRepo.generateNextSupplierId();
             lblSupplierId.setText(nextOrderId);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
-    /*private void generateSupplierId() {
-        String customerId = String.format("S%03d", idCounter);
-        lblSupplierId.setText(customerId);
-        System.out.println(customerId);
-    }
-
-    private void incrementIdCounter() {
-        idCounter++;
-        generateSupplierId();
-    }*/
 
     private void loadAllSupplier() {
         ObservableList<SupplierTm> obList = FXCollections.observableArrayList();
@@ -197,13 +185,29 @@ public class SupplierFormController {
         }
     }
 
-    public void txtSupplierIdOnAction(ActionEvent actionEvent) {
-
-    }
-
     public void clearFeilds(){
         txtSupplierName.setText("");
         txtContactNo.setText("");
         txtLocation.setText("");
+    }
+
+    public void txtSearchOnAction(ActionEvent actionEvent) {
+        String id = txtSearch.getText();
+
+        try {
+            Supplier supplier = SupplierRepo.searchById(id);
+            if (supplier != null) {
+                lblSupplierId.setText(supplier.getSupplierId());
+                txtSupplierName.setText(supplier.getName());
+                txtLocation.setText(supplier.getLocation());
+                txtContactNo.setText(String.valueOf(supplier.getContact()));
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "Supplier not found!").show();
+            }
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            //throw new RuntimeException(e);
+        }
     }
 }
