@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.model.Customer;
 import lk.Ijse.model.Spares;
 import lk.Ijse.model.tm.SpareTm;
 import lk.Ijse.repository.CustomerRepo;
@@ -88,17 +89,6 @@ public class SpareFormController {
             throw new RuntimeException(e);
         }
     }
-
-    /*private void generateSpareId() {
-        String customerId = String.format("SP%03d", idCounter);
-        lblSpareId.setText(customerId);
-        System.out.println(customerId);
-    }
-    private void incrementIdCounter() {
-        idCounter++;
-        generateSpareId();
-    }*/
-
     private void loadAllSpares() {
         ObservableList<SpareTm> obList = FXCollections.observableArrayList();
 
@@ -198,7 +188,22 @@ public class SpareFormController {
 
     @FXML
     void txtSearchOnAction(ActionEvent event) {
+        String id = txtSearch.getText();
 
+        try {
+            Spares spares = SpareRepo.searchById(id);
+            if (spares != null) {
+                lblSpareId.setText(spares.getSpareId());
+                txtName.setText(spares.getName());
+                txtCount.setText(String.valueOf(spares.getCount()));
+                txtPrice.setText(String.valueOf(spares.getPrice()));
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "Spare not found!").show();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void clearFields() {

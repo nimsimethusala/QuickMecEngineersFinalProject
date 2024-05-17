@@ -40,15 +40,15 @@ public class SpareRepo {
     }
 
     public static boolean update(Spares spares) throws SQLException {
-        String sql = "UPDATE spare SET Spare_id = ?, Name = ?, count = ?, price = ?";
+        String sql = "UPDATE spare SET Name = ?, count = ?, price = ? WHERE Spare_id = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
-        pstm.setObject(1, spares.getSpareId());
-        pstm.setObject(2, spares.getName());
-        pstm.setObject(3, spares.getCount());
-        pstm.setObject(4, spares.getPrice());
+        pstm.setObject(1, spares.getName());
+        pstm.setObject(2, spares.getCount());
+        pstm.setObject(3, spares.getPrice());
+        pstm.setObject(4, spares.getSpareId());
 
         return pstm.executeUpdate() > 0;
     }
@@ -161,5 +161,26 @@ public class SpareRepo {
             }
         }
         return "SP001";
+    }
+
+    public static Spares searchById(String id) throws SQLException {
+        String sql = "SELECT * FROM spare WHERE Spare_id = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, id);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            String spareId = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            int count = resultSet.getInt(3);
+            double price = resultSet.getDouble(4);
+
+            Spares spares = new Spares(spareId, name, count, price);
+
+            return spares;
+        }
+        return null;
     }
 }
