@@ -82,31 +82,6 @@ public class EmployeeRepo {
         return empList;
     }
 
-    /*public static Employee search(String empId) throws SQLException {
-        String sql = "SELECT * FROM employee WHERE Emp_id = ?";
-
-        Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setObject(1, empId);
-
-        ResultSet resultSet = pstm.executeQuery();
-
-        while (resultSet.next()){
-            String employeeId = resultSet.getString(1);
-            String name = resultSet.getString(2);
-            double attendence = resultSet.getDouble(3);
-            String address = resultSet.getString(4);
-            int contact = resultSet.getInt(5);
-            double salary = resultSet.getDouble(6);
-            double cost = resultSet.getDouble(7);
-
-            Employee employee = new Employee(employeeId, name, attendence, contact, address, salary, cost);
-            return employee;
-        }
-
-        return null;
-    }*/
-
     public static double getEmployeeCost(String empId) throws SQLException {
         String sql = "SELECT cost FROM employee WHERE Emp_id = ?";
 

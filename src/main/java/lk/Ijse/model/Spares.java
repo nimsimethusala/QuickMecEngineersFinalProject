@@ -12,4 +12,5 @@ public class Spares {
     private String name;
     private int count;
     private double price;
+    private String supplierId;
 }

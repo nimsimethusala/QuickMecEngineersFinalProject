@@ -15,16 +15,23 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.Ijse.model.Customer;
 import lk.Ijse.model.Spares;
+import lk.Ijse.model.Supplier;
 import lk.Ijse.model.tm.SpareTm;
 import lk.Ijse.repository.CustomerRepo;
+import lk.Ijse.repository.EmployeeRepo;
 import lk.Ijse.repository.SpareRepo;
+import lk.Ijse.repository.SupplierRepo;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 public class SpareFormController {
+    @FXML
     public Label lblSpareId;
+
+    @FXML
+    public JFXComboBox cmbSupplierId;
 
     @FXML
     private AnchorPane SpareRoot;
@@ -40,9 +47,6 @@ public class SpareFormController {
 
     @FXML
     private TableColumn<?, ?> colSpareId;
-
-    @FXML
-    private TableColumn<?, ?> colTotal;
 
     @FXML
     private TableView<SpareTm> tblSpare;
@@ -74,6 +78,7 @@ public class SpareFormController {
             }
         });
 
+        getSupplierId();
         getCurrentSpareId();
         setCellValueFactory();
         loadAllSpares();
@@ -81,8 +86,6 @@ public class SpareFormController {
 
     private void getCurrentSpareId() {
         try {
-            //String orderId = CustomerRepo.GetOrderId();
-
             String nextOrderId = SpareRepo.generateNextSpareId();
             lblSpareId.setText(nextOrderId);
         } catch (SQLException e) {
@@ -139,8 +142,9 @@ public class SpareFormController {
         String name = txtName.getText();
         int count = Integer.parseInt(txtCount.getText());
         double price = Double.parseDouble(txtPrice.getText());
+        String supplierId = (String) cmbSupplierId.getValue();
 
-        Spares spares = new Spares(spareId, name, count, price);
+        Spares spares = new Spares(spareId, name, count, price, supplierId);
         try {
             boolean isSaved = SpareRepo.save(spares);
             if (isSaved){
@@ -159,8 +163,9 @@ public class SpareFormController {
         String name = txtName.getText();
         int count = Integer.parseInt(txtCount.getText());
         double price = Double.parseDouble(txtPrice.getText());
+        String supplierId = (String) cmbSupplierId.getValue();
 
-        Spares spares = new Spares(spareId, name, count, price);
+        Spares spares = new Spares(spareId, name, count, price, supplierId);
         try {
             boolean isUpdated = SpareRepo.update(spares);
             if (isUpdated){
@@ -210,6 +215,22 @@ public class SpareFormController {
         txtName.setText("");
         txtCount.setText("");
         txtPrice.setText("");
+    }
+
+    private void getSupplierId(){
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        try {
+            List<String> idList = SupplierRepo.getId();
+
+            for (String code : idList) {
+                obList.add(code);
+            }
+            cmbSupplierId.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

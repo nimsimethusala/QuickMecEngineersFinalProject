@@ -26,7 +26,7 @@ public class SpareRepo {
     }
 
     public static boolean save(Spares spares) throws SQLException {
-        String sql = "INSERT INTO spare VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO spare VALUES(?, ?, ?, ?, ?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -35,12 +35,13 @@ public class SpareRepo {
         pstm.setObject(2,spares.getName());
         pstm.setObject(3, spares.getCount());
         pstm.setObject(4, spares.getPrice());
+        pstm.setObject(5, spares.getSupplierId());
 
         return pstm.executeUpdate() > 0;
     }
 
     public static boolean update(Spares spares) throws SQLException {
-        String sql = "UPDATE spare SET Name = ?, count = ?, price = ? WHERE Spare_id = ?";
+        String sql = "UPDATE spare SET Name = ?, count = ?, price = ?, supplier_id = ? WHERE Spare_id = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -48,7 +49,8 @@ public class SpareRepo {
         pstm.setObject(1, spares.getName());
         pstm.setObject(2, spares.getCount());
         pstm.setObject(3, spares.getPrice());
-        pstm.setObject(4, spares.getSpareId());
+        pstm.setObject(4, spares.getSupplierId());
+        pstm.setObject(5, spares.getSpareId());
 
         return pstm.executeUpdate() > 0;
     }
@@ -68,8 +70,9 @@ public class SpareRepo {
             String name = resultSet.getString(2);
             int count = resultSet.getInt(3);
             double price = resultSet.getDouble(4);
+            String supplierId = resultSet.getString(5);
 
-            Spares spares = new Spares(spareId, name, count, price);
+            Spares spares = new Spares(spareId, name, count, price, supplierId);
             spareList.add(spares);
         }
 
@@ -176,8 +179,9 @@ public class SpareRepo {
             String name = resultSet.getString(2);
             int count = resultSet.getInt(3);
             double price = resultSet.getDouble(4);
+            String supplierId = resultSet.getString(5);
 
-            Spares spares = new Spares(spareId, name, count, price);
+            Spares spares = new Spares(spareId, name, count, price,supplierId);
 
             return spares;
         }
