@@ -37,7 +37,7 @@ public class DefectRepo {
     }
 
     public static boolean update(Defect defect) throws SQLException {
-        String sql = "UPDATE defect SET description = ?, price = ?, Spare_id = ?";
+        String sql = "UPDATE defect SET description = ?, price = ?, Spare_id = ? WHERE defect_id = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -45,9 +45,9 @@ public class DefectRepo {
         pstm.setObject(1, defect.getDescription());
         pstm.setObject(2, defect.getPrice());
         pstm.setObject(3, defect.getSpareId());
+        pstm.setObject(4, defect.getDefectId());
 
         return pstm.executeUpdate() > 0;
-
     }
 
     public static List<Defect> getAll() throws SQLException {
