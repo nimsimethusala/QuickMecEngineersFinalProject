@@ -62,17 +62,15 @@ public class PaymentRepo {
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
 
-        pstm.setString(1, jobId);
+        String defectId = JobRepo.getDefectId(jobId);
+        pstm.setString(1, defectId);
+
         ResultSet resultSet = pstm.executeQuery();
 
-        int price = 0;
         while (resultSet.next()){
-            List<Integer> priceList = Collections.singletonList(resultSet.getInt(3));
+            double defectCost = resultSet.getDouble(1);
 
-            for (int i = 0; i < priceList.size(); i++){
-                price += i;
-            }
-            return price;
+            return defectCost;
         }
         return 0;
     }
