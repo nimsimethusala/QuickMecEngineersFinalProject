@@ -38,19 +38,28 @@ public class JobRepo {
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         ResultSet resultSet = pstm.executeQuery();
-        if (resultSet.next()) {
-            String lastJobID = resultSet.getString(1);
 
-            if (!(lastJobID == null)) {
-                int index = Integer.parseInt(lastJobID.substring(1));
-                index++;
+        if(resultSet.next()) {
+            return splitOrderId(resultSet.getString(1));
+        }
+        return splitOrderId(null);
+    }
 
-                if (index < 10) {
-                    return "J00" + index;
-                } else if (index < 100) {
-                    return "J0" + index;
+    private static String splitOrderId(String string) {
+        if(string != null) {
+            String[] strings = string.split("J0");
+            int id = Integer.parseInt(strings[1]);
+            id++;
+            String ID = String.valueOf(id);
+            int length = ID.length();
+            if (length < 2){
+                return "J00"+id;
+            }else {
+                if (length < 3){
+                    return "J0"+id;
+                }else {
+                    return "J"+id;
                 }
-
             }
         }
         return "J001";
@@ -132,6 +141,23 @@ public class JobRepo {
             String spareId = resultSet.getString(1);
 
             return spareId;
+        }
+        return null;
+    }
+
+    public static String getDefectId(String jobId) throws SQLException {
+        String sql = "SELECT defect_id FROM job WHERE job_No = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, jobId);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()){
+            String defectId = resultSet.getString(1);
+
+            return defectId;
         }
         return null;
     }

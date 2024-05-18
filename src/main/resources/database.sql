@@ -9,8 +9,8 @@ create table customer(
                          contact varchar(10)
 );
 
-insert into customer values ("C002","Kasun","Galle",0759843615);
-insert into customer values ("C003","Supun","Moratuwa",0756479958);
+insert into customer values ("C001","Kasun","Galle",0759843615);
+insert into customer values ("C002","Supun","Moratuwa",0756479958);
 
 create table supplier(
                          supplier_id varchar(6)primary key ,
