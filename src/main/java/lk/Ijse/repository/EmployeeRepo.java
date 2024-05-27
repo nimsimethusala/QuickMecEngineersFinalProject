@@ -69,7 +69,7 @@ public class EmployeeRepo {
         while (resultSet.next()){
             String empId = resultSet.getString(1);
             String name = resultSet.getString(2);
-            double attendence = resultSet.getDouble(3);
+            String attendence = resultSet.getString(3);
             String address = resultSet.getString(4);
             int contact = resultSet.getInt(5);
             double salary = resultSet.getDouble(6);
@@ -176,7 +176,7 @@ public class EmployeeRepo {
         while (resultSet.next()){
             String employeeId = resultSet.getString(1);
             String name = resultSet.getString(2);
-            double attendence = resultSet.getDouble(3);
+            String attendence = resultSet.getString(3);
             String address = resultSet.getString(4);
             int contact = resultSet.getInt(5);
             double salary = resultSet.getDouble(6);
@@ -187,5 +187,39 @@ public class EmployeeRepo {
         }
 
         return null;
+    }
+
+    public static int getArrivedEmpCount() throws SQLException {
+        String sql = "SELECT attendence FROM employee WHERE attendence = 'Yes'";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        int count = 0;
+
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+            count += 1;
+
+            return count;
+        }
+        return 0;
+    }
+
+    public static int getAbsentEmpCount() throws SQLException {
+        String sql = "SELECT attendence FROM employee WHERE attendence = 'No'";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        int count = 0;
+
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+            count += 1;
+
+            return count;
+        }
+        return 0;
     }
 }
