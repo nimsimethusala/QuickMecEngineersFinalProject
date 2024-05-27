@@ -29,14 +29,14 @@
          </font>
       </Text>
       <TableView fx:id="tblPayment" layoutX="31.0" layoutY="266.0" pickOnBounds="false" prefHeight="362.0" prefWidth="783.0">
-        <columns>
-          <TableColumn fx:id="colPaymentId" prefWidth="100.00002670288086" text="Payment ID" />
-          <TableColumn fx:id="colJobId" prefWidth="111.20004272460938" text="Job ID" />
+         <columns>
+            <TableColumn fx:id="colPaymentId" prefWidth="100.00002670288086" text="Payment ID" />
+            <TableColumn fx:id="colJobId" prefWidth="111.20004272460938" text="Job ID" />
             <TableColumn fx:id="colDefectTotalCost" prefWidth="134.40003967285156" text="Defect Total Cost" />
             <TableColumn fx:id="colEmployeeTotalCost" prefWidth="156.0" text="Employee Total Cost" />
             <TableColumn fx:id="colSpareTotalCost" prefWidth="137.5999755859375" text="Spare Total Cost" />
             <TableColumn fx:id="colTotalPayment" prefWidth="140.8000366210938" text="Total Payment" />
-        </columns>
+         </columns>
       </TableView>
       <Button layoutX="482.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="101.0" stylesheets="@../Style/Css.css" text="ADD">
          <font>

@@ -6,8 +6,11 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,17 +18,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.Ijse.repository.EmployeeRepo;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
 import static java.awt.AWTEventMulticaster.add;
 
-public class DashboardFormController {
+public class DashboardFormController implements Initializable {
     @FXML
     public Label lblDate;
+    public BarChart empChart;
 
     @FXML
     private AnchorPane dashboardRoot;
@@ -40,6 +48,32 @@ public class DashboardFormController {
 
         timeline.setCycleCount(Animation.INDEFINITE); // Repeat indefinitely
         timeline.play();
+    }
+
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        try {
+            int empAttendCount = EmployeeRepo.getArrivedEmpCount();
+            int empAbsentCount = EmployeeRepo.getAbsentEmpCount();
+
+            XYChart.Series series = new XYChart.Series();
+            series.getData().add(new XYChart.Data("Arrived Employee", 20));
+            series.getData().add(new XYChart.Data("Absent Employee", 5));
+
+            empChart.getData().addAll(series);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            int empAttendCount = EmployeeRepo.getArrivedEmpCount();
+            int empAbsentCount = EmployeeRepo.getAbsentEmpCount();
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

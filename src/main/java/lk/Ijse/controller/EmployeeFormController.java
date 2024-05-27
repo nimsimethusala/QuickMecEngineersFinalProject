@@ -1,5 +1,6 @@
 package lk.Ijse.controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,8 +29,10 @@ import java.util.List;
 public class EmployeeFormController {
     @FXML
     public TextField txtCost;
-
+    @FXML
     public Label lblEmployeeId;
+    @FXML
+    public JFXComboBox cmbAttenence;
 
     @FXML
     private AnchorPane EmployeeRoot;
@@ -59,9 +62,6 @@ public class EmployeeFormController {
     private TextField txtAddress;
 
     @FXML
-    private TextField txtAttendance;
-
-    @FXML
     private TextField txtContact;
 
     @FXML
@@ -78,11 +78,11 @@ public class EmployeeFormController {
     public void initialize(){
         txtEmployeeName.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                txtAttendance.requestFocus();
+                cmbAttenence.requestFocus();
             }
         });
 
-        txtAttendance.setOnKeyPressed(event -> {
+        cmbAttenence.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 txtContact.requestFocus();
             }
@@ -106,6 +106,13 @@ public class EmployeeFormController {
             }
         });
 
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        obList.add(0,"Yes");
+        obList.add(1,"No");
+
+        cmbAttenence.setItems(obList);
+
         getCurrentEmployeeId();
         setCellValueFactory();
         loadAllEmployees();
@@ -113,24 +120,12 @@ public class EmployeeFormController {
 
     private void getCurrentEmployeeId() {
         try {
-            //String orderId = CustomerRepo.GetOrderId();
-
             String nextOrderId = EmployeeRepo.generateNextEmployeeId();
             lblEmployeeId.setText(nextOrderId);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
-    /*private void generateEmployeeId() {
-        String customerId = String.format("E%03d", idCounter);
-        lblEmployeeId.setText(customerId);
-    }
-
-    private void incrementIdCounter() {
-        idCounter++;
-        generateEmployeeId();
-    }*/
 
     private void loadAllEmployees() {
         ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
@@ -190,13 +185,13 @@ public class EmployeeFormController {
     void btnSaveOnAction(ActionEvent event) {
         String empId = lblEmployeeId.getText();
         String name = txtEmployeeName.getText();
-        double attendence = Double.parseDouble(txtAttendance.getText());
+        String attendance = (String) cmbAttenence.getValue();
         int contact = Integer.parseInt(txtContact.getText());
         String address = txtAddress.getText();
         double salary = Double.parseDouble(txtSalary.getText());
         double cost = Double.parseDouble(txtCost.getText());
 
-        Employee employee = new Employee(empId, name, attendence, contact, address, salary, cost);
+        Employee employee = new Employee(empId, name, attendance, contact, address, salary, cost);
 
         try {
             boolean isSaved = EmployeeRepo.save(employee);
@@ -215,13 +210,13 @@ public class EmployeeFormController {
     void btnUpdateOnAction(ActionEvent event) {
         String empId = lblEmployeeId.getText();
         String empName = txtEmployeeName.getText();
-        double attendence = Double.parseDouble(txtAttendance.getText());
+        String attendance = (String) cmbAttenence.getValue();
         int contact = Integer.parseInt(txtContact.getText());
         String address = txtAddress.getText();
         double salary = Double.parseDouble(txtSalary.getText());
         double cost = Double.parseDouble(txtCost.getText());
 
-        Employee employee = new Employee(empId, empName, attendence, contact, address, salary, cost);
+        Employee employee = new Employee(empId, empName, attendance, contact, address, salary, cost);
 
         try {
             boolean isUpdated = EmployeeRepo.update(employee);
@@ -250,7 +245,6 @@ public class EmployeeFormController {
 
     private void clearFleids(){
         txtEmployeeName.setText("");
-        txtAttendance.setText("");
         txtContact.setText("");
         txtAddress.setText("");
         txtSalary.setText("");
@@ -269,10 +263,6 @@ public class EmployeeFormController {
         Regex.setTextColor(TextFeildRegex.NAME,txtEmployeeName);
     }
 
-    public void txtAttendanceOnAction(KeyEvent keyEvent) {
-        Regex.setTextColor(TextFeildRegex.ATTENDANCE,txtAttendance);
-    }
-
     public void txtContactOnAction(KeyEvent keyEvent) {
         Regex.setTextColor(TextFeildRegex.CONTACT,txtContact);
     }
@@ -287,7 +277,6 @@ public class EmployeeFormController {
                 txtEmployeeName.setText(employee.getName());
                 txtAddress.setText(employee.getAddress());
                 txtContact.setText(String.valueOf(employee.getContact()));
-                txtAttendance.setText(String.valueOf(employee.getAttendance()));
                 txtCost.setText(String.valueOf(employee.getCost()));
                 txtSalary.setText(String.valueOf(employee.getSalary()));
             } else {

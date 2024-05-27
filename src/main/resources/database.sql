@@ -48,15 +48,26 @@ insert into defect values ("D002","Refilling Main Bearing Parent Bore",15000,"SP
 create table employee(
                          Emp_id varchar(6)primary key,
                          Name varchar(25),
-                         attendence int(5),
+                         attendence varchar(5),
                          address varchar(20),
                          contact varchar(10),
                          salary varchar(10),
                          cost varchar(10)
 );
 
-insert into employee values ("E001","Sadakan",30,"Panadura",0789542165,25000,2500);
-insert into employee values ("E002","Kushan",25,"Piliyandala",0789559465,26000,1500);
+insert into employee values ("E000","Sadakan","Yes","Panadura",0789542165,25000,2500);
+insert into employee values ("E001","Kushan","No","Piliyandala",0789559465,26000,1500);
+insert into employee values ("E002","Krishantha","Yes","Kalutara",0775984265,27000,3500);
+insert into employee values ("E003","Supun","No","Galle",0759812345,28000,1000);
+insert into employee values ("E004","Ajith","Yes","Panadura",0725982146,29000,1200);
+insert into employee values ("E005","Vajira","No","Colombo",0716902789,30000,1400);
+insert into employee values ("E006","Saman","Yes","Payagala",0760132879,31000,2300);
+insert into employee values ("E007","Namal","Yes","Panadura",0759803647,32000,2500);
+insert into employee values ("E008","Janaka","Yes","Panadura",0759503647,32000,2500);
+insert into employee values ("E009","Bernard","Yes","Panadura",0759893647,32000,2500);
+insert into employee values ("E010","Geethal","Yes","Panadura",0759803647,32000,2500);
+insert into employee values ("E011","Dayarathna","Yes","Panadura",0779803647,32000,2500);
+insert into employee values ("E012","Nuwan","Yes","Panadura",0719803647,32000,2500);
 
 create table job(
                     job_No varchar(6)primary key,
